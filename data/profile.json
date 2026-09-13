@@ -1,0 +1,85 @@
+{
+  "username": "ishu7w",
+  "name": "Ishu Patel",
+  "statement": "Learning the fundamentals. Building beyond the exercise.",
+  "roles": [
+    "Java & DSA",
+    "Building useful software",
+    "Exploring AI agents",
+    "Contributing to open source"
+  ],
+  "focus": {
+    "learning": "Java & data structures",
+    "building": "Practical software projects",
+    "exploring": "AI agents & applied AI",
+    "contributing": "Java open-source projects"
+  },
+  "contact": {
+    "email": "ishu7w@gmail.com",
+    "linkedin": null,
+    "portfolio": null
+  },
+  "contact_notes": "Add your verified LinkedIn and portfolio URLs here; null values are not published.",
+  "projects": [
+    {
+      "slug": "ScholarAI",
+      "name": "ScholarAI",
+      "category": "EXPLAINABLE MATCHING",
+      "description": "Scholarship matching with transparent",
+      "description2": "scoring and eligibility explanations.",
+      "stack": "Next.js \u00b7 TypeScript \u00b7 Supabase",
+      "demo": "https://scholar-ai-rose.vercel.app/",
+      "motif": "match"
+    },
+    {
+      "slug": "focusx",
+      "name": "FocusX",
+      "category": "PRODUCTIVITY PROTOTYPE",
+      "description": "A working focus timer with study-room",
+      "description2": "and gamification UI using demo data.",
+      "stack": "React \u00b7 JavaScript \u00b7 Vite",
+      "demo": "https://focusx-beta.vercel.app/",
+      "motif": "timer"
+    },
+    {
+      "slug": "logistics-delivery-system",
+      "name": "LogiPriority",
+      "category": "DSA IN PRACTICE",
+      "description": "Delivery scheduling powered by",
+      "description2": "a custom max-heap priority queue.",
+      "stack": "React \u00b7 Node.js \u00b7 Express",
+      "demo": "https://logistics-delivery-system.onrender.com/",
+      "motif": "heap"
+    },
+    {
+      "slug": "welltrack-ai",
+      "name": "WellTrack AI",
+      "category": "WELLNESS UI PROTOTYPE",
+      "description": "Habit tracking and rule-based insights",
+      "description2": "in a dashboard with sample data.",
+      "stack": "React \u00b7 JavaScript \u00b7 Recharts",
+      "demo": "https://welltrack-ai.vercel.app/",
+      "motif": "chart"
+    }
+  ],
+  "contributions": [
+    {
+      "project": "Checkstyle",
+      "description": "Correct file-extension parsing for dotted directories",
+      "url": "https://github.com/checkstyle/checkstyle/pull/21518",
+      "status": "Merged"
+    },
+    {
+      "project": "Gson",
+      "description": "Avoid quadratic removeIf behavior in JsonArray list views",
+      "url": "https://github.com/google/gson/pull/3115",
+      "status": "Submitted"
+    },
+    {
+      "project": "Java Pathfinder",
+      "description": "Fix position clamping when a buffer limit changes",
+      "url": "https://github.com/javapathfinder/jpf-core/pull/641",
+      "status": "Submitted"
+    }
+  ]
+}

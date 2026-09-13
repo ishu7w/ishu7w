@@ -1,0 +1,24 @@
+{
+  "updated": "2026-09-13",
+  "public_repositories": 13,
+  "original_repositories": 9,
+  "stars": 0,
+  "followers": 2,
+  "merged_upstream_prs": 4,
+  "language_bytes": {
+    "TypeScript": 1302455,
+    "HTML": 471923,
+    "JavaScript": 426675,
+    "CSS": 132600,
+    "PLpgSQL": 44403,
+    "Java": 36985,
+    "Python": 20960
+  },
+  "source": "https://api.github.com/users/ishu7w/repos",
+  "scope": "Public repositories only. Stars and language bytes exclude forks. Merged PRs exclude own repositories.",
+  "contribution_states": {
+    "https://github.com/checkstyle/checkstyle/pull/21518": "Merged",
+    "https://github.com/google/gson/pull/3115": "Open",
+    "https://github.com/javapathfinder/jpf-core/pull/641": "Open"
+  }
+}

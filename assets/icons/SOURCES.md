@@ -1,0 +1,1 @@
+Icons from https://github.com/devicons/devicon/tree/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons (MIT). Original artwork with a pale background plate for light/dark readability. Brand icons belong to their respective owners.

@@ -1,0 +1,47 @@
+name: Refresh profile
+on:
+  schedule:
+    - cron: '23 2 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - data/profile.json
+      - scripts/**
+      - .github/workflows/update-readme.yml
+permissions:
+  contents: read
+concurrency:
+  group: profile-assets
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Refresh public statistics and profile assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/generate-assets.py --refresh
+      - name: Generate contribution snakes
+        uses: Platane/snk/svg-only@d8f6715049803e982ee5ff501b6b9b7d5deeb09b # v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg?color_snake=#466acb&color_dots=#ebedf0,#d5e0f7,#a8bfe9,#779adb,#466acb
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=#7dd9ed&color_dots=#172238,#294164,#406499,#658acb,#a6bded
+      - name: Prepare accessible fallback and validate
+        run: |
+          python3 scripts/prepare-snake.py
+          python3 scripts/validate.py
+      - name: Commit generated assets only when changed
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add README.md assets/ data/stats.json dist/
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'chore: refresh profile assets'
+          git push origin HEAD:main
