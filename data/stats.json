@@ -1,10 +1,10 @@
 {
-  "updated": "2026-09-15",
+  "updated": "2026-09-16",
   "public_repositories": 14,
   "original_repositories": 10,
   "stars": 0,
   "followers": 2,
-  "merged_upstream_prs": 7,
+  "merged_upstream_prs": 8,
   "language_bytes": {
     "TypeScript": 1302455,
     "HTML": 471923,
@@ -18,7 +18,7 @@
   "scope": "Public repositories only. Stars and language bytes exclude forks. Merged PRs exclude own repositories.",
   "contribution_states": {
     "https://github.com/checkstyle/checkstyle/pull/21518": "Merged",
-    "https://github.com/google/gson/pull/3115": "Open",
+    "https://github.com/google/gson/pull/3115": "Merged",
     "https://github.com/javapathfinder/jpf-core/pull/641": "Open"
   }
 }

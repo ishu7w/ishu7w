@@ -106,12 +106,12 @@ Small products, practical systems, and the ideas behind them. Cards open the sou
 <p align="center"><picture><source media="(max-width: 600px)" srcset="assets/analytics-mobile.svg" /><img src="assets/analytics.svg" width="640" alt="Public GitHub statistics; exact values and scope are available below." /></picture></p>
 
 <details>
-<summary>Numbers, sources & scope · updated 2026-09-15</summary>
+<summary>Numbers, sources & scope · updated 2026-09-16</summary>
 
 - **14** public repositories, including forks.
 - **0** stars across public, non-fork repositories (¹).
 - **2** followers.
-- **7** merged public pull requests outside my own repositories (²).
+- **8** merged public pull requests outside my own repositories (²).
 - Language proportions measure code bytes across public non-fork repositories; they are not proficiency ratings.
 - [Snapshot and language totals](data/stats.json) · [GitHub profile](https://github.com/ishu7w)
 
@@ -134,7 +134,7 @@ I'm learning data structures through Java and applying the same ideas in project
 ### Beyond my own repositories
 
 - **[Checkstyle](https://github.com/checkstyle/checkstyle/pull/21518)** — Correct file-extension parsing for dotted directories. *Merged.*
-- **[Gson](https://github.com/google/gson/pull/3115)** — Avoid quadratic removeIf behavior in JsonArray list views. *Open.*
+- **[Gson](https://github.com/google/gson/pull/3115)** — Avoid quadratic removeIf behavior in JsonArray list views. *Merged.*
 - **[Java Pathfinder](https://github.com/javapathfinder/jpf-core/pull/641)** — Fix position clamping when a buffer limit changes. *Open.*
 
 <picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/divider-static.svg" /><img src="assets/divider.svg" width="100%" alt="" /></picture>
