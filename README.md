@@ -106,7 +106,7 @@ Small products, practical systems, and the ideas behind them. Cards open the sou
 <p align="center"><picture><source media="(max-width: 600px)" srcset="assets/analytics-mobile.svg" /><img src="assets/analytics.svg" width="640" alt="Public GitHub statistics; exact values and scope are available below." /></picture></p>
 
 <details>
-<summary>Numbers, sources & scope · updated 2026-09-23</summary>
+<summary>Numbers, sources & scope · updated 2026-09-24</summary>
 
 - **15** public repositories, including forks.
 - **1** stars across public, non-fork repositories (¹).
