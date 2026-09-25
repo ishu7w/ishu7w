@@ -106,11 +106,11 @@ Small products, practical systems, and the ideas behind them. Cards open the sou
 <p align="center"><picture><source media="(max-width: 600px)" srcset="assets/analytics-mobile.svg" /><img src="assets/analytics.svg" width="640" alt="Public GitHub statistics; exact values and scope are available below." /></picture></p>
 
 <details>
-<summary>Numbers, sources & scope · updated 2026-09-24</summary>
+<summary>Numbers, sources & scope · updated 2026-09-25</summary>
 
 - **15** public repositories, including forks.
 - **1** stars across public, non-fork repositories (¹).
-- **2** followers.
+- **3** followers.
 - **12** merged public pull requests outside my own repositories (²).
 - Language proportions measure code bytes across public non-fork repositories; they are not proficiency ratings.
 - [Snapshot and language totals](data/stats.json) · [GitHub profile](https://github.com/ishu7w)
