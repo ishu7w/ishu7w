@@ -22,43 +22,43 @@
   "contact_notes": "Add your verified LinkedIn and portfolio URLs here; null values are not published.",
   "projects": [
     {
-      "slug": "ScholarAI",
-      "name": "ScholarAI",
-      "category": "EXPLAINABLE MATCHING",
-      "description": "Scholarship matching with transparent",
-      "description2": "scoring and eligibility explanations.",
-      "stack": "Next.js \u00b7 TypeScript \u00b7 Supabase",
-      "demo": "https://scholar-ai-rose.vercel.app/",
-      "motif": "match"
-    },
-    {
-      "slug": "focusx",
-      "name": "FocusX",
-      "category": "PRODUCTIVITY PROTOTYPE",
-      "description": "A working focus timer with study-room",
-      "description2": "and gamification UI using demo data.",
-      "stack": "React \u00b7 JavaScript \u00b7 Vite",
-      "demo": "https://focusx-beta.vercel.app/",
-      "motif": "timer"
-    },
-    {
-      "slug": "logistics-delivery-system",
-      "name": "LogiPriority",
-      "category": "DSA IN PRACTICE",
-      "description": "Delivery scheduling powered by",
-      "description2": "a custom max-heap priority queue.",
-      "stack": "React \u00b7 Node.js \u00b7 Express",
-      "demo": "https://logistics-delivery-system.onrender.com/",
+      "slug": "parkwise",
+      "name": "Parkwise",
+      "category": "PARKING OPERATIONS",
+      "description": "Vehicle allocation, visitor holds,",
+      "description2": "maintenance controls and reporting.",
+      "stack": "React \u00b7 TypeScript \u00b7 Vite",
+      "demo": "https://parkwise-beta.vercel.app/",
       "motif": "heap"
     },
     {
-      "slug": "welltrack-ai",
-      "name": "WellTrack AI",
-      "category": "WELLNESS UI PROTOTYPE",
-      "description": "Habit tracking and rule-based insights",
-      "description2": "in a dashboard with sample data.",
-      "stack": "React \u00b7 JavaScript \u00b7 Recharts",
-      "demo": "https://welltrack-ai.vercel.app/",
+      "slug": "digital-certification-system",
+      "name": "Credence",
+      "category": "DIGITAL CERTIFICATES",
+      "description": "Certificate issuance and verification",
+      "description2": "with HMAC integrity and audit history.",
+      "stack": "React \u00b7 Express \u00b7 SQLite",
+      "demo": "https://digital-certification-system-mu.vercel.app",
+      "motif": "match"
+    },
+    {
+      "slug": "scholarship-financial-aid-system",
+      "name": "Scholarship & Aid",
+      "category": "JAVA OOP PLATFORM",
+      "description": "Scholarship eligibility, applications,",
+      "description2": "institution decisions and financial aid.",
+      "stack": "Java \u00b7 Next.js \u00b7 JDBC",
+      "demo": "https://scholarship-financial-aid-system.vercel.app",
+      "motif": "match"
+    },
+    {
+      "slug": "SmartHealth",
+      "name": "SmartHealth",
+      "category": "HEALTHCARE & PARALLELISM",
+      "description": "Educational patient-record system",
+      "description2": "with Java thread-pool benchmarks.",
+      "stack": "Java \u00b7 Spring Boot \u00b7 React",
+      "demo": null,
       "motif": "chart"
     }
   ],
