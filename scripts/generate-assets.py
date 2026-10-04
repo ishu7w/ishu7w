@@ -13,7 +13,7 @@ import urllib.parse
 ROOT = Path(__file__).resolve().parents[1]
 P = json.loads((ROOT / 'data/profile.json').read_text())
 E = lambda value: html.escape(str(value), quote=True)
-BG, FG, MUTED, LINE, CYAN, BLUE, PURPLE = '#0b1020', '#f1f5ff', '#b2c1d9', '#24334e', '#7dd9ed', '#8caeff', '#b7a0ff'
+BG, FG, MUTED, LINE, CYAN, BLUE, PURPLE = '#16141d', '#fff4f7', '#c5bacb', '#39303f', '#f3abc6', '#bba4e5', '#e2bdd5'
 
 def api(endpoint):
     return json.loads(subprocess.check_output(['gh', 'api', endpoint], text=True))
@@ -62,11 +62,31 @@ def text(x, y, content, size=18, color=FG, extra=''):
 def surface(w, h):
     return f'<rect width="{w}" height="{h}" rx="16" fill="{BG}"/>'
 
+
+def blossom(x,y,scale=1,rotation=0):
+    petals=''
+    for angle in range(0,360,72):
+        petals+=f'<path transform="rotate({angle})" d="M0 0 C-11 -5 -13 -18 -5 -23 L0 -19 L5 -23 C13 -18 11 -5 0 0Z" fill="#f3abc6" stroke="#ffd9e6" stroke-width=".6"/>'
+    return f'<g transform="translate({x} {y}) rotate({rotation}) scale({scale})">{petals}<circle r="3" fill="#f9dcad"/><circle r="1.2" fill="#9c5e78"/></g>'
+
+def sakura(w,h,mobile=False):
+    # Branches stay at the perimeter, leaving a quiet space for the identity.
+    art=''
+    for mirror in (False,True):
+        transform=f'translate({w} {h}) rotate(180)' if mirror else ''
+        art+=f'<g transform="{transform}"><g transform="scale({.52 if mobile else .82})"><path d="M-12 24 C48 28 55 62 96 67 S150 56 180 85 M54 46 Q75 15 115 12 M97 67 Q110 100 146 112" fill="none" stroke="#8c637b" stroke-width="3" stroke-linecap="round"/>'
+        for x,y,k,r in [(30,32,.65,12),(60,47,.85,0),(81,25,.65,30),(112,13,.7,10),(100,68,1,18),(140,66,.7,0),(177,84,.8,28),(140,110,.65,9)]:
+            art+=blossom(x,y,k*(.7 if mobile else 1),r)
+        art+='</g></g>'
+    for x,y,r in [(w*.24,35,15),(w*.78,h*.38,-20),(w*.16,h*.73,35),(w*.63,h-27,70)]:
+        art+=f'<ellipse cx="{x}" cy="{y}" rx="3" ry="7" transform="rotate({r} {x} {y})" fill="#f3abc6" opacity=".45"/>'
+    return art
+
 def hero(mobile=False):
     w,h = (480,360) if mobile else (960,410)
     cx=w/2
     body=surface(w,h)
-    body+='''<defs><radialGradient id="a"><stop stop-color="#233b62" stop-opacity=".8"/><stop offset="1" stop-color="#0b1020" stop-opacity="0"/></radialGradient><linearGradient id="s"><stop stop-color="#7dd9ed"/><stop offset=".5" stop-color="#8caeff"/><stop offset="1" stop-color="#b7a0ff"/></linearGradient></defs>'''
+    body+='''<defs><radialGradient id="a"><stop stop-color="#573046" stop-opacity=".8"/><stop offset="1" stop-color="#16141d" stop-opacity="0"/></radialGradient><linearGradient id="s"><stop stop-color="#f3abc6"/><stop offset=".5" stop-color="#bba4e5"/><stop offset="1" stop-color="#e2bdd5"/></linearGradient></defs>'''
     body+=f'<ellipse cx="{cx}" cy="190" rx="{w*.48}" ry="200" fill="url(#a)"/>'
     # Data paths meet at the name; restrained motion is purely decorative.
     for side in (-1,1):
@@ -75,6 +95,7 @@ def hero(mobile=False):
             y=65+i*32
             d=f'M {cx+side*w/2} {y} H {x} Q {x-side*12} {y} {x-side*12} {y+12} V {h-65-i*18} H {cx+side*(205 if mobile else 372)}'
             body+=f'<path d="{d}" fill="none" stroke="{LINE}" stroke-width="1"/><path class="signal" d="{d}" fill="none" stroke="url(#s)" stroke-width="1.5" style="animation-delay:-{i*3}s"/>'
+    body+=sakura(w,h,mobile)
     body+=text(cx,105 if mobile else 130,P['name'],60 if mobile else 88,extra='text-anchor="middle" font-weight="700" letter-spacing="-3"')
     body+=text(cx,144 if mobile else 177,'Computer Science & Engineering student',19 if mobile else 24,MUTED,'text-anchor="middle"')
     y=201 if mobile else 238
@@ -116,7 +137,7 @@ def motif(kind):
 
 def cards():
     for p in P['projects']:
-        b=surface(460,234)
+        b=surface(460,234)+blossom(432,20,.34,18)
         b+=f'<g stroke="{BLUE}" stroke-width="1.5" fill="none" opacity=".8">{motif(p["motif"])}</g>'
         b+=text(26,47,p['name'],31,extra='font-weight="700" letter-spacing="-.8"')
         b+=text(26,76,p['category'],11,CYAN,extra='letter-spacing="1.2"')
@@ -124,7 +145,7 @@ def cards():
         b+=f'<path d="M26 173 H434" stroke="{LINE}"/>'
         b+=text(26,207,p['stack'],15,FG)+text(434,207,'↗',22,CYAN,'text-anchor="end"')
         svg(f'assets/project-cards/{p["slug"]}.svg',460,234,p['name']+': '+p['description']+' '+p['description2']+' '+p['stack'],b)
-        b=surface(360,266)+text(24,45,p['name'],30,extra='font-weight="700" letter-spacing="-.8"')
+        b=surface(360,266)+blossom(333,28,.35,18)+text(24,45,p['name'],30,extra='font-weight="700" letter-spacing="-.8"')
         b+=text(24,76,p['category'],13,CYAN)
         for i,line in enumerate(textwrap.wrap(p['description']+' '+p['description2'],32)):
             b+=text(24,120+i*27,line,19,MUTED)
@@ -162,19 +183,14 @@ def analytics(stats):
     svg('assets/analytics-mobile.svg',480,380,'GitHub public statistics, updated '+stats['updated'],b)
 
 def accents():
-    svg('assets/divider.svg',960,24,'Section divider',f'<path d="M0 12 H960" stroke="{LINE}"/><path class="signal" d="M0 12 H960" stroke="{BLUE}"/>')
-    svg('assets/footer.svg',640,94,'Understand it. Build it. Make it better.',surface(640,94)+text(320,55,'Understand it. Build it. Make it better.',23,MUTED,'text-anchor="middle"')+f'<path class="signal" d="M70 78 H570" stroke="{CYAN}"/>')
+    svg('assets/divider.svg',960,40,'Sakura section divider',f'<path d="M0 20 H450 M510 20 H960" stroke="{LINE}"/>'+blossom(480,20,.6,18))
+    svg('assets/footer.svg',640,94,'Understand it. Build it. Make it better.',surface(640,94)+blossom(37,45,.6,10)+blossom(603,45,.6,28)+text(320,55,'Understand it. Build it. Make it better.',23,MUTED,'text-anchor="middle"')+f'<path class="signal" d="M70 78 H570" stroke="{CYAN}"/>')
     for label,file,w in [('Explore projects','projects',176),('Email Ishu','email',140),('GitHub','github',118)]:
         svg(f'assets/{file}-button.svg',w,40,label,f'<rect x=".5" y=".5" width="{w-1}" height="39" rx="8" fill="{BG}" stroke="{LINE}"/>'+text(w/2,26,label,15,CYAN,'text-anchor="middle"'))
 
 def readme(stats):
     u=P['username'];content='''<!--
-THESIS: A build signal connects learning, products, and upstream work.
-OWN-WORLD: Ink navy panels, pale typography, cyan signals, blue geometry, restrained violet.
-STORY: Meet Ishu; explore concrete projects; inspect public contributions; connect.
-FIRST VIEWPORT: Centered animated name banner, short student identity, and two clear links.
-FORM: User-pinned premium technical portfolio; seed 2000cf0b is overridden by the explicit brief.
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+Sakura × circuitry. Original botanical SVG artwork; local, accessible assets.
 Generated by scripts/generate-assets.py. Edit data/profile.json, then regenerate.
 -->
 <p align="center">
@@ -233,15 +249,7 @@ Small products, practical systems, and the ideas behind them. Cards open the sou
     content+=f'<details>\n<summary>Numbers, sources & scope · updated {stats["updated"]}</summary>\n\n'
     content+=f'- **{stats["public_repositories"]}** public repositories, including forks.\n- **{stats["stars"]}** stars across public, non-fork repositories (¹).\n- **{stats["followers"]}** followers.\n- **{stats["merged_upstream_prs"]}** merged public pull requests outside my own repositories (²).\n'
     content+='- Language proportions measure code bytes across public non-fork repositories; they are not proficiency ratings.\n- [Snapshot and language totals](data/stats.json) · [GitHub profile](https://github.com/ishu7w)\n\n</details>\n\n'
-    content+='''### A year of contributions
-
-<picture>
-  <source media="(prefers-reduced-motion: reduce)" srcset="assets/contributions-static.svg" />
-  <source media="(prefers-color-scheme: dark)" srcset="dist/github-contribution-grid-snake-dark.svg" />
-  <img src="dist/github-contribution-grid-snake.svg" width="100%" alt="Animated snake tracing my GitHub contribution calendar. View the accessible contribution history on my GitHub profile." />
-</picture>
-
-[Explore my contribution history](https://github.com/ishu7w?tab=overview) · Refreshed daily from GitHub.
+    content+='''[Explore my contribution history](https://github.com/ishu7w?tab=overview)
 
 ### Java, DSA & real code
 
