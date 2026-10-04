@@ -103,7 +103,7 @@ Small products, practical systems, and the ideas behind them. Cards open the sou
 <details>
 <summary>Numbers, sources & scope · updated 2026-10-04</summary>
 
-- **15** public repositories, including forks.
+- **16** public repositories, including forks.
 - **1** stars across public, non-fork repositories (¹).
 - **3** followers.
 - **15** merged public pull requests outside my own repositories (²).
