@@ -111,7 +111,7 @@ def hero(mobile=False):
     if mobile:
         body+=text(cx,277,'Learning the fundamentals.',19,MUTED,'text-anchor="middle"')+text(cx,305,'Building beyond the exercise.',19,MUTED,'text-anchor="middle"')
     else: body+=text(cx,316,P['statement'],23,MUTED,'text-anchor="middle"')
-    svg('assets/hero-mobile.svg' if mobile else 'assets/hero.svg',w,h,'Ishu Patel — CSE student. Java, DSA, practical software and AI agents.',body,css)
+    svg('assets/sakura/hero-mobile.svg' if mobile else 'assets/sakura/hero.svg',w,h,'Ishu Patel — CSE student. Java, DSA, practical software and AI agents.',body,css)
 
 def terminal():
     body=surface(640,276)
@@ -122,12 +122,12 @@ def terminal():
     for i,(key,val) in enumerate(P['focus'].items()):
         body+=text(26,126+i*34,key,18,PURPLE,'class="mono"')+text(183,126+i*34,val,19,FG)
     body+=f'<rect class="cursor" x="580" y="239" width="10" height="19" fill="{CYAN}"/>'
-    svg('assets/terminal.svg',640,276,'Current focus: '+ '; '.join(P['focus'].values()),body)
+    svg('assets/sakura/terminal.svg',640,276,'Current focus: '+ '; '.join(P['focus'].values()),body)
     b=surface(480,348)+text(24,40,'ishu@github:~$ current-focus',21,CYAN,'class="mono"')
     for i,(key,val) in enumerate(P['focus'].items()):
         b+=text(24,84+i*65,key.upper(),13,PURPLE,extra='letter-spacing="1"')+text(24,112+i*65,val,22)
     b+=f'<rect class="cursor" x="438" y="306" width="10" height="19" fill="{CYAN}"/>'
-    svg('assets/terminal-mobile.svg',480,348,'Current focus: '+ '; '.join(P['focus'].values()),b)
+    svg('assets/sakura/terminal-mobile.svg',480,348,'Current focus: '+ '; '.join(P['focus'].values()),b)
 
 def motif(kind):
     if kind=='timer':return '<circle cx="391" cy="75" r="26"/><path d="M391 56 V75 L405 83 M385 38 H397"/>'
@@ -144,14 +144,14 @@ def cards():
         b+=text(26,122,p['description'],18,MUTED)+text(26,149,p['description2'],18,MUTED)
         b+=f'<path d="M26 173 H434" stroke="{LINE}"/>'
         b+=text(26,207,p['stack'],15,FG)+text(434,207,'↗',22,CYAN,'text-anchor="end"')
-        svg(f'assets/project-cards/{p["slug"]}.svg',460,234,p['name']+': '+p['description']+' '+p['description2']+' '+p['stack'],b)
+        svg(f'assets/sakura/project-cards/{p["slug"]}.svg',460,234,p['name']+': '+p['description']+' '+p['description2']+' '+p['stack'],b)
         b=surface(360,266)+blossom(333,28,.35,18)+text(24,45,p['name'],30,extra='font-weight="700" letter-spacing="-.8"')
         b+=text(24,76,p['category'],13,CYAN)
         for i,line in enumerate(textwrap.wrap(p['description']+' '+p['description2'],32)):
             b+=text(24,120+i*27,line,19,MUTED)
         b+=f'<path d="M24 214 H336" stroke="{LINE}"/>'
         b+=text(24,245,p['stack'],16)
-        svg(f'assets/project-cards/{p["slug"]}-mobile.svg',360,266,p['name']+': '+p['description']+' '+p['description2']+' '+p['stack'],b)
+        svg(f'assets/sakura/project-cards/{p["slug"]}-mobile.svg',360,266,p['name']+': '+p['description']+' '+p['description2']+' '+p['stack'],b)
 
 def analytics(stats):
     b=surface(640,270)
@@ -170,7 +170,7 @@ def analytics(stats):
     for i,(name,value) in enumerate(langs[:3]):
         b+=text(25+i*198,193,f'{name} {100*value/total:.1f}%',15,colors[i])
     b+=text(25,234,'GitHub API · '+stats['updated']+' UTC',13,MUTED)
-    svg('assets/analytics.svg',640,270,'GitHub public statistics, updated '+stats['updated']+': '+', '.join(f'{n} {v}' for n,v in labels),b)
+    svg('assets/sakura/analytics.svg',640,270,'GitHub public statistics, updated '+stats['updated']+': '+', '.join(f'{n} {v}' for n,v in labels),b)
     b=surface(480,380)
     for i,(label,value) in enumerate(labels):
         x=26+(i%2)*232;y=58+(i//2)*92
@@ -180,13 +180,13 @@ def analytics(stats):
     for i,(name,value) in enumerate(langs[:3]):
         b+=text(26,268+i*27,name,23,colors[i])+text(452,268+i*27,f'{100*value/total:.1f}%',23,colors[i],'text-anchor="end"')
     b+=text(26,357,'GitHub API · '+stats['updated']+' UTC',15,MUTED)
-    svg('assets/analytics-mobile.svg',480,380,'GitHub public statistics, updated '+stats['updated'],b)
+    svg('assets/sakura/analytics-mobile.svg',480,380,'GitHub public statistics, updated '+stats['updated'],b)
 
 def accents():
-    svg('assets/divider.svg',960,40,'Sakura section divider',f'<path d="M0 20 H450 M510 20 H960" stroke="{LINE}"/>'+blossom(480,20,.6,18))
-    svg('assets/footer.svg',640,94,'Understand it. Build it. Make it better.',surface(640,94)+blossom(37,45,.6,10)+blossom(603,45,.6,28)+text(320,55,'Understand it. Build it. Make it better.',23,MUTED,'text-anchor="middle"')+f'<path class="signal" d="M70 78 H570" stroke="{CYAN}"/>')
+    svg('assets/sakura/divider.svg',960,40,'Sakura section divider',f'<path d="M0 20 H450 M510 20 H960" stroke="{LINE}"/>'+blossom(480,20,.6,18))
+    svg('assets/sakura/footer.svg',640,94,'Understand it. Build it. Make it better.',surface(640,94)+blossom(37,45,.6,10)+blossom(603,45,.6,28)+text(320,55,'Understand it. Build it. Make it better.',23,MUTED,'text-anchor="middle"')+f'<path class="signal" d="M70 78 H570" stroke="{CYAN}"/>')
     for label,file,w in [('Explore projects','projects',176),('Email Ishu','email',140),('GitHub','github',118)]:
-        svg(f'assets/{file}-button.svg',w,40,label,f'<rect x=".5" y=".5" width="{w-1}" height="39" rx="8" fill="{BG}" stroke="{LINE}"/>'+text(w/2,26,label,15,CYAN,'text-anchor="middle"'))
+        svg(f'assets/sakura/{file}-button.svg',w,40,label,f'<rect x=".5" y=".5" width="{w-1}" height="39" rx="8" fill="{BG}" stroke="{LINE}"/>'+text(w/2,26,label,15,CYAN,'text-anchor="middle"'))
 
 def readme(stats):
     u=P['username'];content='''<!--
@@ -195,22 +195,22 @@ Generated by scripts/generate-assets.py. Edit data/profile.json, then regenerate
 -->
 <p align="center">
   <picture>
-    <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="assets/hero-mobile-static.svg" />
-    <source media="(prefers-reduced-motion: reduce)" srcset="assets/hero-static.svg" />
-    <source media="(max-width: 600px)" srcset="assets/hero-mobile.svg" />
-    <img src="assets/hero.svg" width="100%" alt="Ishu Patel — Computer Science & Engineering student. Learning Java and DSA, building useful software, and exploring AI agents." />
+    <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="assets/sakura/hero-mobile-static.svg" />
+    <source media="(prefers-reduced-motion: reduce)" srcset="assets/sakura/hero-static.svg" />
+    <source media="(max-width: 600px)" srcset="assets/sakura/hero-mobile.svg" />
+    <img src="assets/sakura/hero.svg" width="100%" alt="Ishu Patel — Computer Science & Engineering student. Learning Java and DSA, building useful software, and exploring AI agents." />
   </picture>
 </p>
 <p align="center">
-  <a href="#selected-projects"><img src="assets/projects-button.svg" width="176" alt="Explore projects" /></a>
-  <a href="mailto:EMAIL"><img src="assets/email-button.svg" width="140" alt="Email Ishu" /></a>
+  <a href="#selected-projects"><img src="assets/sakura/projects-button.svg" width="176" alt="Explore projects" /></a>
+  <a href="mailto:EMAIL"><img src="assets/sakura/email-button.svg" width="140" alt="Email Ishu" /></a>
 </p>
 
 I'm **Ishu Patel**, a Computer Science & Engineering student working on Java, data structures, and software that solves practical problems. I build full-stack projects, explore AI agents, and contribute fixes to open-source Java tools. Hackathons give me a reason to turn an idea into something people can try.
 
 ### On my workbench
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="assets/terminal-mobile-static.svg" /><source media="(prefers-reduced-motion: reduce)" srcset="assets/terminal-static.svg" /><source media="(max-width: 600px)" srcset="assets/terminal-mobile.svg" /><img src="assets/terminal.svg" width="640" alt="FOCUS" /></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="assets/sakura/terminal-mobile-static.svg" /><source media="(prefers-reduced-motion: reduce)" srcset="assets/sakura/terminal-static.svg" /><source media="(max-width: 600px)" srcset="assets/sakura/terminal-mobile.svg" /><img src="assets/sakura/terminal.svg" width="640" alt="FOCUS" /></picture></p>
 
 <details>
 <summary>Current focus, in plain text</summary>
@@ -225,7 +225,7 @@ STACK
 
 **Exploring:** AI agents, LLM-assisted applications, and explainable decision systems.
 
-<img src="assets/divider.svg" width="100%" alt="" />
+<img src="assets/sakura/divider.svg" width="100%" alt="" />
 
 ## Selected projects
 
@@ -240,12 +240,12 @@ Small products, practical systems, and the ideas behind them. Cards open the sou
     content=content.replace('STACK',stack.strip())
     for p in P['projects']:
         desc=E(p['name']+' — '+p['description']+' '+p['description2']+' '+p['stack'])
-        content+=f'<a href="https://github.com/{u}/{p["slug"]}"><picture><source media="(max-width: 600px)" srcset="assets/project-cards/{p["slug"]}-mobile.svg" /><img src="assets/project-cards/{p["slug"]}.svg" width="400" alt="{desc}" /></picture></a>\n'
+        content+=f'<a href="https://github.com/{u}/{p["slug"]}"><picture><source media="(max-width: 600px)" srcset="assets/sakura/project-cards/{p["slug"]}-mobile.svg" /><img src="assets/sakura/project-cards/{p["slug"]}.svg" width="400" alt="{desc}" /></picture></a>\n'
     content+='\n**Try the demos:** '+ ' · '.join(f'[{p["name"]}]({p["demo"]})' for p in P['projects'] if p['demo'])+'\n\n'
     content+='<details>\n<summary>Project details, in plain text</summary>\n\n'
     for p in P['projects']:content+=f'**[{p["name"]}](https://github.com/{u}/{p["slug"]})** — {p["description"]} {p["description2"]} Built with {p["stack"]}.\n\n'
-    content+='</details>\n\n<img src="assets/divider.svg" width="100%" alt="" />\n\n## In the open\n\n'
-    content+='<p align="center"><picture><source media="(max-width: 600px)" srcset="assets/analytics-mobile.svg" /><img src="assets/analytics.svg" width="640" alt="Public GitHub statistics; exact values and scope are available below." /></picture></p>\n\n'
+    content+='</details>\n\n<img src="assets/sakura/divider.svg" width="100%" alt="" />\n\n## In the open\n\n'
+    content+='<p align="center"><picture><source media="(max-width: 600px)" srcset="assets/sakura/analytics-mobile.svg" /><img src="assets/sakura/analytics.svg" width="640" alt="Public GitHub statistics; exact values and scope are available below." /></picture></p>\n\n'
     content+=f'<details>\n<summary>Numbers, sources & scope · updated {stats["updated"]}</summary>\n\n'
     content+=f'- **{stats["public_repositories"]}** public repositories, including forks.\n- **{stats["stars"]}** stars across public, non-fork repositories (¹).\n- **{stats["followers"]}** followers.\n- **{stats["merged_upstream_prs"]}** merged public pull requests outside my own repositories (²).\n'
     content+='- Language proportions measure code bytes across public non-fork repositories; they are not proficiency ratings.\n- [Snapshot and language totals](data/stats.json) · [GitHub profile](https://github.com/ishu7w)\n\n</details>\n\n'
@@ -261,14 +261,14 @@ I'm learning data structures through Java and applying the same ideas in project
     for c in P['contributions']:
         status=stats.get('contribution_states',{}).get(c['url'],c['status'])
         content+=f'- **[{c["project"]}]({c["url"]})** — {c["description"]}. *{status}.*\n'
-    content+='\n<img src="assets/divider.svg" width="100%" alt="" />\n\n## Have a useful problem in mind?\n\nI’m interested in practical AI products, open-source Java work, and hackathon collaborations. Let’s build something people can try.\n\n<p align="center">\n'
-    content+=f'<a href="mailto:{P["contact"]["email"]}"><img src="assets/email-button.svg" width="140" alt="Email Ishu at {P["contact"]["email"]}" /></a>\n<a href="https://github.com/{u}"><img src="assets/github-button.svg" width="118" alt="Ishu on GitHub" /></a>\n</p>\n'
+    content+='\n<img src="assets/sakura/divider.svg" width="100%" alt="" />\n\n## Have a useful problem in mind?\n\nI’m interested in practical AI products, open-source Java work, and hackathon collaborations. Let’s build something people can try.\n\n<p align="center">\n'
+    content+=f'<a href="mailto:{P["contact"]["email"]}"><img src="assets/sakura/email-button.svg" width="140" alt="Email Ishu at {P["contact"]["email"]}" /></a>\n<a href="https://github.com/{u}"><img src="assets/sakura/github-button.svg" width="118" alt="Ishu on GitHub" /></a>\n</p>\n'
     for key in ('linkedin','portfolio'):
         if P['contact'].get(key):content+=f'[{key.title()}]({P["contact"][key]})\n'
-    content+='\n<p align="center"><img src="assets/footer.svg" width="640" alt="Understand it. Build it. Make it better." /></p>\n'
+    content+='\n<p align="center"><img src="assets/sakura/footer.svg" width="640" alt="Understand it. Build it. Make it better." /></p>\n'
     for name,width,alt in [('divider','100%',''),('footer','640','Understand it. Build it. Make it better.')]:
-        original=f'<img src="assets/{name}.svg" width="{width}" alt="{alt}" />'
-        content=content.replace(original,f'<picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/{name}-static.svg" />{original}</picture>')
+        original=f'<img src="assets/sakura/{name}.svg" width="{width}" alt="{alt}" />'
+        content=content.replace(original,f'<picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/sakura/{name}-static.svg" />{original}</picture>')
     (ROOT/'README.md').write_text(content)
 
 def main():
@@ -276,9 +276,9 @@ def main():
     stats=fetch_stats() if options.refresh else json.loads((ROOT/'data/stats.json').read_text())
     hero();hero(True);terminal();cards();analytics(stats);accents();readme(stats)
     for name in ('hero','hero-mobile','terminal','terminal-mobile','divider','footer'):
-        source=(ROOT/f'assets/{name}.svg').read_text()
+        source=(ROOT/f'assets/sakura/{name}.svg').read_text()
         source=source.replace('</svg>','<style>*{animation:none!important}.fallback{opacity:1!important}.role{display:none!important}</style></svg>')
-        (ROOT/f'assets/{name}-static.svg').write_text(source)
+        (ROOT/f'assets/sakura/{name}-static.svg').write_text(source)
     print('Generated README and custom SVG assets.')
 
 if __name__=='__main__':main()
