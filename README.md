@@ -104,12 +104,12 @@ Parkwise is a single-device prototype. Credence’s hosted preview is read-only;
 <p align="center"><picture><source media="(max-width: 600px)" srcset="assets/sakura/analytics-mobile.svg" /><img src="assets/sakura/analytics.svg" width="640" alt="Public GitHub statistics; exact values and scope are available below." /></picture></p>
 
 <details>
-<summary>Numbers, sources & scope · updated 2026-10-06</summary>
+<summary>Numbers, sources & scope · updated 2026-10-07</summary>
 
-- **16** public repositories, including forks.
+- **18** public repositories, including forks.
 - **1** stars across public, non-fork repositories (¹).
 - **3** followers.
-- **15** merged public pull requests outside my own repositories (²).
+- **16** merged public pull requests outside my own repositories (²).
 - Language proportions measure code bytes across public non-fork repositories; they are not proficiency ratings.
 - [Snapshot and language totals](data/stats.json) · [GitHub profile](https://github.com/ishu7w)
 
