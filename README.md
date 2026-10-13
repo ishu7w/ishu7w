@@ -104,9 +104,9 @@ Parkwise is a single-device prototype. Credence’s hosted preview is read-only;
 <p align="center"><picture><source media="(max-width: 600px)" srcset="assets/sakura/analytics-mobile.svg" /><img src="assets/sakura/analytics.svg" width="640" alt="Public GitHub statistics; exact values and scope are available below." /></picture></p>
 
 <details>
-<summary>Numbers, sources & scope · updated 2026-10-12</summary>
+<summary>Numbers, sources & scope · updated 2026-10-13</summary>
 
-- **24** public repositories, including forks.
+- **25** public repositories, including forks.
 - **1** stars across public, non-fork repositories (¹).
 - **3** followers.
 - **21** merged public pull requests outside my own repositories (²).
