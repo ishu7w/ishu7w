@@ -315,13 +315,14 @@ def project_frame(project, frame_index):
     image.alpha_composite(chrome_rgba, (760, 39))
     image = image.convert("RGB")
 
-    # Airy petals drift on a looping arc so every project GIF shares the motion.
+    # Glowing petals fall on a staggered loop with a small sideways sway.
     petals = Image.new("RGBA", image.size, (0, 0, 0, 0))
     pd = ImageDraw.Draw(petals)
     for index in range(7):
-        phase = 2 * math.pi * ((frame_index / 20) + index / 7)
-        x = 610 + index * 82 + 28 * math.sin(phase)
-        y = 18 + ((index * 67) % 205) + 27 * math.sin(phase * 1.3)
+        phase = 2 * math.pi * (frame_index / 20 + index / 7)
+        travel = height + 28
+        x = 600 + index * 84 + 24 * math.sin(phase)
+        y = (frame_index * travel / 20 + index * travel / 7) % travel - 14
         angle = 24 * math.sin(phase + index)
         scale = 4
         petal = Image.new("RGBA", (32 * scale, 19 * scale), (0, 0, 0, 0))
