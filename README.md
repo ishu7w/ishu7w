@@ -1,6 +1,6 @@
-<!-- TVA casefile aesthetic: emerald chronal strands, brass details, original Loki-inspired helmet silhouette. -->
+<!-- Visual direction: the supplied Loki helmet artwork, deep green, and antique gold. -->
 <p align="center">
-  <img src="assets/tva/hero.svg" width="100%" alt="Ishu Patel — TVA variant file. An anonymous figure in a dark suit is held by glowing green temporal strands beneath a gold Loki-inspired horned helmet. Mischief, with a purpose: Java, full-stack, practical AI." />
+  <img src="assets/tva/helmet-profile.png" width="100%" alt="Ishu Patel — Mischief, made useful. The supplied gold Loki horned-helmet artwork on a deep green field, with Java, full-stack, and practical AI." />
 </p>
 
 <p align="center">
@@ -11,11 +11,11 @@
 
 I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning difficult problems into useful software. I work across Java, full-stack development, and applied AI—learning by building, measuring, and contributing back.
 
-> **Variant directive:** question the obvious path; ship something that helps.
+> **Approach:** learn with intent, build with curiosity, and make useful things.
 
-<p align="center"><img src="assets/tva/divider.svg" width="100%" alt="Glowing green timeline divider" /></p>
+<p align="center"><img src="assets/tva/divider.svg" width="100%" alt="Antique-gold timeline divider" /></p>
 
-## ⏱ CURRENT DIRECTIVE
+## CURRENT DIRECTIVE
 
 | TVA status | Active branch |
 | --- | --- |
@@ -24,9 +24,9 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 | **Exploring** | AI agents · LLM-assisted applications · explainable decision systems |
 | **Contributing** | Open-source Java projects |
 
-<p align="center"><img src="assets/tva/divider.svg" width="100%" alt="Glowing green timeline divider" /></p>
+<p align="center"><img src="assets/tva/divider.svg" width="100%" alt="Antique-gold timeline divider" /></p>
 
-## 🗂 CASE FILES <a id="case-files"></a>
+## CASE FILES <a id="case-files"></a>
 
 <p align="center">
   <img src="assets/tva/projects.svg" width="100%" alt="Four selected projects: Parkwise parking operations built with React, TypeScript and Vite; Credence certificate verification built with React, Express and SQLite; Scholarship and Aid built with Java, Next.js and JDBC; SmartHealth patient records and concurrency benchmarks built with Java, Spring Boot and React." />
@@ -48,9 +48,9 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 
 </details>
 
-<p align="center"><img src="assets/tva/divider.svg" width="100%" alt="Glowing green timeline divider" /></p>
+<p align="center"><img src="assets/tva/divider.svg" width="100%" alt="Antique-gold timeline divider" /></p>
 
-## 🧰 SYSTEMS & TOOLS
+## SYSTEMS & TOOLS
 
 | Domain | Instruments |
 | --- | --- |
@@ -63,18 +63,18 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 
 I apply Java beyond practice problems: implementing scholarship rules and persistent workflows in [Scholarship & Aid](https://github.com/ishu7w/scholarship-financial-aid-system), and measuring sequential versus thread-pool processing in [SmartHealth](https://github.com/ishu7w/SmartHealth). I care about the algorithm, the edge cases, and the tradeoffs.
 
-<p align="center"><img src="assets/tva/divider.svg" width="100%" alt="Glowing green timeline divider" /></p>
+<p align="center"><img src="assets/tva/divider.svg" width="100%" alt="Antique-gold timeline divider" /></p>
 
-## 🟢 OPEN SOURCE <a id="open-source"></a>
+## OPEN SOURCE <a id="open-source"></a>
 
-Small, focused fixes can prevent surprising behavior across many timelines.
+Small, focused fixes can prevent surprising behavior across many branches.
 
 - **[Checkstyle #21518](https://github.com/checkstyle/checkstyle/pull/21518)** — Correct file-extension parsing for dotted directories. <sub>MERGED</sub>
 - **[Gson #3115](https://github.com/google/gson/pull/3115)** — Avoid quadratic `removeIf` behavior in JsonArray list views. <sub>MERGED</sub>
 - **[Java Pathfinder #641](https://github.com/javapathfinder/jpf-core/pull/641)** — Fix position clamping when a buffer limit changes. <sub>MERGED</sub>
 
 <details>
-<summary>Timeline metrics · updated 2026-10-25</summary>
+<summary>Profile metrics · updated 2026-10-25</summary>
 
 - **26** public repositories, including forks.
 - **3** stars across public, non-fork repositories.
@@ -85,9 +85,9 @@ Small, focused fixes can prevent surprising behavior across many timelines.
 
 </details>
 
-<p align="center"><img src="assets/tva/divider.svg" width="100%" alt="Glowing green timeline divider" /></p>
+<p align="center"><img src="assets/tva/divider.svg" width="100%" alt="Antique-gold timeline divider" /></p>
 
-## ✉️ CONTACT <a id="connect"></a>
+## CONTACT <a id="connect"></a>
 
 Interested in practical AI, open-source Java, or a good hackathon problem? Send me a transmission.
 
