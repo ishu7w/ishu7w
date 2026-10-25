@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+<title id="title">Ishu Patel — Mischief, made useful</title>
+<desc id="desc">An original emerald and antique-gold banner with a horned crown silhouette, branching timeline lines, and developer profile text.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101912"/><stop offset=".58" stop-color="#17251a"/><stop offset="1" stop-color="#0c1510"/></linearGradient>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f1d79a"/><stop offset="1" stop-color="#b88b3e"/></linearGradient>
+  <radialGradient id="glow"><stop stop-color="#4a9d68" stop-opacity=".3"/><stop offset="1" stop-color="#4a9d68" stop-opacity="0"/></radialGradient>
+  <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" fill="none" stroke="#d9c18a" stroke-opacity=".055" stroke-width="1"/></pattern>
+</defs>
+<rect width="1200" height="360" rx="24" fill="url(#bg)"/>
+<rect width="1200" height="360" rx="24" fill="url(#grid)"/>
+<ellipse cx="920" cy="168" rx="300" ry="255" fill="url(#glow)"/>
+<path d="M0 294 C190 258 300 327 475 286 S770 242 930 282 1095 319 1200 275" fill="none" stroke="#c7a45d" stroke-opacity=".22" stroke-width="1.5"/>
+<path d="M0 314 C170 279 317 345 498 304 S792 264 952 303 1091 339 1200 298" fill="none" stroke="#6f9a65" stroke-opacity=".28" stroke-width="1"/>
+<g fill="none" stroke="#d3b774" stroke-opacity=".27" stroke-width="1.4">
+<circle cx="936" cy="169" r="117"/><circle cx="936" cy="169" r="142" stroke-dasharray="3 9"/>
+<path d="M936 27v284M794 169h284M836 69l200 200M1036 69 836 269"/>
+<path d="M936 33l7 20-7 20-7-20zM1072 169l-20 7-20-7 20-7zM936 305l-7-20 7-20 7 20zM800 169l20-7 20 7-20 7z"/>
+</g>
+<g transform="translate(858 88)" fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M15 124 Q35 83 25 32 Q61 59 83 95 Q105 70 120 25 Q136 70 157 95 Q181 58 215 32 Q204 86 225 124"/>
+<path d="M22 125 Q117 151 218 125 L206 158 Q117 180 34 158Z" fill="#17251a" fill-opacity=".78"/>
+<path d="M84 97 Q118 77 154 97" stroke-width="3"/>
+</g>
+<g fill="#e0ca92" opacity=".8"><circle cx="936" cy="169" r="3"/><circle cx="794" cy="169" r="2"/><circle cx="1078" cy="169" r="2"/><circle cx="936" cy="27" r="2"/></g>
+<text x="72" y="82" fill="#d2b879" font-family="Arial,sans-serif" font-size="13" letter-spacing="4">ISHU PATEL  /  DEVELOPER PROFILE</text>
+<text x="68" y="164" fill="#f5f0e3" font-family="Georgia,serif" font-size="54" font-weight="700">Mischief,</text>
+<text x="68" y="222" fill="#f5f0e3" font-family="Georgia,serif" font-size="54" font-weight="700">made useful.</text>
+<path d="M72 253h42" stroke="#c9a65c" stroke-width="3"/>
+<text x="128" y="258" fill="#c7d1c2" font-family="Arial,sans-serif" font-size="17">Java · full-stack builds · practical AI</text>
+<text x="72" y="315" fill="#819681" font-family="Arial,sans-serif" font-size="12" letter-spacing="2">LEARN WITH INTENT  •  BUILD WITH CURIOSITY</text>
+</svg>
