@@ -1,5 +1,6 @@
 """Build the Spider-Verse artwork used by the GitHub profile README."""
 from pathlib import Path
+from html import escape
 import math
 
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
@@ -107,18 +108,21 @@ def hero():
 
 
 def project_panel():
-    # Compact illustrated project lineup; links and descriptions remain native text.
-    content = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" role="img" aria-labelledby="title desc">
-<title id="title">Ishu Patel's featured projects</title><desc id="desc">Four project cards connected by fine red web strands: Parkwise, Credence, Scholarship and Aid, and SmartHealth.</desc>
-<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#10151f"/><stop offset="1" stop-color="#190d16"/></linearGradient><linearGradient id="red"><stop stop-color="#ff315f"/><stop offset="1" stop-color="#ff7d9a"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-<rect width="1200" height="340" rx="24" fill="url(#bg)"/><path d="M0 60 C180 180 260 35 410 140 S690 245 820 120 1040 25 1200 160" fill="none" stroke="#ff315f" stroke-opacity=".27" stroke-width="1.5"/><path d="M0 250 C150 130 270 280 410 190 S700 65 850 195 1050 290 1200 190" fill="none" stroke="#ec4e81" stroke-opacity=".19"/>
-<g font-family="Arial,sans-serif"><text x="42" y="48" fill="#ff6285" font-size="13" font-weight="700" letter-spacing="4">FIELD NOTES  /  SELECTED BUILDS</text>
-<g transform="translate(38 84)"><rect width="270" height="208" rx="18" fill="#121a25" stroke="#b32b4f"/><circle cx="227" cy="42" r="19" fill="#4a1829"/><path d="M216 42h22M227 31v22" stroke="#ff6987" stroke-width="2"/><text x="22" y="48" fill="#fff" font-size="23" font-weight="700">PARKWISE</text><text x="22" y="82" fill="#c8c5ce" font-size="14">Parking operations</text><text x="22" y="110" fill="#ff6686" font-size="12">REACT · TYPESCRIPT · VITE</text><path d="M22 146h208" stroke="#733047"/><text x="22" y="176" fill="#aaaab4" font-size="12">Allocation · holds · reporting</text></g>
-<g transform="translate(333 84)"><rect width="270" height="208" rx="18" fill="#121a25" stroke="#b32b4f"/><circle cx="227" cy="42" r="19" fill="#4a1829"/><path d="M218 42l6 6 12-14" fill="none" stroke="#ff6987" stroke-width="2"/><text x="22" y="48" fill="#fff" font-size="23" font-weight="700">CREDENCE</text><text x="22" y="82" fill="#c8c5ce" font-size="14">Certificate verification</text><text x="22" y="110" fill="#ff6686" font-size="12">REACT · EXPRESS · SQLITE</text><path d="M22 146h208" stroke="#733047"/><text x="22" y="176" fill="#aaaab4" font-size="12">HMAC integrity · audit trail</text></g>
-<g transform="translate(628 84)"><rect width="270" height="208" rx="18" fill="#121a25" stroke="#b32b4f"/><circle cx="227" cy="42" r="19" fill="#4a1829"/><path d="M216 36h22v13h-22zM220 32v22M234 32v22" fill="none" stroke="#ff6987" stroke-width="2"/><text x="22" y="48" fill="#fff" font-size="17" font-weight="700">SCHOLARSHIP &amp; AID</text><text x="22" y="82" fill="#c8c5ce" font-size="14">Eligibility &amp; applications</text><text x="22" y="110" fill="#ff6686" font-size="12">JAVA · NEXT.JS · JDBC</text><path d="M22 146h208" stroke="#733047"/><text x="22" y="176" fill="#aaaab4" font-size="12">Decisions · financial aid</text></g>
-<g transform="translate(923 84)"><rect width="239" height="208" rx="18" fill="#121a25" stroke="#b32b4f"/><circle cx="196" cy="42" r="19" fill="#4a1829"/><path d="M186 42h20M196 32v20M190 36l12 12M202 36l-12 12" stroke="#ff6987" stroke-width="1.5"/><text x="22" y="48" fill="#fff" font-size="19" font-weight="700">SMARTHEALTH</text><text x="22" y="82" fill="#c8c5ce" font-size="14">Patient records</text><text x="22" y="110" fill="#ff6686" font-size="12">JAVA · SPRING · REACT</text><path d="M22 146h195" stroke="#733047"/><text x="22" y="176" fill="#aaaab4" font-size="12">Thread-pool benchmarks</text></g>
-</g></svg>'''
-    (OUT / "projects.svg").write_text(content)
+    # One wide, directly linked-style showcase panel per project, as in the reference profile.
+    projects = [
+        ("01", "PARKWISE", "Parking operations, mapped clearly.", "ALLOCATION  /  VISITOR HOLDS  /  REPORTING", "REACT  ·  TYPESCRIPT  ·  VITE", "#ff3d69", "M 850 20 L 1120 20 L 1010 215 L 780 215 Z"),
+        ("02", "CREDENCE", "A trustworthy path from issue to verify.", "HMAC INTEGRITY  /  AUDIT HISTORY", "REACT  ·  EXPRESS  ·  SQLITE", "#ff497b", "M 920 20 L 1170 20 L 1040 215 L 800 215 Z"),
+        ("03", "SCHOLARSHIP & AID", "Make eligibility and decisions easier to follow.", "APPLICATIONS  /  INSTITUTIONAL REVIEW", "JAVA  ·  NEXT.JS  ·  JDBC", "#f23d64", "M 840 20 L 1115 20 L 995 215 L 765 215 Z"),
+        ("04", "SMARTHEALTH", "Patient records meet measured concurrency.", "EDUCATIONAL RECORDS  /  THREAD-POOL BENCHMARKS", "JAVA  ·  SPRING BOOT  ·  REACT", "#ff5778", "M 900 20 L 1160 20 L 1040 215 L 800 215 Z"),
+    ]
+    for number, name, hook, scope, stack, accent, shard in projects:
+        safe_id = name.lower().replace(" & ", "-").replace(" ", "-")
+        title, hook_svg, scope_svg, stack_svg = map(escape, (name, hook, scope, stack))
+        svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 240" role="img" aria-labelledby="title desc">
+<title id="title">{title} project showcase</title><desc id="desc">{hook_svg} {scope_svg}. Built with {stack_svg}.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#10151f"/><stop offset=".52" stop-color="#20101a"/><stop offset="1" stop-color="#10131d"/></linearGradient><radialGradient id="glow"><stop stop-color="{accent}" stop-opacity=".24"/><stop offset="1" stop-color="{accent}" stop-opacity="0"/></radialGradient></defs>
+<rect width="1200" height="240" rx="22" fill="url(#bg)"/><ellipse cx="990" cy="115" rx="330" ry="190" fill="url(#glow)"/><path d="{shard}" fill="{accent}" fill-opacity=".07" stroke="{accent}" stroke-opacity=".24"/><path d="M0 194 C210 164 380 226 580 189 S920 164 1200 199" fill="none" stroke="{accent}" stroke-opacity=".28"/><g fill="none" stroke="{accent}" stroke-opacity=".16"><circle cx="1060" cy="112" r="64"/><circle cx="1060" cy="112" r="91"/><path d="M967 112h186M1060 19v186M994 46l132 132M1126 46L994 178"/></g><g font-family="Arial,sans-serif"><text x="42" y="52" fill="{accent}" font-size="13" font-weight="700" letter-spacing="4">CASE FILE  /  {number}</text><text x="40" y="113" fill="#fff" font-size="44" font-weight="700">{title}</text><text x="43" y="150" fill="#e3dce5" font-size="18">{hook_svg}</text><text x="43" y="190" fill="#ff91a9" font-size="12" font-weight="700" letter-spacing="1.4">{scope_svg}</text><rect x="822" y="173" width="334" height="34" rx="17" fill="#180d16" stroke="{accent}" stroke-opacity=".45"/><text x="844" y="195" fill="#f4e9ef" font-size="12" font-weight="700">{stack_svg}</text><text x="1012" y="148" fill="{accent}" font-size="12" font-weight="700" letter-spacing="2">OPEN REPOSITORY  ↗</text></g></svg>'''
+        (OUT / f"project-{safe_id}.svg").write_text(svg)
 
 
 def detail_panels():
@@ -134,7 +138,7 @@ def card_image(source: Path, size: tuple[int, int], centering=(0.5, 0.5)) -> Ima
 
 
 def signal_poster(frame: int | None = None) -> Image.Image:
-    """Show all three requested references in a restrained neon signal board."""
+    """Build the glitch-signal panel with the glitch Spider as its only character image."""
     width, height = 1200, 410
     poster = Image.new("RGB", (width, height), (5, 7, 13))
     # Low, static pools of color give this section its own backdrop.

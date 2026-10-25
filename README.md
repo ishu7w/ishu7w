@@ -27,14 +27,21 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 
 ## PROJECTS <a id="projects"></a>
 
-<p align="center"><img src="assets/spider/projects.svg" width="100%" alt="Four featured projects: Parkwise for parking operations, Credence for certificate verification, Scholarship and Aid for financial aid workflows, and SmartHealth for patient records and thread-pool benchmarks." /></p>
+<a href="https://github.com/ishu7w/parkwise"><img src="assets/spider/project-parkwise.svg" width="100%" alt="Parkwise — parking operations, mapped clearly. Vehicle allocation, visitor holds, reporting. React, TypeScript, Vite. Open repository." /></a>
 
-| Project | What it does | Source / demo |
-| --- | --- | --- |
-| **Parkwise** | Vehicle allocation, visitor holds, maintenance controls, and reporting. | [Repository](https://github.com/ishu7w/parkwise) · [Live preview](https://parkwise-beta.vercel.app/) |
-| **Credence** | Certificate issuance and verification with HMAC integrity and audit history. | [Repository](https://github.com/ishu7w/digital-certification-system) · [Read-only preview](https://digital-certification-system-mu.vercel.app/) |
-| **Scholarship & Aid** | Eligibility, applications, institutional decisions, and financial aid. | [Repository](https://github.com/ishu7w/scholarship-financial-aid-system) · [Live preview](https://scholarship-financial-aid-system.vercel.app/) |
-| **SmartHealth** | Educational patient records and Java thread-pool benchmarks. | [Repository](https://github.com/ishu7w/SmartHealth) |
+Vehicle allocation, visitor holds, maintenance controls, and reporting. **Stack:** React · TypeScript · Vite · [Live preview](https://parkwise-beta.vercel.app/)
+
+<a href="https://github.com/ishu7w/digital-certification-system"><img src="assets/spider/project-credence.svg" width="100%" alt="Credence — a trustworthy path from issue to verify. Certificate verification with HMAC integrity and audit history. React, Express, SQLite. Open repository." /></a>
+
+Certificate issuance and verification with HMAC integrity and audit history. **Stack:** React · Express · SQLite · [Read-only preview](https://digital-certification-system-mu.vercel.app/)
+
+<a href="https://github.com/ishu7w/scholarship-financial-aid-system"><img src="assets/spider/project-scholarship-aid.svg" width="100%" alt="Scholarship and Aid — make eligibility and decisions easier to follow. Applications and institutional review. Java, Next.js, JDBC. Open repository." /></a>
+
+Eligibility, applications, institutional decisions, and financial aid. **Stack:** Java · Next.js · JDBC · [Live preview](https://scholarship-financial-aid-system.vercel.app/)
+
+<a href="https://github.com/ishu7w/SmartHealth"><img src="assets/spider/project-smarthealth.svg" width="100%" alt="SmartHealth — patient records meet measured concurrency. Educational records and thread-pool benchmarks. Java, Spring Boot, React. Open repository." /></a>
+
+Educational patient records and Java thread-pool benchmarks. **Stack:** Java · Spring Boot · React
 
 <details>
 <summary>Project notes</summary>
