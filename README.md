@@ -1,6 +1,6 @@
-<!-- Visual direction: the supplied Loki helmet artwork, deep green, and antique gold. -->
+<!-- Visual direction: the supplied throne image, branching green timelines, and antique gold. -->
 <p align="center">
-  <img src="assets/tva/helmet-profile.png" width="100%" alt="Ishu Patel — Mischief, made useful. The supplied gold Loki horned-helmet artwork on a deep green field, with Java, full-stack, and practical AI." />
+  <img src="assets/tva/loki-throne-hero.jpg" width="100%" alt="Loki seated on a golden throne as glowing green timelines branch around him. The left side reads Ishu Patel — Mischief, made useful; Java, full-stack, and practical AI." />
 </p>
 
 <p align="center">
