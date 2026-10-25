@@ -1,10 +1,10 @@
 # Maintaining the profile
 
-Edit **data/profile.json** for current focus, project descriptions, verified demos, or contact links. Empty LinkedIn/portfolio values deliberately publish no link. All public copy and SVGs are generated with `python3 scripts/generate-assets.py`. Commit the config to `main` and the workflow regenerates the profile automatically.
+Edit **data/profile.json** for current focus, project descriptions, verified demos, or contact links. Empty LinkedIn/portfolio values deliberately publish no link. The Loki profile README is maintained directly in `README.md`; the asset generator does not replace it by default. `--render-sakura-readme` is an explicit legacy option and should not be used for the active profile design.
 
 ## Updates
 
-`Refresh profile` runs daily at **02:23 UTC / 07:53 IST**, manually from Actions, and when config, generator, or workflow files change on `main`. It refreshes public statistics and upstream PR states, generates all custom sakura-themed assets, validates them, and commits changed outputs together. Scheduled runs can be delayed by GitHub. GitHub may disable scheduled workflows in public repositories after prolonged inactivity; re-enable the workflow from Actions if needed.
+`Refresh profile` runs daily at **02:23 UTC / 07:53 IST**, manually from Actions, and when config, generator, or workflow files change on `main`. It refreshes public statistics and upstream PR states, generates custom assets, validates the checked-in README, and commits only changed assets and `data/stats.json`. It leaves the hand-maintained Loki README in place. Scheduled runs can be delayed by GitHub. GitHub may disable scheduled workflows in public repositories after prolonged inactivity; re-enable the workflow from Actions if needed.
 
 No custom secret, paid service, or personal access token is required. The workflow uses GitHub's built-in token with `contents: write` only in the publishing job. GitHub CLI and Python are included on the hosted Ubuntu runner. Locally, sign in with `gh auth login` and run `python3 scripts/generate-assets.py --refresh` to refresh stats. A failed API request fails the job and preserves the last committed snapshot rather than publishing zeroes. Dates are visible so stale data is identifiable.
 
@@ -20,7 +20,7 @@ FocusX and WellTrack AI are labeled prototypes with demo/sample data. ScholarAI'
 
 All artwork is served from this repository. Native text, alt text, and expandable text equivalents preserve the important content. No script, custom CSS, iframe, or HTML table is used in the README. CSS exists only inside standalone SVG images. The hero, terminal, analytics, and project cards include phone compositions selected through `<picture>`. Every animated component has an explicit still source for reduced motion, in addition to its embedded SVG media rule. Project images wrap naturally instead of using a two-column table. Assets use viewBox dimensions and SVG animations with reduced-motion rules. The contribution history is linked directly from GitHub.
 
-To validate: `python3 scripts/validate.py`. Devicon sources, pinned revision, and MIT notice live in `assets/icons/`. Custom profile assets are generated from `scripts/generate-assets.py`.
+To refresh assets locally: `python3 scripts/generate-assets.py --refresh`. To validate the checked-in README and assets: `python3 scripts/validate.py`. Devicon sources, pinned revision, and MIT notice live in `assets/icons/`. Custom artwork is generated from `scripts/generate-assets.py`.
 
 Demo links were reachable when installed; availability is controlled by their hosts. The Render-hosted delivery demo can take time to wake up. GitHub may cache images briefly after a refresh. SVG animation behavior depends on the browser; static content remains readable when animation is unavailable.
 

@@ -273,9 +273,10 @@ I apply Java beyond practice problems: scholarship rules and persistent workflow
     (ROOT/'README.md').write_text(content)
 
 def main():
-    args=argparse.ArgumentParser();args.add_argument('--refresh',action='store_true');options=args.parse_args()
+    args=argparse.ArgumentParser();args.add_argument('--refresh',action='store_true');args.add_argument('--render-sakura-readme',action='store_true',help='Explicitly replace README.md with the legacy sakura layout.');options=args.parse_args()
     stats=fetch_stats() if options.refresh else json.loads((ROOT/'data/stats.json').read_text())
-    hero();hero(True);terminal();cards();analytics(stats);accents();readme(stats)
+    hero();hero(True);terminal();cards();analytics(stats);accents()
+    if options.render_sakura_readme:readme(stats)
     for name in ('hero','hero-mobile','terminal','terminal-mobile','divider','footer'):
         source=(ROOT/f'assets/sakura/{name}.svg').read_text()
         source=source.replace('</svg>','<style>*{animation:none!important}.fallback{opacity:1!important}.role{display:none!important}</style></svg>')
