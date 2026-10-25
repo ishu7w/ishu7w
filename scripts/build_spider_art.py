@@ -1,19 +1,13 @@
 """Build the Spider-Man hero and restrained GitHub-native project panels."""
-from html import escape
 import math
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageEnhance, ImageFont, ImageOps
+from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
 REF = ROOT / "assets" / "spider" / "references"
 OUT = ROOT / "assets" / "spider"
-W, H = 1200, 500
-BG = "#0d1117"
-FG = "#e6edf3"
-MUTED = "#8b949e"
-LINE = "#30363d"
-RED = "#f04452"
+W, H = 1200, 520
 
 
 def font(name: str, size: int) -> ImageFont.FreeTypeFont:
@@ -25,63 +19,119 @@ def cover(path: Path, size: tuple[int, int], centering=(0.5, 0.5)) -> Image.Imag
     return ImageOps.fit(image, size, Image.Resampling.LANCZOS, centering=centering)
 
 
-def draw_web(draw: ImageDraw.ImageDraw):
-    cx, cy = 1190, -80
+def draw_web(draw: ImageDraw.ImageDraw, color, width=1, offset=0):
+    # Fine radial silk with subtly bowed cross threads.
+    cx, cy = 1175, -38
     for i in range(12):
-        angle = math.radians(110 + i * 8)
-        draw.line((cx, cy, cx + 760 * math.cos(angle), cy + 760 * math.sin(angle)), fill=(240, 68, 82, 25), width=1)
-    for radius in (90, 155, 235, 330, 440, 560):
-        points = []
-        for i in range(100):
-            angle = math.radians(110 + 94 * i / 99)
-            points.append((cx + radius * math.cos(angle), cy + radius * math.sin(angle)))
-        draw.line(points, fill=(240, 68, 82, 24), width=1)
+        angle = math.radians(112 + i * 8.5)
+        ex, ey = cx + 750 * math.cos(angle), cy + 750 * math.sin(angle)
+        draw.line((cx, cy, ex, ey), fill=color, width=width)
+    for radius in (74, 122, 176, 238, 310, 390, 478, 565):
+        pts = []
+        for i in range(121):
+            a = math.radians(112 + 93 * i / 120)
+            wobble = math.sin(a * 3 + offset) * 2.4
+            pts.append((cx + (radius + wobble) * math.cos(a), cy + (radius + wobble) * math.sin(a)))
+        draw.line(pts, fill=color, width=width, joint="curve")
+
 
 
 def hero():
-    base = Image.new("RGBA", (W, H), (13, 17, 23, 255))
-    # Preserve the supplied Spider-Man image as the sole character artwork.
-    figure = cover(REF / "spider-noir.jpeg", (600, H), (0.53, 0.34))
-    figure = ImageOps.grayscale(figure).convert("RGB")
-    figure = ImageEnhance.Contrast(figure).enhance(1.12)
-    figure = ImageEnhance.Brightness(figure).enhance(0.68)
-    mask = Image.new("L", (600, H), 0)
-    md = ImageDraw.Draw(mask)
-    for x in range(600):
-        alpha = int(245 * min(1, max(0, (x - 20) / 240)))
-        md.line((x, 0, x, H), fill=alpha)
-    base.paste(figure, (600, 0), mask)
+    # The noir image supplies the main figure; the neon and blossom references
+    # are sampled as texture, with the chrome image reduced to a glint.
+    base = Image.new("RGB", (W, H), (5, 7, 12))
+    neon = cover(REF / "glitch-spider.jpeg", (W, H), (0.52, 0.43))
+    neon = ImageEnhance.Color(neon).enhance(1.45)
+    neon = ImageEnhance.Brightness(neon).enhance(0.46)
+    base = Image.blend(base, neon, 0.36)
 
-    # GitHub-like canvas with a quiet halftone field and static web geometry.
-    shade = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    sd = ImageDraw.Draw(shade)
+    # Scarlet bloom texture enters from the margins, never competing with copy.
+    bloom = cover(REF / "red-sakura.jpeg", (440, H), (0.5, 0.5))
+    bloom = ImageEnhance.Color(bloom).enhance(1.5)
+    bloom = ImageEnhance.Brightness(bloom).enhance(0.42)
+    bloom_layer = Image.new("RGB", (W, H), (0, 0, 0))
+    bloom_layer.paste(bloom, (W - 440, 0))
+    bloom_layer = bloom_layer.filter(ImageFilter.GaussianBlur(0.5))
+    base = Image.blend(base, bloom_layer, 0.56)
+
+    # Noir figure is masked in from the right, then graded into the scene.
+    noir = cover(REF / "spider-noir.jpeg", (610, H), (0.53, 0.34))
+    noir = ImageOps.grayscale(noir).convert("RGB")
+    noir = ImageEnhance.Contrast(noir).enhance(1.15)
+    noir = ImageEnhance.Brightness(noir).enhance(0.75)
+    mask = Image.new("L", (610, H), 0)
+    md = ImageDraw.Draw(mask)
+    for x in range(610):
+        alpha = int(255 * min(1, max(0, (x - 25) / 235)))
+        md.line((x, 0, x, H), fill=alpha)
+    base.paste(noir, (590, 0), mask)
+
+    # Deep ink gradient protects left-side typography and integrates source art.
+    grad = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    gd = ImageDraw.Draw(grad)
     for x in range(760):
-        alpha = int(238 * max(0, 1 - x / 820) ** 1.8)
-        sd.line((x, 0, x, H), fill=(13, 17, 23, alpha))
-    base = Image.alpha_composite(base, shade)
-    texture = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    td = ImageDraw.Draw(texture)
-    for y in range(10, H, 14):
-        for x in range(10, W, 14):
-            if (x * 3 + y) % 7 == 0:
-                td.ellipse((x, y, x + 1, y + 1), fill=(230, 237, 243, 14))
-    draw_web(td)
-    base = Image.alpha_composite(base, texture)
+        a = int(242 * max(0, 1 - x / 800) ** 1.8)
+        gd.line((x, 0, x, H), fill=(4, 7, 13, a))
+    base = Image.alpha_composite(base.convert("RGBA"), grad)
+
+    # Halftone in the shadow field, plus a subtle red edge vignette.
+    dots = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    dd = ImageDraw.Draw(dots)
+    for y in range(8, H, 13):
+        for x in range(8, W, 13):
+            if (x * 3 + y) % 5 == 0:
+                dd.ellipse((x, y, x + 1.4, y + 1.4), fill=(255, 220, 235, 28))
+    base = Image.alpha_composite(base, dots)
+
+    web = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    wd = ImageDraw.Draw(web)
+    draw_web(wd, (255, 37, 80, 38), 2, 0.4)
+    base = Image.alpha_composite(base, web)
     d = ImageDraw.Draw(base)
-    d.rounded_rectangle((28, 28, W - 28, H - 28), radius=6, outline=(48, 54, 61, 255), width=1)
-    d.text((64, 84), "ISHU PATEL", font=font("Arial Bold", 46), fill=(230, 237, 243, 255))
-    d.text((66, 140), "COMPUTER SCIENCE & ENGINEERING", font=font("Arial Bold", 16), fill=(240, 68, 82, 255))
-    d.line((66, 165, 442, 165), fill=(48, 54, 61, 255), width=1)
-    d.text((63, 220), "JAVA + FULL-STACK", font=font("Arial Bold", 33), fill=(230, 237, 243, 255))
-    d.text((63, 266), "Practical software, built and tested in public.", font=font("Arial", 20), fill=(201, 209, 217, 255))
-    d.rounded_rectangle((64, 318, 190, 352), radius=4, outline=(240, 68, 82, 190), width=1)
-    d.text((77, 327), "OPEN SOURCE", font=font("Arial Bold", 14), fill=(230, 237, 243, 255))
-    d.text((65, 436), "JAVA  ·  TYPESCRIPT  ·  JAVASCRIPT  ·  AI", font=font("Arial Bold", 14), fill=(175, 184, 193, 255))
+
+    # White spider emblem used as a small signature mark.
+    emblem = Image.open(REF / "white-spider-emblem.jpeg").convert("RGB")
+    emblem = ImageOps.fit(emblem, (110, 110), Image.Resampling.LANCZOS)
+    # The supplied mark is luminous white on smoke; a rounded display tile retains its glow.
+    emblem = ImageEnhance.Brightness(emblem).enhance(1.5)
+    em_mask = Image.new("L", (110, 110), 0)
+    ImageDraw.Draw(em_mask).rounded_rectangle((0, 0, 109, 109), 55, fill=220)
+    base.paste(emblem, (57, 54), em_mask)
+    d = ImageDraw.Draw(base)
+    d.rounded_rectangle((57, 54, 167, 164), radius=55, outline=(255, 59, 96, 180), width=2)
+
+    x = 62
+    d.text((188, 70), "ISHU PATEL", font=font("DIN Condensed Bold", 50), fill=(250, 247, 248, 255), stroke_width=0)
+    d.text((190, 127), "FRIENDLY NEIGHBORHOOD DEVELOPER", font=font("Arial Bold", 16), fill=(255, 61, 105, 255))
+    d.line((190, 158, 506, 158), fill=(255, 63, 103, 205), width=2)
+    d.text((x, 212), "BUILDING THE", font=font("DIN Condensed Bold", 55), fill=(245, 245, 248, 255))
+    d.text((x - 2, 258), "NEXT WEB", font=font("DIN Condensed Bold", 80), fill=(255, 39, 84, 255), stroke_width=1, stroke_fill=(255, 165, 185, 130))
+    d.text((x + 2, 354), "JAVA  /  FULL-STACK  /  PRACTICAL AI", font=font("Arial Bold", 16), fill=(229, 225, 233, 255))
+    d.text((x + 2, 389), "OPEN SOURCE  ·  BUILD WITH PURPOSE", font=font("Arial", 16), fill=(195, 187, 200, 255))
+
+    # A chrome Y2K star glint traces the fourth reference image.
+    chrome = Image.open(REF / "chrome-y2k.jpeg").convert("RGB")
+    chrome = ImageOps.fit(chrome, (92, 92), Image.Resampling.LANCZOS, centering=(0.5, 0.5))
+    chrome = ImageOps.grayscale(chrome).convert("RGBA")
+    # Lighten the metallic center; keep the black wallpaper transparent.
+    px = chrome.load()
+    for yy in range(92):
+        for xx in range(92):
+            r, g, b, _ = px[xx, yy]
+            lum = max(r, g, b)
+            px[xx, yy] = (205, 220, 238, max(0, int((lum - 15) * 1.05)))
+    base.alpha_composite(chrome, (1060, 35))
+
+    # Border and compact tag line.
+    d = ImageDraw.Draw(base)
+    d.line((42, 486, W - 42, 486), fill=(255, 50, 95, 155), width=1)
+    d.text((52, 496), "EARTH-616  /  OPEN-SOURCE CONTRIBUTOR  /  ALWAYS IN YOUR CORNER", font=font("Arial Bold", 14), fill=(227, 220, 231, 230))
     base.convert("RGB").save(OUT / "hero.jpg", quality=91, optimize=True)
 
 
+
 def hero_glitch():
-    """Make an occasional, localized Spider-Man pixel-shear loop for the README hero."""
+    """Glitch the Spider-Man figure and the white spider emblem in the hero."""
     source = Image.open(OUT / "hero.jpg").convert("RGB")
     frames, durations = [], []
     # Mostly hold the approved hero still; short red-channel shears interrupt it.
@@ -91,7 +141,7 @@ def hero_glitch():
                 None, None, None,
                 ((177, 13, 38), (219, 9, -25)),
                 ((321, 22, -42), (353, 10, 28)), None]
-    for item in sequence:
+    for frame_index, item in enumerate(sequence):
         frame = source.copy()
         if item:
             draw = ImageDraw.Draw(frame)
@@ -102,6 +152,13 @@ def hero_glitch():
                 # Short scarlet fragments trace the displaced slice, then disappear.
                 fragment_x = max(left, min(1150, 760 + (y * 7) % 290))
                 draw.rectangle((fragment_x, y + 2, fragment_x + 42, y + 4), fill=(240, 68, 82))
+            if frame_index in (3, 4, 8, 9):
+                # Brief white cuts hit the emblem too, while leaving its outline clear.
+                y = 98 + (frame_index % 2) * 15
+                shift = 11 if frame_index % 2 else -9
+                emblem_slice = source.crop((57, y, 167, y + 8))
+                frame.paste(emblem_slice, (57 + shift, y))
+                ImageDraw.Draw(frame).line((65, y + 2, 150, y + 2), fill=(255, 237, 245), width=1)
         frames.append(frame)
         durations.append(110 if item else 1150)
 
@@ -113,32 +170,155 @@ def hero_glitch():
 
 
 PROJECTS = [
-    ("parkwise", "Parkwise", "Parking operations", "Allocation · visitor holds · maintenance reports", "React · TypeScript · Vite", "M 0 195 H1200", '<rect x="1051" y="78" width="82" height="82" rx="4"/><path d="M1070 99h44v40h-44zM1082 99v40M1102 99v40M1070 119h44"/><text x="1089" y="191" text-anchor="middle" font-size="12" fill="#f04452">P</text>'),
-    ("credence", "Credence", "Certificate issue and verification", "HMAC integrity · audit history", "React · Express · SQLite", "M 20 205 H1180", '<path d="M1059 78h66v74h-66zM1071 96h42M1071 108h42M1071 120h29M1075 152l-5 24 14-8 14 8-5-24"/><circle cx="1092" cy="139" r="14"/>'),
-    ("scholarship-aid", "Scholarship & Aid", "Scholarship and financial aid workflows", "Eligibility · applications · institutional decisions", "Java · Next.js · JDBC", "M 0 215 H1200", '<path d="M1065 77h47l19 19v74h-66zM1112 77v20h19M1077 116h42M1077 129h42M1077 142h31"/><path d="M1070 96h38"/>'),
-    ("smarthealth", "SmartHealth", "Educational patient records", "Java thread-pool benchmarks", "Java · Spring Boot · React", "M 25 205 H1175", '<path d="M1046 120h25l12-25 21 51 14-30 10 4h35"/><circle cx="1046" cy="120" r="3" fill="#f04452"/><circle cx="1163" cy="120" r="3" fill="#f04452"/>'),
+    ("parkwise", "Parkwise", "Parking operations", "Allocation · visitor holds · maintenance reports", "React · TypeScript · Vite"),
+    ("credence", "Credence", "Certificate issue and verification", "HMAC integrity · audit history", "React · Express · SQLite"),
+    ("scholarship-aid", "Scholarship & Aid", "Scholarship and financial aid workflows", "Eligibility · applications · institutional decisions", "Java · Next.js · JDBC"),
+    ("smarthealth", "SmartHealth", "Educational patient records", "Java thread-pool benchmarks", "Java · Spring Boot · React"),
 ]
 
 
-def project_panel():
-    for index, (slug, name, title, details, stack, rule, motif) in enumerate(PROJECTS):
-        panel = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 240" role="img" aria-labelledby="title desc">
-<title id="title">{escape(name)} project</title><desc id="desc">{escape(title)}. {escape(details)}. Built with {escape(stack)}.</desc>
-<rect width="1200" height="240" rx="6" fill="{BG}"/><rect x=".5" y=".5" width="1199" height="239" rx="6" fill="none" stroke="{LINE}"/>
-<path d="{rule}" stroke="{RED}" stroke-opacity=".58"/>
-<path d="M985 0v240M1000 0v240" stroke="{LINE}"/>
-<g class="project-mark" style="animation-delay:{index*.7:.1f}s" fill="none" stroke="{RED}" stroke-opacity=".82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">{motif}</g>
-<g font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"><text x="40" y="49" fill="{MUTED}" font-size="15" font-weight="600" letter-spacing="1.2">SELECTED PROJECT</text>
-<text x="38" y="107" fill="{FG}" font-size="42" font-weight="700">{escape(name)}</text><text x="40" y="147" fill="#c9d1d9" font-size="20">{escape(title)}</text>
-<text x="40" y="181" fill="{MUTED}" font-size="17">{escape(details)}</text><text x="40" y="218" fill="{RED}" font-size="16" font-weight="600">{escape(stack)}</text>
-<text x="1005" y="213" fill="{MUTED}" font-size="14" font-weight="600" letter-spacing=".5">REPOSITORY</text></g>
-<style>.project-mark{{transform-box:fill-box;transform-origin:center;animation:mark-breathe 7s ease-in-out infinite}}@keyframes mark-breathe{{0%,76%,100%{{transform:scale(1);opacity:.82}}82%{{transform:scale(1.06);opacity:1}}88%{{transform:scale(.99);opacity:.88}}}}@media(prefers-reduced-motion:reduce){{.project-mark{{animation:none}}}}</style></svg>'''
-        (OUT / f"project-{slug}.svg").write_text(panel)
+def save_gif(frames, path: Path, durations):
+    palette = frames[0].convert("RGB").quantize(colors=160, method=Image.Quantize.MEDIANCUT)
+    indexed = [frames[0].convert("RGB").quantize(palette=palette)]
+    indexed.extend(frame.convert("RGB").quantize(palette=palette) for frame in frames[1:])
+    indexed[0].save(path, save_all=True, append_images=indexed[1:], duration=durations,
+                    loop=0, optimize=True, disposal=2)
+
+
+def signal_poster(frame_index=0):
+    """Composite the supplied glitch-spider art with a moving hexadecimal backdrop."""
+    width, height = 1200, 380
+    image = Image.new("RGB", (width, height), (7, 8, 14))
+    d = ImageDraw.Draw(image)
+    # Low-contrast dot texture ties this signal panel to the hero.
+    for y in range(12, height, 12):
+        for x in range(12, width, 12):
+            if (x * 5 + y * 3) % 17 == 0:
+                d.point((x, y), fill=(42, 20, 39))
+    d.rounded_rectangle((18, 18, width - 18, height - 18), radius=8, outline=(104, 34, 68), width=1)
+
+    # Matrix-like hexadecimal columns scroll upward behind the spider portrait.
+    matrix = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    md = ImageDraw.Draw(matrix)
+    code_font = font("Arial Bold", 16)
+    glyphs = "0123456789ABCDEF"
+    for col, x in enumerate(range(700, 1185, 31)):
+        shift = (frame_index * (3 + col % 4)) % 420
+        for row, y in enumerate(range(-24, 405, 23)):
+            yy = (y - shift) % 420 - 18
+            glyph = glyphs[(col * 11 + row * 7 + frame_index // 2) % len(glyphs)]
+            alpha = 145 if (row + col + frame_index // 3) % 7 == 0 else 52
+            md.text((x, yy), glyph, font=code_font, fill=(255, 56, 160, alpha))
+    image = Image.alpha_composite(image.convert("RGBA"), matrix).convert("RGB")
+
+    # Strong, readable type remains fixed while only the signal field moves.
+    d = ImageDraw.Draw(image)
+    d.text((55, 56), "SPIDER-SIGNAL  /  DIGITAL TRACE", font=font("Arial Bold", 17), fill=(255, 111, 176))
+    d.text((50, 126), "GLITCH", font=font("DIN Condensed Bold", 76), fill=(248, 245, 250))
+    d.text((48, 193), "SPIDER", font=font("DIN Condensed Bold", 84), fill=(255, 49, 129), stroke_width=1, stroke_fill=(255, 205, 230))
+    d.text((55, 254), "A moving code trace around the supplied spider artwork.", font=font("Arial", 19), fill=(214, 205, 217))
+    d.text((55, 328), "ISHU PATEL  ·  JAVA  ·  FULL-STACK  ·  OPEN SOURCE", font=font("Arial Bold", 15), fill=(185, 164, 185))
+
+    portrait = Image.open(REF / "glitch-spider.jpeg").convert("RGB")
+    portrait = ImageOps.fit(portrait, (214, 340), Image.Resampling.LANCZOS, centering=(0.5, 0.47))
+    portrait = ImageEnhance.Color(portrait).enhance(1.12)
+    portrait = ImageEnhance.Contrast(portrait).enhance(1.08)
+    # Occasional horizontal cuts break the image into deliberate digital slices.
+    if frame_index in (6, 7, 18, 19, 20):
+        y, band_h, shift = (88, 12, 19) if frame_index % 2 else (222, 17, -15)
+        strip = portrait.crop((0, y, portrait.width, y + band_h))
+        portrait.paste(strip, (shift, y))
+        ImageDraw.Draw(portrait).line((0, y + band_h - 2, 70, y + band_h - 2), fill=(255, 230, 247), width=2)
+    image.paste(portrait, (936, 20))
+    d = ImageDraw.Draw(image)
+    d.rectangle((934, 18, 1152, 362), outline=(255, 49, 129), width=2)
+    return image
+
+
+def build_signal_animation():
+    frames = [signal_poster(i) for i in range(32)]
+    frames[0].save(OUT / "signal-poster.png", optimize=True)
+    save_gif(frames, OUT / "signal-poster.gif", [180] * len(frames))
+
+
+def project_frame(project, frame_index):
+    slug, name, subtitle, details, stack = project
+    width, height = 1200, 250
+    image = Image.new("RGB", (width, height), (8, 9, 15))
+    d = ImageDraw.Draw(image)
+    # Sparse web geometry, confined to the right so content stays clear.
+    cx, cy = 1090, 120
+    for ray in range(12):
+        angle = math.pi * 2 * ray / 12
+        d.line((cx, cy, cx + 155 * math.cos(angle), cy + 155 * math.sin(angle)), fill=(53, 22, 43), width=1)
+    for radius in (56, 84, 116):
+        d.arc((cx-radius, cy-radius, cx+radius, cy+radius), 0, 360, fill=(61, 24, 47), width=1)
+    for y in range(20, height, 12):
+        for x in range(20, 970, 12):
+            if (x * 2 + y * 3) % 23 == 0:
+                d.point((x, y), fill=(25, 18, 29))
+
+    # Divider and typography follow the older ink/scarlet Spider-Man styling.
+    d.line((0, 228, width, 228), fill=(155, 32, 68), width=1)
+    d.line((980, 0, 980, height), fill=(57, 37, 52), width=1)
+    d.text((42, 30), "PROJECT  /  " + name.upper(), font=font("Arial Bold", 16), fill=(255, 99, 146))
+    title_font = font("Arial Bold", 40 if len(name) < 17 else 34)
+    d.text((40, 66), name, font=title_font, fill=(248, 245, 249))
+    d.text((43, 121), subtitle, font=font("Arial", 20), fill=(220, 214, 223))
+    d.text((43, 158), details, font=font("Arial", 16), fill=(185, 176, 190))
+    d.text((43, 197), stack, font=font("Arial Bold", 16), fill=(255, 86, 139))
+
+    if slug == "parkwise":
+        x0, y0 = 1040, 65
+        for i in range(12):
+            x, y = x0 + (i % 3) * 36, y0 + (i // 3) * 34
+            active = i == frame_index % 12
+            box = (255, 59, 128) if active else (123, 48, 85)
+            d.rounded_rectangle((x, y, x+25, y+25), radius=3, outline=box, width=2)
+            if active:
+                d.ellipse((x+8, y+8, x+17, y+17), fill=(255, 216, 237))
+    elif slug == "credence":
+        phase = frame_index * math.pi / 10
+        d.ellipse((1043, 66, 1137, 160), outline=(143, 42, 81), width=2)
+        r = 30
+        pts = []
+        for k in range(4):
+            a = phase + math.pi / 4 + k * math.pi / 2
+            pts.append((1090 + r * math.cos(a), 112 + r * math.sin(a)))
+        d.polygon(pts, outline=(255, 73, 149))
+        d.line((1072, 178, 1110, 178), fill=(255, 73, 149), width=2)
+        d.line((1079, 188, 1103, 188), fill=(123, 48, 85), width=2)
+    elif slug == "scholarship-aid":
+        lift = round(3 * math.sin(frame_index * math.pi / 10))
+        x, y = 1055, 58 + lift
+        d.rounded_rectangle((x, y, x+78, y+108), radius=4, outline=(255, 73, 149), width=2)
+        d.line((x+14, y+23, x+64, y+23), fill=(199, 72, 124), width=2)
+        d.line((x+14, y+39, x+64, y+39), fill=(123, 48, 85), width=2)
+        d.line((x+14, y+55, x+54, y+55), fill=(123, 48, 85), width=2)
+        if frame_index % 20 > 8:
+            d.line((x+17, y+79, x+29, y+91, x+57, y+66), fill=(255, 73, 149), width=3)
+    else:
+        points = [(1020, 122), (1040, 122), (1052, 98), (1068, 151), (1083, 111), (1094, 122), (1126, 122), (1143, 122)]
+        d.line(points, fill=(191, 48, 105), width=3, joint="curve")
+        phase = frame_index % 16
+        point = points[min(phase // 2, len(points)-1)]
+        radius = 7 + int(2 * math.sin(frame_index * math.pi / 4))
+        d.ellipse((point[0]-radius, point[1]-radius, point[0]+radius, point[1]+radius), fill=(255, 88, 150))
+        d.ellipse((point[0]-3, point[1]-3, point[0]+3, point[1]+3), fill=(255, 238, 246))
+    return image
+
+
+def build_project_animations():
+    for project in PROJECTS:
+        frames = [project_frame(project, i) for i in range(20)]
+        frames[0].save(OUT / f"project-{project[0]}-static.png", optimize=True)
+        save_gif(frames, OUT / f"project-{project[0]}.gif", [160] * len(frames))
 
 
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     hero()
     hero_glitch()
-    project_panel()
-    print("Generated Spider-Man hero and GitHub-native project panels")
+    build_signal_animation()
+    build_project_animations()
+    print("Generated Spider-Man hero, glitch-spider signal, and animated project panels")

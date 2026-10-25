@@ -1,8 +1,8 @@
-<!-- Spider-Man identity, using GitHub's dark palette and verified profile details. -->
+<!-- Spider-Man identity: ink, scarlet web lines, white emblem, and magenta signal art. -->
 <p align="center">
   <picture>
     <source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/hero.jpg" />
-    <img src="assets/spider/hero-glitch.gif" width="100%" alt="Ishu Patel works across Java, full-stack development, practical AI, and open source. Spider-Man appears against a GitHub-dark panel with occasional restrained scarlet glitch shears." />
+    <img src="assets/spider/hero-glitch.gif" width="100%" alt="Ishu Patel's Spider-Man hero: a black-and-white Spider-Man figure, a glowing white spider emblem, scarlet web threads, and brief glitch cuts." />
   </picture>
 </p>
 
@@ -14,6 +14,8 @@
 </p>
 
 I’m **Ishu Patel**, a Computer Science & Engineering student working across **Java, full-stack software, and practical AI**. I build projects, practice data structures and algorithms, and contribute fixes to open-source Java tools.
+
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/signal-poster.png" /><img src="assets/spider/signal-poster.gif" width="100%" alt="Magenta glitch-spider artwork with hexadecimal digits streaming behind the silhouette and brief horizontal image shears." /></picture></p>
 
 ## GITHUB ACTIVITY <a id="github"></a>
 
@@ -32,19 +34,19 @@ The language bar reflects **code bytes**, not proficiency. The repository count 
 
 ## PROJECTS <a id="projects"></a>
 
-<a href="https://github.com/ishu7w/parkwise"><img src="assets/spider/project-parkwise.svg" width="100%" alt="Parkwise project: parking allocation, visitor holds, maintenance reports. Built with React, TypeScript, and Vite." /></a>
+<a href="https://github.com/ishu7w/parkwise"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/project-parkwise-static.png" /><img src="assets/spider/project-parkwise.gif" width="100%" alt="Parkwise project panel. A highlighted parking slot moves through an animated grid. Built with React, TypeScript, and Vite." /></picture></a>
 
 Parking allocation, visitor holds, maintenance controls, and reporting. **Stack:** React · TypeScript · Vite · [Live preview](https://parkwise-beta.vercel.app/)
 
-<a href="https://github.com/ishu7w/digital-certification-system"><img src="assets/spider/project-credence.svg" width="100%" alt="Credence project: certificate issuance and verification with HMAC integrity and audit history. Built with React, Express, and SQLite." /></a>
+<a href="https://github.com/ishu7w/digital-certification-system"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/project-credence-static.png" /><img src="assets/spider/project-credence.gif" width="100%" alt="Credence project panel. A certificate seal turns within its audit ring. Built with React, Express, and SQLite." /></picture></a>
 
 Certificate issuance and verification with HMAC integrity and audit history. **Stack:** React · Express · SQLite · [Read-only preview](https://digital-certification-system-mu.vercel.app/)
 
-<a href="https://github.com/ishu7w/scholarship-financial-aid-system"><img src="assets/spider/project-scholarship-aid.svg" width="100%" alt="Scholarship and Aid project: eligibility, applications, institutional decisions, and financial aid. Built with Java, Next.js, and JDBC." /></a>
+<a href="https://github.com/ishu7w/scholarship-financial-aid-system"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/project-scholarship-aid-static.png" /><img src="assets/spider/project-scholarship-aid.gif" width="100%" alt="Scholarship and Aid project panel. An application sheet moves gently as its review mark appears. Built with Java, Next.js, and JDBC." /></picture></a>
 
 Eligibility, applications, institutional decisions, and financial aid. **Stack:** Java · Next.js · JDBC · [Live preview](https://scholarship-financial-aid-system.vercel.app/)
 
-<a href="https://github.com/ishu7w/SmartHealth"><img src="assets/spider/project-smarthealth.svg" width="100%" alt="SmartHealth educational project: patient records and Java thread-pool benchmarks. Built with Java, Spring Boot, and React." /></a>
+<a href="https://github.com/ishu7w/SmartHealth"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/project-smarthealth-static.png" /><img src="assets/spider/project-smarthealth.gif" width="100%" alt="SmartHealth project panel. A pulse marker travels along a heart-rate trace. Built with Java, Spring Boot, and React." /></picture></a>
 
 Educational patient records and Java thread-pool benchmarks. **Stack:** Java · Spring Boot · React
 

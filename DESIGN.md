@@ -1,21 +1,21 @@
-# Design plan: Spider-Man profile, native to GitHub
+# Design plan: Spider-Man glitch profile
 
 ## Brief
 
-- **Job and audience:** help recruiters, collaborators, and maintainers quickly understand Ishu's work and find a project or upstream contribution to explore. This profile is an experience/showcase.
-- **Outcome and proof:** visitors see the Spider-Man identity, verified GitHub activity, four selected projects, and merged PRs, then can open the actual repositories and demos. Metrics come from `data/stats.json` and carry its update date.
-- **Direction:** preserve the Spider-Man hero and scarlet/ink palette, but make the README artwork sit on GitHub's dark `#0d1117` surface with GitHub-like `#30363d` rules and restrained red accents. Remove the neon Spider art and replace its panel with a custom snapshot of Ishu's public GitHub account.
-- **Page rhythm:** concise nav and factual introduction; GitHub account/activity snapshot; current focus; individually linked project panels; skills; merged open-source work; contact. Keep each item direct and useful, without cinematic slogans or invented personal branding.
-- **Motion:** hold the Spider-Man hero still most of the time, with brief scarlet pixel-shear bursts. Add a slow language-bar reveal and small staggered pulses on project marks and account values. Keep motion inside local GIF/SVG assets and show still assets for reduced-motion preferences.
-- **Boundaries:** preserve project facts, demos, contact, and upstream PR links. Do not add private activity or infer exact commit counts. GitHub owns the profile's outer background and README cannot run JavaScript or custom page CSS.
+- **Job and audience:** make Ishu's GitHub profile immediately recognizable, easy to read, and useful to recruiters, collaborators, and open-source maintainers.
+- **Direction:** return to the richer ink, scarlet, magenta, and white Spider-Man composition from the approved reference. Keep the black-and-white Spider-Man figure prominent, restore the glowing white spider emblem, and use the supplied pink glitch-spider art as a second visual.
+- **Page rhythm:** bold hero; animated glitch-spider signal; account activity; focus; project showcase; stack; upstream contributions; contact. Keep verified facts and repository links in native Markdown.
+- **Motion:** the glitch-spider signal gets moving hacker-style digits behind its silhouette and short pixel-shear bursts. Give the Spider-Man hero occasional glitch cuts. Animate project illustrations with project-specific actions (parking slot, certificate seal, application sheet, health waveform). Keep motion local to GIF/SVG assets, unhurried, with still artwork for reduced-motion preferences.
+- **Readability:** large names, project titles, and labels; high contrast; compact supporting detail. Theme every custom panel in the same deep ink base, scarlet edges, magenta signal color, and white type.
+- **Boundaries:** don't add made-up account activity or skills. Keep project claims, demos, and merged PR references accurate. GitHub owns the surrounding profile CSS, so match the artwork to its dark surface instead of styling the page shell.
 
 ## Visual system
 
-- **Surface:** GitHub dark canvas `#0d1117`; secondary surfaces only slightly lighter; GitHub-like borders `#30363d`.
-- **Accent:** Spider-Man scarlet `#f04452` with one restrained magenta note, white text, and muted gray labels.
-- **Motifs:** quiet comic halftone, fine static web geometry, and an accurate language composition bar. No neon character panels, glowing cards, excessive badges, or decorative copy.
-- **Typography:** enlarge labels and body copy inside artwork; use high-contrast GitHub-like sans-serif text and native Markdown for all searchable facts.
+- **Palette:** deep ink `#07090f`, dark plum `#170b16`, scarlet `#ff315f`, magenta `#ff49a5`, white `#f5f3f6`, and softened gray for supporting details.
+- **Motifs:** sparse halftone, fine static web geometry, pixel shear, number columns, and small project-specific diagrams. Avoid repeated generic cards and decorative slogans.
+- **Typography:** expressive condensed name and hero headline; large readable sans-serif project titles; factual Markdown copy underneath every visual.
+- **Motion accessibility:** respect reduced-motion preferences with explicit static JPG/SVG/PNG sources; keep still copy legible if a GIF doesn't animate.
 
 ## Verification
 
-Regenerate the local artwork; inspect hero, project cards, and the account snapshot at profile width; run the README asset validator; confirm all README references resolve; publish and check the workflow. GitHub's browser surface remains responsible for its surrounding background.
+Regenerate assets; inspect hero, signal, and project showcases; validate all README references and account facts; publish; confirm the GitHub workflow passes.

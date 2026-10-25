@@ -1,6 +1,6 @@
 # Maintaining the profile
 
-Edit **data/profile.json** for current focus, project descriptions, verified demos, or contact links. Empty LinkedIn/portfolio values deliberately publish no link. The Spider-Man-inspired profile README is maintained directly in `README.md`; the profile asset generator does not replace it by default. Rebuild the hero GIF/JPG and project panels with `python3 scripts/build_spider_art.py`. The GitHub activity SVG and still variant are regenerated from `data/stats.json` by the daily asset workflow.
+Edit **data/profile.json** for current focus, project descriptions, verified demos, or contact links. Empty LinkedIn/portfolio values deliberately publish no link. The Spider-Man-inspired profile README is maintained directly in `README.md`; the profile asset generator does not replace it by default. Rebuild the hero, signal panel, and animated project GIF/still pairs with `python3 scripts/build_spider_art.py`. The GitHub activity SVG and still variant are regenerated from `data/stats.json` by the daily asset workflow.
 
 ## Updates
 
@@ -18,9 +18,9 @@ FocusX and WellTrack AI are labeled prototypes with demo/sample data. ScholarAI'
 
 ## Accessibility and reliability
 
-All artwork is served from this repository. Native text, alt text, and expandable text equivalents preserve the important content. No script, custom CSS, iframe, or HTML table is used in the README. CSS exists only inside standalone SVG images. The hero, terminal, analytics, and project cards include phone compositions selected through `<picture>`. Every animated component has an explicit still source for reduced motion, in addition to its embedded SVG media rule. Project images wrap naturally instead of using a two-column table. Assets use viewBox dimensions and SVG animations with reduced-motion rules. The contribution history is linked directly from GitHub.
+All artwork is served from this repository. Native text, alt text, and expandable notes preserve important content. The README uses the animated hero, glitch-spider signal, and project illustrations as local GIFs; `<picture>` selects a still image when reduced motion is preferred. Account activity uses a local SVG with a still SVG alternative. GitHub controls page CSS and JavaScript, so animation stays within supported image formats. Project links, demo links, and merged PRs remain ordinary Markdown links.
 
-To refresh profile statistics and generated asset data locally: `python3 scripts/generate-assets.py --refresh`. Regenerate the Spider-Man hero animation and project panels with `python3 scripts/build_spider_art.py`. To validate the checked-in README and assets: `python3 scripts/validate.py`. Devicon sources, pinned revision, and MIT notice live in `assets/icons/`.
+To refresh profile statistics and generated asset data locally: `python3 scripts/generate-assets.py --refresh`. Regenerate the Spider-Man hero, numeric glitch-spider signal, and animated project panels with `python3 scripts/build_spider_art.py`. To validate the checked-in README and assets: `python3 scripts/validate.py`. Devicon sources, pinned revision, and MIT notice live in `assets/icons/`.
 
 Demo links were reachable when installed; availability is controlled by their hosts. The Render-hosted delivery demo can take time to wake up. GitHub may cache images briefly after a refresh. SVG animation behavior depends on the browser; static content remains readable when animation is unavailable.
 

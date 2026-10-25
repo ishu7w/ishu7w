@@ -185,8 +185,8 @@ def analytics(stats):
 def github_snapshot(stats):
     """Render a compact public-account snapshot that uses GitHub's own dark surface."""
     width,height=1200,310
-    bg,fg,muted,line='#0d1117','#e6edf3','#8b949e','#30363d'
-    accent='#f04452'
+    bg,fg,muted,line='#07090f','#f5f3f6','#c1b4c4','#482036'
+    accent='#ff3d86'
     font="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
     b=f'<rect width="{width}" height="{height}" fill="{bg}" stroke="{line}" rx="8"/>'
     b+=f'<text x="36" y="48" fill="{fg}" font-family="{font}" font-size="24" font-weight="700">GitHub activity</text>'
@@ -205,7 +205,7 @@ def github_snapshot(stats):
     ranked=languages[:5]
     remainder=sum(value for _,value in languages[5:])
     if remainder:ranked.append(('Other',remainder))
-    colors=['#f04452','#e55369','#d76580','#bd7894','#9c89a8','#697078']
+    colors=['#ff315f','#ff45ab','#d86f9d','#f18559','#b687c2','#686271']
     x=36;bar_y=211;bar_w=1128;bar_h=12
     for i,(name,value) in enumerate(ranked):
         width_part=bar_w*value/total
