@@ -1,4 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="36" viewBox="0 0 1200 36" role="img" aria-label="A fine antique-gold timeline line">
-<defs><linearGradient id="g"><stop stop-color="#805d1b" stop-opacity=".1"/><stop offset=".3" stop-color="#b08a32" stop-opacity=".7"/><stop offset=".5" stop-color="#d5b85e"/><stop offset=".7" stop-color="#b08a32" stop-opacity=".7"/><stop offset="1" stop-color="#805d1b" stop-opacity=".1"/></linearGradient></defs>
-<path d="M0 18H1200" stroke="url(#g)" stroke-width="1.6"/><path d="M570 18h-24m84 0h-24" stroke="#c29a3e" stroke-width="1.5"/><circle cx="600" cy="18" r="5" fill="#c49b3e"/><circle cx="600" cy="18" r="10" fill="none" stroke="#9a7727" stroke-opacity=".55"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="92" viewBox="0 0 1200 92" role="img" aria-label="Luminous emerald temporal strands flowing across the page">
+<defs>
+  <linearGradient id="wire" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#48f58c" stop-opacity=".12"/><stop offset=".2" stop-color="#a4ff66"/><stop offset=".48" stop-color="#27f6a0"/><stop offset=".78" stop-color="#a4ff66"/><stop offset="1" stop-color="#48f58c" stop-opacity=".12"/></linearGradient>
+  <filter id="glow" x="-20%" y="-120%" width="140%" height="340%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="soft"><feGaussianBlur stdDeviation="14"/></filter>
+</defs>
+<path d="M-20 42 C135 6 189 82 324 43 S523 11 632 47 829 82 947 39 1099 6 1220 47" fill="none" stroke="#19ee83" stroke-opacity=".22" stroke-width="15" filter="url(#soft)"/>
+<g fill="none" stroke-linecap="round">
+  <path d="M-20 38 C125 4 194 79 326 42 S516 12 632 46 826 82 946 40 1097 8 1220 45" stroke="url(#wire)" stroke-width="3.2" filter="url(#glow)"/>
+  <path d="M-20 56 C129 77 192 14 334 49 S516 83 634 42 825 10 949 52 1092 81 1220 39" stroke="#51ffad" stroke-opacity=".9" stroke-width="1.8"/>
+  <path d="M-20 25 C117 43 225 64 346 31 S526 25 644 59 825 56 946 30 1091 24 1220 61" stroke="#a5ff6b" stroke-opacity=".7" stroke-width="1.4"/>
+  <path d="M-20 67 C102 48 226 86 351 54 S521 5 648 37 824 74 963 56 1100 39 1220 26" stroke="#18d881" stroke-opacity=".72" stroke-width="1.3"/>
+</g>
+<g fill="#c6ff76" filter="url(#glow)"><circle cx="326" cy="42" r="3.6"/><circle cx="634" cy="45" r="3.4"/><circle cx="948" cy="40" r="3.2"/></g>
+<path d="M570 46h-18m96 0h-18" stroke="#d0ad51" stroke-width="1.5" opacity=".8"/><path d="M600 38l8 8-8 8-8-8z" fill="#d4b65d" stroke="#f6dc7d" stroke-width="1"/>
 </svg>
