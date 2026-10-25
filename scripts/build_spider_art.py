@@ -177,12 +177,12 @@ PROJECTS = [
 ]
 
 
-def save_gif(frames, path: Path, durations):
+def save_gif(frames, path: Path, durations, disposal=2):
     palette = frames[0].convert("RGB").quantize(colors=160, method=Image.Quantize.MEDIANCUT)
     indexed = [frames[0].convert("RGB").quantize(palette=palette)]
     indexed.extend(frame.convert("RGB").quantize(palette=palette) for frame in frames[1:])
     indexed[0].save(path, save_all=True, append_images=indexed[1:], duration=durations,
-                    loop=0, optimize=True, disposal=2)
+                    loop=0, optimize=True, disposal=disposal)
 
 
 def signal_poster(frame_index=0):
@@ -266,6 +266,93 @@ def project_frame(project, frame_index):
     width, height = 1200, 250
     image = Image.new("RGB", (width, height), (8, 9, 15))
     d = ImageDraw.Draw(image)
+
+    # Sakura blooms frame the showcase, echoing the supplied reference image.
+    sakura = Image.open(REF / "red-sakura.jpeg").convert("RGB")
+    for box, target, xy, fade_direction in (
+        ((0, 0, 360, 300), (350, 180), (-8, -16), "down"),
+        ((255, 890, 675, 1200), (360, 220), (850, 54), "up"),
+    ):
+        bloom = sakura.crop(box).resize(target, Image.Resampling.LANCZOS)
+        bloom = ImageEnhance.Color(bloom).enhance(1.6)
+        bloom = ImageEnhance.Brightness(bloom).enhance(0.78)
+        alpha = Image.new("L", target, 142)
+        alpha_pixels = alpha.load()
+        for by in range(target[1]):
+            for bx in range(target[0]):
+                if fade_direction == "down":
+                    fade = max(0.12, 1 - by / target[1])
+                else:
+                    fade = max(0.12, bx / target[0])
+                alpha_pixels[bx, by] = int(142 * fade)
+        bloom = bloom.convert("RGBA")
+        bloom.putalpha(alpha)
+        image = Image.alpha_composite(image.convert("RGBA"), Image.new("RGBA", image.size))
+        image.alpha_composite(bloom, xy)
+        image = image.convert("RGB")
+
+    # Low, animated magenta halos make the centerpiece and project mark glow.
+    pulse = 0.88 + 0.12 * math.sin(frame_index * math.pi / 10)
+    halo = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    hd = ImageDraw.Draw(halo)
+    hd.ellipse((736, 18, 954, 238), fill=(255, 37, 115, int(58 * pulse)))
+    hd.ellipse((988, 20, 1192, 224), fill=(255, 24, 86, int(64 * pulse)))
+    halo = halo.filter(ImageFilter.GaussianBlur(28))
+    image = Image.alpha_composite(image.convert("RGBA"), halo).convert("RGB")
+
+    # Add the supplied chrome Y2K mark as the shared centerpiece of each panel.
+    chrome = Image.open(REF / "chrome-y2k.jpeg").convert("RGB").crop((55, 290, 665, 1000))
+    chrome = ImageOps.fit(chrome, (172, 172), Image.Resampling.LANCZOS)
+    chrome_rgba = chrome.convert("RGBA")
+    chrome_pixels = chrome_rgba.load()
+    for cyi in range(chrome.height):
+        for cxi in range(chrome.width):
+            red, green, blue, _ = chrome_pixels[cxi, cyi]
+            light = max(red, green, blue)
+            chrome_pixels[cxi, cyi] = (red, green, blue, min(255, max(0, int((light - 16) * 1.35))))
+    chrome_rgba = ImageEnhance.Brightness(chrome_rgba).enhance(1.08)
+    image = image.convert("RGBA")
+    image.alpha_composite(chrome_rgba, (760, 39))
+    image = image.convert("RGB")
+
+    # Airy petals drift on a looping arc so every project GIF shares the motion.
+    petals = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    pd = ImageDraw.Draw(petals)
+    for index in range(7):
+        phase = 2 * math.pi * ((frame_index / 20) + index / 7)
+        x = 610 + index * 82 + 28 * math.sin(phase)
+        y = 18 + ((index * 67) % 205) + 27 * math.sin(phase * 1.3)
+        angle = 24 * math.sin(phase + index)
+        scale = 4
+        petal = Image.new("RGBA", (32 * scale, 19 * scale), (0, 0, 0, 0))
+        pdraw = ImageDraw.Draw(petal)
+        def bezier(p0, p1, p2, p3):
+            points = []
+            for step in range(33):
+                t = step / 32
+                u = 1 - t
+                points.append(tuple(round(scale * (u**3 * p0[axis] + 3*u*u*t*p1[axis] + 3*u*t*t*p2[axis] + t**3*p3[axis])) for axis in (0, 1)))
+            return points
+        outline = bezier((1, 10), (7, 0), (23, -2), (31, 8)) + bezier((31, 8), (23, 16), (8, 22), (1, 10))[1:]
+        pdraw.polygon(outline, fill=(205, 30, 70, 138))
+        pdraw.line(((4*scale, 11*scale), (15*scale, 8*scale), (28*scale, 8*scale)), fill=(255, 115, 151, 145), width=scale)
+        petal = petal.resize((32, 19), Image.Resampling.LANCZOS)
+        petal = petal.rotate(angle, resample=Image.Resampling.BICUBIC, expand=True)
+        petals.alpha_composite(petal, (int(x), int(y)))
+    petal_glow_alpha = petals.getchannel("A").filter(ImageFilter.GaussianBlur(7))
+    petal_glow = Image.new("RGBA", image.size, (255, 44, 120, 0))
+    petal_glow.putalpha(petal_glow_alpha.point(lambda alpha: min(130, int(alpha * 1.5))))
+    image = Image.alpha_composite(image.convert("RGBA"), petal_glow)
+    image = Image.alpha_composite(image, petals).convert("RGB")
+
+    # A soft ink wash keeps text crisp over the floral photography.
+    wash = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    wd = ImageDraw.Draw(wash)
+    for x in range(800):
+        alpha = int(205 * max(0, 1 - x / 800) ** 1.5)
+        wd.line((x, 0, x, height), fill=(7, 8, 14, alpha))
+    image = Image.alpha_composite(image.convert("RGBA"), wash).convert("RGB")
+    d = ImageDraw.Draw(image)
     # Sparse web geometry, confined to the right so content stays clear.
     cx, cy = 1090, 120
     for ray in range(12):
@@ -332,7 +419,7 @@ def build_project_animations():
     for project in PROJECTS:
         frames = [project_frame(project, i) for i in range(20)]
         frames[0].save(OUT / f"project-{project[0]}-static.png", optimize=True)
-        save_gif(frames, OUT / f"project-{project[0]}.gif", [160] * len(frames))
+        save_gif(frames, OUT / f"project-{project[0]}.gif", [160] * len(frames), disposal=1)
 
 
 if __name__ == "__main__":

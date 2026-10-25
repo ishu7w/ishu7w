@@ -34,19 +34,19 @@ The language bar reflects **code bytes**, not proficiency. The repository count 
 
 ## PROJECTS <a id="projects"></a>
 
-<a href="https://github.com/ishu7w/parkwise"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/project-parkwise-static.png" /><img src="assets/spider/project-parkwise.gif" width="100%" alt="Parkwise project panel. A highlighted parking slot moves through an animated grid. Built with React, TypeScript, and Vite." /></picture></a>
+<a href="https://github.com/ishu7w/parkwise"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/project-parkwise-static.png" /><img src="assets/spider/project-parkwise.gif" width="100%" alt="Parkwise project panel with red sakura framing, softly glowing drifting petals, a glowing chrome Y2K centerpiece, and an animated parking grid. Built with React, TypeScript, and Vite." /></picture></a>
 
 Parking allocation, visitor holds, maintenance controls, and reporting. **Stack:** React · TypeScript · Vite · [Live preview](https://parkwise-beta.vercel.app/)
 
-<a href="https://github.com/ishu7w/digital-certification-system"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/project-credence-static.png" /><img src="assets/spider/project-credence.gif" width="100%" alt="Credence project panel. A certificate seal turns within its audit ring. Built with React, Express, and SQLite." /></picture></a>
+<a href="https://github.com/ishu7w/digital-certification-system"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/project-credence-static.png" /><img src="assets/spider/project-credence.gif" width="100%" alt="Credence project panel with red sakura framing, softly glowing drifting petals, a glowing chrome Y2K centerpiece, and an animated certificate seal. Built with React, Express, and SQLite." /></picture></a>
 
 Certificate issuance and verification with HMAC integrity and audit history. **Stack:** React · Express · SQLite · [Read-only preview](https://digital-certification-system-mu.vercel.app/)
 
-<a href="https://github.com/ishu7w/scholarship-financial-aid-system"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/project-scholarship-aid-static.png" /><img src="assets/spider/project-scholarship-aid.gif" width="100%" alt="Scholarship and Aid project panel. An application sheet moves gently as its review mark appears. Built with Java, Next.js, and JDBC." /></picture></a>
+<a href="https://github.com/ishu7w/scholarship-financial-aid-system"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/project-scholarship-aid-static.png" /><img src="assets/spider/project-scholarship-aid.gif" width="100%" alt="Scholarship and Aid project panel with red sakura framing, softly glowing drifting petals, a glowing chrome Y2K centerpiece, and an animated application review mark. Built with Java, Next.js, and JDBC." /></picture></a>
 
 Eligibility, applications, institutional decisions, and financial aid. **Stack:** Java · Next.js · JDBC · [Live preview](https://scholarship-financial-aid-system.vercel.app/)
 
-<a href="https://github.com/ishu7w/SmartHealth"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/project-smarthealth-static.png" /><img src="assets/spider/project-smarthealth.gif" width="100%" alt="SmartHealth project panel. A pulse marker travels along a heart-rate trace. Built with Java, Spring Boot, and React." /></picture></a>
+<a href="https://github.com/ishu7w/SmartHealth"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/project-smarthealth-static.png" /><img src="assets/spider/project-smarthealth.gif" width="100%" alt="SmartHealth project panel with red sakura framing, softly glowing drifting petals, a glowing chrome Y2K centerpiece, and an animated health waveform. Built with Java, Spring Boot, and React." /></picture></a>
 
 Educational patient records and Java thread-pool benchmarks. **Stack:** Java · Spring Boot · React
 
