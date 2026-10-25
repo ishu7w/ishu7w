@@ -54,24 +54,24 @@ def draw_strand(size: tuple[int, int], path: list[tuple[float, float]], frame: i
     bd, rd = ImageDraw.Draw(bloom), ImageDraw.Draw(body)
     glint = ImageDraw.Draw(reflection)
 
-    # A rounded, shaded cable with an offset specular edge reads as glass fiber,
-    # while a small undulation and moving reflection keep it alive.
+    # Keep the actual filament hair-thin; most of its apparent volume comes
+    # from a restrained soft halo and a narrow moving specular edge.
     center = [(x * supersample, y * supersample)
               for x, y in offset_path(path, 0, frame, lane, 2.4 * scale)]
     px = scale * supersample
     cable = [(x * supersample, y * supersample)
              for x, y in offset_path(path, 0, frame, lane, 2.4 * scale)]
-    bd.line(cable, fill=(42, 255, 110, 45), width=max(5, round(34 * px)))
-    rd.line(cable, fill=(1, 24, 9, 180), width=max(4, round(21 * px)))
-    rd.line(cable, fill=(10, 70, 29, 245), width=max(3, round(16 * px)))
-    rd.line(cable, fill=(25, 142, 58, 245), width=max(2, round(10 * px)))
-    rd.line(cable, fill=(86, 211, 103, 225), width=max(1, round(5 * px)))
+    bd.line(cable, fill=(42, 255, 110, 38), width=max(3, round(12 * px)))
+    rd.line(cable, fill=(1, 24, 9, 145), width=max(2, round(6 * px)))
+    rd.line(cable, fill=(10, 70, 29, 240), width=max(2, round(4.5 * px)))
+    rd.line(cable, fill=(25, 142, 58, 245), width=max(1, round(2.4 * px)))
+    rd.line(cable, fill=(112, 240, 132, 235), width=max(1, round(1.2 * px)))
     highlight = [(x * supersample, y * supersample) for x, y in
-                 offset_path(path, -3.5 * scale, frame, lane, 2.4 * scale)]
-    rd.line(highlight, fill=(181, 247, 142, 215), width=max(1, round(2.3 * px)))
+                 offset_path(path, -.8 * scale, frame, lane, 2.4 * scale)]
+    rd.line(highlight, fill=(181, 247, 142, 190), width=max(1, round(.9 * px)))
     glint_path = [(x * supersample, y * supersample) for x, y in
-                  offset_path(path, -4.5 * scale, frame, lane, 2.4 * scale)]
-    rd.line(glint_path, fill=(228, 255, 188, 175), width=max(1, round(1.0 * px)))
+                  offset_path(path, -1.5 * scale, frame, lane, 2.4 * scale)]
+    rd.line(glint_path, fill=(228, 255, 188, 155), width=max(1, round(.65 * px)))
 
     # A soft reflection glides along each strand like light passing through translucent fiber.
     progress = (frame / FRAMES + lane * 0.21) % 1
@@ -79,11 +79,11 @@ def draw_strand(size: tuple[int, int], path: list[tuple[float, float]], frame: i
     length = max(4, int(len(center) * .12))
     for i in range(max(1, head - length), head):
         p = (i - (head - length)) / length
-        alpha = int(175 * p * min(1, progress * 7, (1 - progress) * 7))
+        alpha = int(145 * p * min(1, progress * 7, (1 - progress) * 7))
         glint.line((center[i - 1], center[i]), fill=(222, 255, 180, alpha),
-                   width=max(1, round((2.4 + 2.0 * p) * px)))
+                   width=max(1, round((1.0 + .6 * p) * px)))
 
-    bloom = bloom.filter(ImageFilter.GaussianBlur(max(3, round(9 * px))))
+    bloom = bloom.filter(ImageFilter.GaussianBlur(max(2, round(5 * px))))
     body.alpha_composite(bloom)
     body.alpha_composite(reflection.filter(ImageFilter.GaussianBlur(max(1, round(2 * px)))))
     body.alpha_composite(reflection)
