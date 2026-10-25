@@ -14,7 +14,7 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 
 > *With great code comes great responsibility.*
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/web-divider-still.svg" /><img src="assets/spider/web-divider.gif" width="100%" alt="Fine scarlet and pink web strands drift across a dark field, with small traveling glints." /></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/signal-poster.png" /><img src="assets/spider/signal-poster.gif" width="100%" alt="Neon Spider signal board featuring the supplied magenta glitch Spider-Man art, red blossom noir art, and chrome Y2K star. Short digital pixel-shear bursts affect only the glitch image." /></picture></p>
 
 ## SPIDER-SENSE <a id="signal"></a>
 
@@ -24,8 +24,6 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 | **Building** | Full-stack tools with clear, practical workflows |
 | **Exploring** | AI agents · LLM-assisted apps · explainable decision systems |
 | **Contributing** | Open-source Java projects |
-
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/web-divider-still.svg" /><img src="assets/spider/web-divider.gif" width="100%" alt="Fine scarlet and pink web strands drift across a dark field, with small traveling glints." /></picture></p>
 
 ## PROJECTS <a id="projects"></a>
 
@@ -47,8 +45,6 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 
 </details>
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/web-divider-still.svg" /><img src="assets/spider/web-divider.gif" width="100%" alt="Fine scarlet and pink web strands drift across a dark field, with small traveling glints." /></picture></p>
-
 ## SUIT TECH
 
 | Layer | Tools |
@@ -59,8 +55,6 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 | **Workflow** | Git · GitHub |
 
 I apply Java beyond practice problems: implementing scholarship rules and persistent workflows in [Scholarship & Aid](https://github.com/ishu7w/scholarship-financial-aid-system), and measuring sequential versus thread-pool processing in [SmartHealth](https://github.com/ishu7w/SmartHealth). I care about the algorithm, the edge cases, and the tradeoffs.
-
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/web-divider-still.svg" /><img src="assets/spider/web-divider.gif" width="100%" alt="Fine scarlet and pink web strands drift across a dark field, with small traveling glints." /></picture></p>
 
 ## OPEN SOURCE <a id="open-source"></a>
 
@@ -81,8 +75,6 @@ Focused fixes are small threads in a much bigger web. Here are a few merged cont
 - [Snapshot and language totals](data/stats.json) · [Contribution history](https://github.com/ishu7w?tab=overview)
 
 </details>
-
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/web-divider-still.svg" /><img src="assets/spider/web-divider.gif" width="100%" alt="Fine scarlet and pink web strands drift across a dark field, with small traveling glints." /></picture></p>
 
 ## CONTACT <a id="contact"></a>
 

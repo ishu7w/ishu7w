@@ -1,7 +1,6 @@
 """Build the Spider-Verse artwork used by the GitHub profile README."""
 from pathlib import Path
 import math
-import random
 
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
 
@@ -144,48 +143,86 @@ def project_panel():
     (OUT / "projects.svg").write_text(content)
 
 
-def divider():
-    # Render a subtle 2.5 s silk loop; all filaments remain hairline-thin.
-    width, height, count = 1100, 82, 30
-    frames = []
-    random.seed(14)
-    for frame in range(count):
-        phase = 2 * math.pi * frame / count
-        im = Image.new("RGBA", (width, height), (7, 9, 15, 255))
-        # Soft red/magenta ambient haze.
-        haze = Image.new("RGBA", im.size, (0, 0, 0, 0))
-        hd = ImageDraw.Draw(haze)
-        hd.ellipse((250, 6, 840, 78), fill=(110, 8, 36, 30))
-        haze = haze.filter(ImageFilter.GaussianBlur(24))
-        im = Image.alpha_composite(im, haze)
-        for j in range(7):
-            y0 = 15 + j * 8.5
-            amp = 8 + (j % 3) * 2
-            points = []
-            for x in range(0, width + 1, 5):
-                y = y0 + amp * math.sin(x / 105 + phase + j * 0.8) + 2.2 * math.sin(x / 47 - phase * 0.7 + j)
-                points.append((x, y))
-            # glow then fine colored core
-            for color, stroke in (((255, 22, 75, 32), 7), ((255, 43, 92, 130), 2), ((255, 177, 195, 175), 1)):
-                layer = Image.new("RGBA", im.size, (0, 0, 0, 0))
-                ImageDraw.Draw(layer).line(points, fill=color, width=stroke, joint="curve")
-                if stroke == 7:
-                    layer = layer.filter(ImageFilter.GaussianBlur(4))
-                im = Image.alpha_composite(im, layer)
-        d = ImageDraw.Draw(im)
-        # Traveling glint points along the web.
-        for k in range(3):
-            x = int((frame / count + k / 3) % 1 * width)
-            y = int(40 + 17 * math.sin(x / 120 + phase))
-            d.ellipse((x - 3, y - 3, x + 3, y + 3), fill=(255, 160, 190, 210))
-        frames.append(im.convert("RGB"))
-    frames[0].save(OUT / "web-divider.gif", save_all=True, append_images=frames[1:], duration=85, loop=0, optimize=True)
-    (OUT / "web-divider-still.svg").write_text('''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 82"><rect width="1100" height="82" fill="#07090f"/><g fill="none" stroke-linecap="round"><path d="M0 18 Q100 4 200 21T400 18 600 20 800 18 1000 17 1100 19M0 29Q120 42 220 26T420 32 620 28 820 31 1020 25 1100 28M0 42Q100 31 220 46T420 39 620 46 820 40 1020 45 1100 41M0 54Q100 64 220 50T420 56 620 51 820 56 1020 51 1100 54M0 68Q120 56 220 70T420 65 620 70 820 65 1020 68 1100 64" stroke="#ff315f" stroke-opacity=".68" stroke-width="1.5"/><path d="M0 18 Q100 4 200 21T400 18 600 20 800 18 1000 17 1100 19M0 42Q100 31 220 46T420 39 620 46 820 40 1020 45 1100 41" stroke="#ffc2d0" stroke-opacity=".56" stroke-width=".7"/></g></svg>''')
+def card_image(source: Path, size: tuple[int, int], centering=(0.5, 0.5)) -> Image.Image:
+    image = Image.open(source).convert("RGB")
+    return ImageOps.fit(image, size, Image.Resampling.LANCZOS, centering=centering)
+
+
+def signal_poster(frame: int | None = None) -> Image.Image:
+    """Show all three requested references in a restrained neon signal board."""
+    width, height = 1200, 410
+    poster = Image.new("RGB", (width, height), (5, 7, 13))
+    # Low, static pools of color give this section its own backdrop.
+    haze = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    h = ImageDraw.Draw(haze)
+    h.ellipse((270, -80, 890, 480), fill=(94, 8, 39, 90))
+    h.ellipse((810, -100, 1280, 430), fill=(19, 24, 78, 72))
+    poster = Image.alpha_composite(poster.convert("RGBA"), haze.filter(ImageFilter.GaussianBlur(66)))
+    d = ImageDraw.Draw(poster)
+
+    # Fine static grain/grid, as in a cyberpunk monitor. Nothing sweeps or moves.
+    for x in range(20, width, 32):
+        d.line((x, 20, x, height - 20), fill=(255, 255, 255, 9), width=1)
+    for y in range(20, height, 32):
+        d.line((20, y, width - 20, y), fill=(255, 255, 255, 9), width=1)
+    for y in range(27, height - 20, 10):
+        for x in range(27, width - 20, 10):
+            if (x * 7 + y * 3) % 11 == 0:
+                d.ellipse((x, y, x + 1, y + 1), fill=(255, 74, 127, 27))
+
+    d.rounded_rectangle((18, 18, width - 18, height - 18), radius=22, outline=(255, 55, 103, 115), width=1)
+    d.text((43, 47), "SPIDER-SIGNAL  /  EARTH-616", font=font("Arial Bold", 12), fill=(255, 121, 159, 255))
+    d.text((40, 102), "NEON", font=font("DIN Condensed Bold", 62), fill=(250, 247, 251, 255))
+    d.text((38, 153), "SPIDER", font=font("DIN Condensed Bold", 75), fill=(255, 43, 93, 255), stroke_width=1, stroke_fill=(255, 186, 204, 160))
+    d.text((44, 244), "SIGNAL UNSTABLE", font=font("Arial Bold", 13), fill=(239, 228, 236, 245))
+    d.text((44, 272), "GLITCH MODE // ACTIVE", font=font("Arial", 12), fill=(188, 166, 185, 245))
+    d.text((44, 337), "THREE WORLDS. ONE FRIENDLY NEIGHBORHOOD.", font=font("Arial Bold", 9), fill=(255, 121, 159, 230))
+
+    # Distinct framed crops keep the supplied artworks visible and recognizable.
+    refs = [
+        (REF / "red-sakura.jpeg", (210, 300), (0.5, 0.35), 405, "SCARLET / NOIR"),
+        (REF / "neon-glitch.jpeg", (300, 300), (0.5, 0.34), 644, "GLITCH / SPIDER"),
+        (REF / "chrome-y2k.jpeg", (210, 300), (0.5, 0.5), 970, "CHROME / Y2K"),
+    ]
+    image_region = None
+    for source, size, centering, x, label in refs:
+        y = 43
+        image = card_image(source, size, centering)
+        poster.paste(image, (x, y))
+        # Dark display frame and crisp corner ticks.
+        d = ImageDraw.Draw(poster)
+        d.rounded_rectangle((x - 4, y - 4, x + size[0] + 4, y + size[1] + 4), radius=12, outline=(255, 95, 139, 190), width=1)
+        d.text((x, y + size[1] + 13), label, font=font("Arial Bold", 10), fill=(242, 224, 236, 235))
+        if source.name == "neon-glitch.jpeg":
+            image_region = (x, y, size[0], size[1])
+
+    # Short, contained pixel-shear bursts on the glitch spider only.
+    # Most frames are stable; bursts read as digital signal corruption, not moving lines.
+    if frame is not None and image_region and frame in {3, 4, 5, 12, 13, 21, 22}:
+        x, y, w, h = image_region
+        offsets = {3: (40, -9), 4: (92, 11), 5: (172, -7), 12: (58, 13), 13: (212, -11), 21: (118, 8), 22: (25, -12)}
+        band_y, shift = offsets[frame]
+        band_h = 19 if frame % 2 else 12
+        strip = poster.crop((x, y + band_y, x + w, y + band_y + band_h))
+        poster.paste(strip, (x + shift, y + band_y))
+        d = ImageDraw.Draw(poster)
+        # A few short magenta/cyan fragments add chromatic aberration without scanlines.
+        d.rectangle((x + (frame * 17) % 190, y + band_y + 2, x + (frame * 17) % 190 + 26, y + band_y + 4), fill=(255, 49, 129, 240))
+        d.rectangle((x + (frame * 31) % 220, y + band_y + 10, x + (frame * 31) % 220 + 18, y + band_y + 12), fill=(80, 241, 255, 210))
+    # Flatten translucent grid, glows, and type onto the dark plate before RGB export.
+    opaque = Image.new("RGBA", poster.size, (5, 7, 13, 255))
+    return Image.alpha_composite(opaque, poster).convert("RGB")
+
+
+def make_signal_art():
+    frames = [signal_poster(frame) for frame in range(24)]
+    frames[0].save(OUT / "signal-poster.png", optimize=True)
+    frames[0].save(OUT / "signal-poster.gif", save_all=True, append_images=frames[1:], duration=95, loop=0, optimize=True)
 
 
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     hero()
     project_panel()
-    divider()
+    make_signal_art()
     print("Generated Spider-Verse profile artwork")
