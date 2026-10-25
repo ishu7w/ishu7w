@@ -1,11 +1,9 @@
-# Sakura × circuitry
+# Emerald timeline × practical software
 
-The profile pairs original five-petal cherry blossoms with a terminal, thin circuit traces, geometric project motifs, and clear native GitHub text.
+The profile takes visual cues from Loki's emerald-and-gold palette, shifting timelines, and Asgardian geometry while keeping Ishu's software work at the center. The mood is clever, composed, and a little mischievous—not a Marvel character page.
 
-Palette: charcoal #16141d, warm white #fff4f7, muted mauve #c5bacb, blush #f3abc6, lavender #bba4e5. Flowers frame the identity at the corners; the center stays clear. Smaller blossoms unify project cards, section dividers, and footer.
+The header is original SVG artwork: a horned crown silhouette, fine orbital/rune-like geometry, and branching timeline lines. It uses a deep forest background, muted gold accents, and warm ivory text. It does not use Marvel logos, character images, or promotional artwork.
 
-Desktop and phone compositions are generated separately. Reduced-motion picture sources show still artwork. All images are local SVGs with alt text and no external fonts or image services. Substantive project and contribution descriptions remain available as native text.
+The README pairs the banner with clear native GitHub text: current focus, selected projects, tools, merged open-source work, and contact links. The local banner includes descriptive alt text; important content is available in Markdown for accessibility and reliable rendering.
 
-The contribution snake and its generation workflow are removed. GitHub already displays the contribution calendar on the profile; a native link provides access without duplicating it.
-
-Edit data/profile.json for facts and scripts/generate-assets.py for visuals. Regenerate with python3 scripts/generate-assets.py and validate with python3 scripts/validate.py.
+The banner lives at `assets/green-timeline/hero.svg`. Update its SVG and the matching image alt text in `README.md` together when the visual direction changes.
