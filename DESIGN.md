@@ -1,24 +1,21 @@
-# Design plan: Spider-Verse signal
+# Design plan: Spider-Man profile, native to GitHub
 
-## Design brief
+## Brief
 
-Build a Spider-Man-inspired developer profile that preserves the user's Spider-Man hero and makes the supplied magenta glitch Spider the only additional character artwork. Use a scarlet, ink, and magenta comic palette throughout the page. Follow [Mr-KnightCLI's README](https://github.com/Mr-KnightCLI/Mr-KnightCLI) for its editorial rhythm: concise navigation, visual intro and skills panels, individually linked full-width project showcases, contributions, and a direct contact close. The artwork and copy remain Ishu's own and use his verified projects and contributions.
-
-## Page plan
-
-1. **Hero and signal:** preserve the Spider-Man hero, followed by a single-image glitch feature. Animate short pixel-shear bursts only on the supplied glitch Spider; show a static PNG for reduced-motion preferences.
-2. **Profile rhythm:** concise navigation and introduction, a visual armory panel, four individually linked project showcases, upstream contributions, and a strong contact panel.
-3. **Project showcase:** replace the single four-up graphic and repeated table with one wide comic-style card per project. Each card links to its repository; native Markdown below provides exact descriptions and demo links.
-4. **Full-page theme:** use ink panels, scarlet borders, magenta halftone, small web geometry, numbered case-file labels, and consistent typography across every section. Keep informational copy readable outside the artwork too.
-5. **Publishing constraints:** GitHub profile READMEs cannot set the outer page CSS or run JavaScript. Motion is pre-rendered in a local GIF; no GSAP or Lenis runtime is applicable. GitHub controls the surrounding page background.
+- **Job and audience:** help recruiters, collaborators, and maintainers quickly understand Ishu's work and find a project or upstream contribution to explore. This profile is an experience/showcase.
+- **Outcome and proof:** visitors see the Spider-Man identity, verified GitHub activity, four selected projects, and merged PRs, then can open the actual repositories and demos. Metrics come from `data/stats.json` and carry its update date.
+- **Direction:** preserve the Spider-Man hero and scarlet/ink palette, but make the README artwork sit on GitHub's dark `#0d1117` surface with GitHub-like `#30363d` rules and restrained red accents. Remove the neon Spider art and replace its panel with a custom snapshot of Ishu's public GitHub account.
+- **Page rhythm:** concise nav and factual introduction; GitHub account/activity snapshot; current focus; individually linked project panels; skills; merged open-source work; contact. Keep each item direct and useful, without cinematic slogans or invented personal branding.
+- **Motion:** use one restrained reveal on the language composition bar in the account snapshot. The animation is embedded in its SVG and paired with a still version for reduced-motion preferences. No invented contribution graph or moving line dividers.
+- **Boundaries:** preserve project facts, demos, contact, and upstream PR links. Do not add private activity or infer exact commit counts. GitHub owns the profile's outer background and README cannot run JavaScript or custom page CSS.
 
 ## Visual system
 
-- **Palette:** ink black and midnight blue, scarlet red, hot magenta, paper white, and restrained chrome.
-- **Texture:** comic halftone, fine static web geometry, and a soft glitch field; use restrained abstract geometry on project cards without additional character imagery.
-- **Motion:** short, contained pixel-shear bursts on the glitch spider artwork; no moving line dividers. Project details remain still and readable.
-- **Accessibility:** descriptive image alt text, native text for all important content, compact detail disclosures, and still art for reduced motion.
+- **Surface:** GitHub dark canvas `#0d1117`; secondary surfaces only slightly lighter; GitHub-like borders `#30363d`.
+- **Accent:** Spider-Man scarlet `#f04452` with one restrained magenta note, white text, and muted gray labels.
+- **Motifs:** quiet comic halftone, fine static web geometry, and an accurate language composition bar. No neon character panels, glowing cards, excessive badges, or decorative copy.
+- **Typography:** compact uppercase metadata, clear sans-serif headings, native Markdown for all searchable factual copy.
 
-## Asset sources and generation
+## Verification
 
-The user-supplied Spider-Man JPEG references are kept in `assets/spider/references/`. `scripts/build_spider_art.py` generates the Spider-Man hero, single-image glitch panel, individual case-file showcase cards, and matching skills, contribution, and contact panels. Run `python3 scripts/build_spider_art.py` to rebuild these local assets.
+Regenerate the local artwork; inspect the hero and account snapshot at profile width; run the README asset validator; confirm all README references resolve; publish and check the workflow. GitHub's browser surface remains responsible for its surrounding background.

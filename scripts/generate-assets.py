@@ -182,6 +182,49 @@ def analytics(stats):
     b+=text(26,357,'GitHub API · '+stats['updated']+' UTC',15,MUTED)
     svg('assets/sakura/analytics-mobile.svg',480,380,'GitHub public statistics, updated '+stats['updated'],b)
 
+def github_snapshot(stats):
+    """Render a compact public-account snapshot that uses GitHub's own dark surface."""
+    width,height=1200,310
+    bg,fg,muted,line='#0d1117','#e6edf3','#8b949e','#30363d'
+    accent='#f04452'
+    font="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
+    b=f'<rect width="{width}" height="{height}" fill="{bg}" stroke="{line}" rx="8"/>'
+    b+=f'<text x="36" y="48" fill="{fg}" font-family="{font}" font-size="24" font-weight="700">GitHub activity</text>'
+    b+=f'<text x="1164" y="47" text-anchor="end" fill="{muted}" font-family="{font}" font-size="15">github.com/{P["username"]}</text>'
+    b+=f'<path d="M36 68 H1164" stroke="{line}"/>'
+    metrics=[('Public repositories',stats['public_repositories']),('Original repositories',stats['original_repositories']),('Merged upstream PRs',stats['merged_upstream_prs']),('Followers',stats['followers'])]
+    for i,(label,value) in enumerate(metrics):
+        x=36+i*282
+        b+=f'<text x="{x}" y="111" fill="{fg}" font-family="{font}" font-size="24" font-weight="700">{value}</text>'
+        b+=f'<text x="{x}" y="137" fill="{muted}" font-family="{font}" font-size="14">{E(label)}</text>'
+        if i<3:b+=f'<path d="M{x+248} 88 V145" stroke="{line}"/>'
+    b+=f'<path d="M36 164 H1164" stroke="{line}"/>'
+    b+=f'<text x="36" y="194" fill="{fg}" font-family="{font}" font-size="16" font-weight="600">Language mix in public, non-fork repositories</text>'
+    languages=list(stats['language_bytes'].items())
+    total=sum(value for _,value in languages) or 1
+    ranked=languages[:5]
+    remainder=sum(value for _,value in languages[5:])
+    if remainder:ranked.append(('Other',remainder))
+    colors=['#f04452','#e55369','#d76580','#bd7894','#9c89a8','#697078']
+    x=36;bar_y=211;bar_w=1128;bar_h=12
+    for i,(name,value) in enumerate(ranked):
+        width_part=bar_w*value/total
+        color=colors[i%len(colors)]
+        b+=f'<rect class="lang-segment" x="{x:.2f}" y="{bar_y}" width="{width_part:.2f}" height="{bar_h}" fill="{color}" style="animation-delay:{i*.09:.2f}s"/>'
+        x+=width_part
+    legend_x=[36,226,416,606,796,986]
+    for i,(name,value) in enumerate(ranked):
+        x=legend_x[i]
+        pct=value*100/total
+        b+=f'<circle cx="{x+4}" cy="250" r="4" fill="{colors[i%len(colors)]}"/>'
+        b+=f'<text x="{x+16}" y="255" fill="{fg}" font-family="{font}" font-size="13">{E(name)} {pct:.1f}%</text>'
+    b+=f'<text x="36" y="289" fill="{muted}" font-family="{font}" font-size="12">Public GitHub API snapshot · {E(stats["updated"])} · Language share uses code bytes</text>'
+    motion='''.lang-segment{transform-box:fill-box;transform-origin:left center;animation:build 6s cubic-bezier(.16,1,.3,1) infinite}@keyframes build{0%,12%{transform:scaleX(.01);opacity:.72}35%,82%{transform:scaleX(1);opacity:1}100%{transform:scaleX(.01);opacity:.72}}'''
+    svg('assets/spider/github-account.svg',1200,310,'Public GitHub account snapshot for '+P['username'],b,motion)
+    still=svg
+    # Keep a reduced-motion variant with the same data and no animated bar reveal.
+    svg('assets/spider/github-account-static.svg',1200,310,'Public GitHub account snapshot for '+P['username'],b)
+
 def accents():
     svg('assets/sakura/divider.svg',960,40,'Sakura section divider',f'<path d="M0 20 H450 M510 20 H960" stroke="{LINE}"/>'+blossom(480,20,.6,18))
     svg('assets/sakura/footer.svg',640,94,'Understand it. Build it. Make it better.',surface(640,94)+blossom(37,45,.6,10)+blossom(603,45,.6,28)+text(320,55,'Understand it. Build it. Make it better.',23,MUTED,'text-anchor="middle"')+f'<path class="signal" d="M70 78 H570" stroke="{CYAN}"/>')
@@ -275,7 +318,7 @@ I apply Java beyond practice problems: scholarship rules and persistent workflow
 def main():
     args=argparse.ArgumentParser();args.add_argument('--refresh',action='store_true');args.add_argument('--render-sakura-readme',action='store_true',help='Explicitly replace README.md with the legacy sakura layout.');options=args.parse_args()
     stats=fetch_stats() if options.refresh else json.loads((ROOT/'data/stats.json').read_text())
-    hero();hero(True);terminal();cards();analytics(stats);accents()
+    hero();hero(True);terminal();cards();analytics(stats);github_snapshot(stats);accents()
     if options.render_sakura_readme:readme(stats)
     for name in ('hero','hero-mobile','terminal','terminal-mobile','divider','footer'):
         source=(ROOT/f'assets/sakura/{name}.svg').read_text()
