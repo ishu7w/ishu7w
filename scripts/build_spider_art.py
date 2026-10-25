@@ -70,14 +70,46 @@ def hero():
     d = ImageDraw.Draw(base)
     d.rounded_rectangle((28, 28, W - 28, H - 28), radius=6, outline=(48, 54, 61, 255), width=1)
     d.text((64, 84), "ISHU PATEL", font=font("Arial Bold", 46), fill=(230, 237, 243, 255))
-    d.text((66, 138), "COMPUTER SCIENCE & ENGINEERING", font=font("Arial Bold", 13), fill=(240, 68, 82, 255))
+    d.text((66, 140), "COMPUTER SCIENCE & ENGINEERING", font=font("Arial Bold", 16), fill=(240, 68, 82, 255))
     d.line((66, 165, 442, 165), fill=(48, 54, 61, 255), width=1)
     d.text((63, 220), "JAVA + FULL-STACK", font=font("Arial Bold", 33), fill=(230, 237, 243, 255))
-    d.text((63, 264), "Practical software, built and tested in public.", font=font("Arial", 17), fill=(201, 209, 217, 255))
+    d.text((63, 266), "Practical software, built and tested in public.", font=font("Arial", 20), fill=(201, 209, 217, 255))
     d.rounded_rectangle((64, 318, 190, 352), radius=4, outline=(240, 68, 82, 190), width=1)
-    d.text((80, 328), "OPEN SOURCE", font=font("Arial Bold", 11), fill=(230, 237, 243, 255))
-    d.text((65, 436), "JAVA  ·  TYPESCRIPT  ·  JAVASCRIPT  ·  AI", font=font("Arial Bold", 11), fill=(139, 148, 158, 255))
+    d.text((77, 327), "OPEN SOURCE", font=font("Arial Bold", 14), fill=(230, 237, 243, 255))
+    d.text((65, 436), "JAVA  ·  TYPESCRIPT  ·  JAVASCRIPT  ·  AI", font=font("Arial Bold", 14), fill=(175, 184, 193, 255))
     base.convert("RGB").save(OUT / "hero.jpg", quality=91, optimize=True)
+
+
+def hero_glitch():
+    """Make an occasional, localized Spider-Man pixel-shear loop for the README hero."""
+    source = Image.open(OUT / "hero.jpg").convert("RGB")
+    frames, durations = [], []
+    # Mostly hold the approved hero still; short red-channel shears interrupt it.
+    sequence = [None, None, None,
+                ((116, 18, 46), (160, 10, -29)),
+                ((248, 22, -48), (299, 16, 34), (347, 11, -26)),
+                None, None, None,
+                ((177, 13, 38), (219, 9, -25)),
+                ((321, 22, -42), (353, 10, 28)), None]
+    for item in sequence:
+        frame = source.copy()
+        if item:
+            draw = ImageDraw.Draw(frame)
+            for y, height, shift in item:
+                left, right = 615, 1200
+                strip = source.crop((left, y, right, y + height))
+                frame.paste(strip, (left + shift, y))
+                # Short scarlet fragments trace the displaced slice, then disappear.
+                fragment_x = max(left, min(1150, 760 + (y * 7) % 290))
+                draw.rectangle((fragment_x, y + 2, fragment_x + 42, y + 4), fill=(240, 68, 82))
+        frames.append(frame)
+        durations.append(110 if item else 1150)
+
+    palette = frames[0].quantize(colors=160, method=Image.Quantize.MEDIANCUT)
+    indexed = [frames[0].quantize(palette=palette)]
+    indexed.extend(frame.quantize(palette=palette) for frame in frames[1:])
+    indexed[0].save(OUT / "hero-glitch.gif", save_all=True, append_images=indexed[1:],
+                    duration=durations, loop=0, optimize=True, disposal=2)
 
 
 PROJECTS = [
@@ -89,22 +121,24 @@ PROJECTS = [
 
 
 def project_panel():
-    for slug, name, title, details, stack, rule, motif in PROJECTS:
+    for index, (slug, name, title, details, stack, rule, motif) in enumerate(PROJECTS):
         panel = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 240" role="img" aria-labelledby="title desc">
 <title id="title">{escape(name)} project</title><desc id="desc">{escape(title)}. {escape(details)}. Built with {escape(stack)}.</desc>
 <rect width="1200" height="240" rx="6" fill="{BG}"/><rect x=".5" y=".5" width="1199" height="239" rx="6" fill="none" stroke="{LINE}"/>
 <path d="{rule}" stroke="{RED}" stroke-opacity=".58"/>
 <path d="M985 0v240M1000 0v240" stroke="{LINE}"/>
-<g fill="none" stroke="{RED}" stroke-opacity=".8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">{motif}</g>
-<g font-family="Arial,Helvetica,sans-serif"><text x="40" y="49" fill="{MUTED}" font-size="13" font-weight="600" letter-spacing="1.5">SELECTED PROJECT</text>
-<text x="38" y="107" fill="{FG}" font-size="38" font-weight="700">{escape(name)}</text><text x="40" y="143" fill="#c9d1d9" font-size="17">{escape(title)}</text>
-<text x="40" y="177" fill="{MUTED}" font-size="14">{escape(details)}</text><text x="40" y="215" fill="{RED}" font-size="13" font-weight="600">{escape(stack)}</text>
-<text x="1010" y="211" fill="{MUTED}" font-size="11" font-weight="600" letter-spacing="1">REPOSITORY</text></g></svg>'''
+<g class="project-mark" style="animation-delay:{index*.7:.1f}s" fill="none" stroke="{RED}" stroke-opacity=".82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">{motif}</g>
+<g font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"><text x="40" y="49" fill="{MUTED}" font-size="15" font-weight="600" letter-spacing="1.2">SELECTED PROJECT</text>
+<text x="38" y="107" fill="{FG}" font-size="42" font-weight="700">{escape(name)}</text><text x="40" y="147" fill="#c9d1d9" font-size="20">{escape(title)}</text>
+<text x="40" y="181" fill="{MUTED}" font-size="17">{escape(details)}</text><text x="40" y="218" fill="{RED}" font-size="16" font-weight="600">{escape(stack)}</text>
+<text x="1005" y="213" fill="{MUTED}" font-size="14" font-weight="600" letter-spacing=".5">REPOSITORY</text></g>
+<style>.project-mark{{transform-box:fill-box;transform-origin:center;animation:mark-breathe 7s ease-in-out infinite}}@keyframes mark-breathe{{0%,76%,100%{{transform:scale(1);opacity:.82}}82%{{transform:scale(1.06);opacity:1}}88%{{transform:scale(.99);opacity:.88}}}}@media(prefers-reduced-motion:reduce){{.project-mark{{animation:none}}}}</style></svg>'''
         (OUT / f"project-{slug}.svg").write_text(panel)
 
 
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     hero()
+    hero_glitch()
     project_panel()
     print("Generated Spider-Man hero and GitHub-native project panels")

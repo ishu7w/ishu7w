@@ -49,7 +49,7 @@ def fetch_stats():
     (ROOT / 'data/stats.json').write_text(json.dumps(stats, indent=2) + '\n')
     return stats
 
-STYLE = f'''text{{font-family:Arial,Helvetica,sans-serif;fill:{FG}}}.muted{{fill:{MUTED}}}.mono{{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}}.signal{{stroke-dasharray:18 480;animation:flow 12s linear infinite}}.cursor{{animation:cursor 1.6s step-end infinite}}@keyframes flow{{to{{stroke-dashoffset:-996}}}}@keyframes cursor{{50%{{opacity:0}}}}@media(prefers-reduced-motion:reduce){{*{{animation:none!important}}.signal{{stroke-dasharray:none}}}}'''
+STYLE = f'''text{{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:{FG}}}.muted{{fill:{MUTED}}}.mono{{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}}.signal{{stroke-dasharray:18 480;animation:flow 12s linear infinite}}.cursor{{animation:cursor 1.6s step-end infinite}}@keyframes flow{{to{{stroke-dashoffset:-996}}}}@keyframes cursor{{50%{{opacity:0}}}}@media(prefers-reduced-motion:reduce){{*{{animation:none!important}}.signal{{stroke-dasharray:none}}}}'''
 
 def svg(path, w, h, title, body, css=''):
     target = ROOT / path
@@ -195,8 +195,8 @@ def github_snapshot(stats):
     metrics=[('Public repositories',stats['public_repositories']),('Original repositories',stats['original_repositories']),('Merged upstream PRs',stats['merged_upstream_prs']),('Followers',stats['followers'])]
     for i,(label,value) in enumerate(metrics):
         x=36+i*282
-        b+=f'<text x="{x}" y="111" fill="{fg}" font-family="{font}" font-size="24" font-weight="700">{value}</text>'
-        b+=f'<text x="{x}" y="137" fill="{muted}" font-family="{font}" font-size="14">{E(label)}</text>'
+        b+=f'<text class="metric-number" x="{x}" y="111" fill="{fg}" font-family="{font}" font-size="27" font-weight="700" style="animation-delay:{i*.55:.2f}s">{value}</text>'
+        b+=f'<text x="{x}" y="140" fill="{muted}" font-family="{font}" font-size="16">{E(label)}</text>'
         if i<3:b+=f'<path d="M{x+248} 88 V145" stroke="{line}"/>'
     b+=f'<path d="M36 164 H1164" stroke="{line}"/>'
     b+=f'<text x="36" y="194" fill="{fg}" font-family="{font}" font-size="16" font-weight="600">Language mix in public, non-fork repositories</text>'
@@ -217,11 +217,10 @@ def github_snapshot(stats):
         x=legend_x[i]
         pct=value*100/total
         b+=f'<circle cx="{x+4}" cy="250" r="4" fill="{colors[i%len(colors)]}"/>'
-        b+=f'<text x="{x+16}" y="255" fill="{fg}" font-family="{font}" font-size="13">{E(name)} {pct:.1f}%</text>'
-    b+=f'<text x="36" y="289" fill="{muted}" font-family="{font}" font-size="12">Public GitHub API snapshot · {E(stats["updated"])} · Language share uses code bytes</text>'
-    motion='''.lang-segment{transform-box:fill-box;transform-origin:left center;animation:build 6s cubic-bezier(.16,1,.3,1) infinite}@keyframes build{0%,12%{transform:scaleX(.01);opacity:.72}35%,82%{transform:scaleX(1);opacity:1}100%{transform:scaleX(.01);opacity:.72}}'''
+        b+=f'<text x="{x+16}" y="255" fill="{fg}" font-family="{font}" font-size="15">{E(name)} {pct:.1f}%</text>'
+    b+=f'<text x="36" y="289" fill="{muted}" font-family="{font}" font-size="14">Public GitHub API snapshot · {E(stats["updated"])} · Language share uses code bytes</text>'
+    motion='''.lang-segment{transform-box:fill-box;transform-origin:left center;animation:build 8s cubic-bezier(.16,1,.3,1) infinite}@keyframes build{0%,10%{transform:scaleX(.01);opacity:.72}22%,77%{transform:scaleX(1);opacity:1}100%{transform:scaleX(.01);opacity:.72}}.metric-number{transform-box:fill-box;transform-origin:left center;animation:metric-settle 7s ease-in-out infinite}@keyframes metric-settle{0%,82%,100%{transform:translateY(0)}86%{transform:translateY(-3px)}90%{transform:translateY(0)}}'''
     svg('assets/spider/github-account.svg',1200,310,'Public GitHub account snapshot for '+P['username'],b,motion)
-    still=svg
     # Keep a reduced-motion variant with the same data and no animated bar reveal.
     svg('assets/spider/github-account-static.svg',1200,310,'Public GitHub account snapshot for '+P['username'],b)
 

@@ -1,6 +1,9 @@
 <!-- Spider-Man identity, using GitHub's dark palette and verified profile details. -->
 <p align="center">
-  <img src="assets/spider/hero.jpg" width="100%" alt="Ishu Patel works across Java, full-stack development, practical AI, and open source. Spider-Man appears against a dark GitHub-style panel with restrained scarlet web details." />
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/hero.jpg" />
+    <img src="assets/spider/hero-glitch.gif" width="100%" alt="Ishu Patel works across Java, full-stack development, practical AI, and open source. Spider-Man appears against a GitHub-dark panel with occasional restrained scarlet glitch shears." />
+  </picture>
 </p>
 
 <p align="center">
