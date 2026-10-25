@@ -147,10 +147,10 @@ def make_divider() -> None:
             path = flowing_filament(w, lane, frame, h)
             image.alpha_composite(draw_strand((w, h), path, frame, lane, scale))
         frames.append(image.convert("RGB"))
-    save_gif(frames, OUT / "divider.gif")
+    save_gif(frames, OUT / "divider-thin.gif")
 
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     make_divider()
-    path = OUT / "divider.gif"
+    path = OUT / "divider-thin.gif"
     print(f"{path.relative_to(ROOT)}: {path.stat().st_size:,} bytes")

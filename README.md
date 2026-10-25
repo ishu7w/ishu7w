@@ -13,7 +13,7 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 
 > **Approach:** learn with intent, build with curiosity, and make useful things.
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/tva/divider.svg" /><img src="assets/tva/divider.gif" width="100%" alt="Emerald timeline strands flowing around a glowing gold TVA loom" /></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/tva/divider-thin.svg" /><img src="assets/tva/divider-thin.gif" width="100%" alt="Fine emerald timeline wires with a soft TVA glow" /></picture></p>
 
 ## CURRENT DIRECTIVE
 
@@ -24,7 +24,7 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 | **Exploring** | AI agents · LLM-assisted applications · explainable decision systems |
 | **Contributing** | Open-source Java projects |
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/tva/divider.svg" /><img src="assets/tva/divider.gif" width="100%" alt="Emerald timeline strands flowing around a glowing gold TVA loom" /></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/tva/divider-thin.svg" /><img src="assets/tva/divider-thin.gif" width="100%" alt="Fine emerald timeline wires with a soft TVA glow" /></picture></p>
 
 ## CASE FILES <a id="case-files"></a>
 
@@ -48,7 +48,7 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 
 </details>
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/tva/divider.svg" /><img src="assets/tva/divider.gif" width="100%" alt="Emerald timeline strands flowing around a glowing gold TVA loom" /></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/tva/divider-thin.svg" /><img src="assets/tva/divider-thin.gif" width="100%" alt="Fine emerald timeline wires with a soft TVA glow" /></picture></p>
 
 ## SYSTEMS & TOOLS
 
@@ -63,7 +63,7 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 
 I apply Java beyond practice problems: implementing scholarship rules and persistent workflows in [Scholarship & Aid](https://github.com/ishu7w/scholarship-financial-aid-system), and measuring sequential versus thread-pool processing in [SmartHealth](https://github.com/ishu7w/SmartHealth). I care about the algorithm, the edge cases, and the tradeoffs.
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/tva/divider.svg" /><img src="assets/tva/divider.gif" width="100%" alt="Emerald timeline strands flowing around a glowing gold TVA loom" /></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/tva/divider-thin.svg" /><img src="assets/tva/divider-thin.gif" width="100%" alt="Fine emerald timeline wires with a soft TVA glow" /></picture></p>
 
 ## OPEN SOURCE <a id="open-source"></a>
 
@@ -85,7 +85,7 @@ Small, focused fixes can prevent surprising behavior across many branches.
 
 </details>
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/tva/divider.svg" /><img src="assets/tva/divider.gif" width="100%" alt="Emerald timeline strands flowing around a glowing gold TVA loom" /></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/tva/divider-thin.svg" /><img src="assets/tva/divider-thin.gif" width="100%" alt="Fine emerald timeline wires with a soft TVA glow" /></picture></p>
 
 ## CONTACT <a id="connect"></a>
 

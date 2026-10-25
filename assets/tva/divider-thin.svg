@@ -7,7 +7,7 @@
   <filter id="soft"><feGaussianBlur stdDeviation="13"/></filter>
 </defs>
 <rect width="1200" height="156" fill="url(#field)"/><ellipse cx="625" cy="78" rx="410" ry="118" fill="url(#core)"/>
-<path d="M-20 73 C135 5 189 138 324 72 S523 12 632 78 829 140 947 65 1099 10 1220 80" fill="none" stroke="#19ee83" stroke-opacity=".25" stroke-width="14" filter="url(#soft)"/>
+<path d="M-20 73 C135 5 189 138 324 72 S523 12 632 78 829 140 947 65 1099 10 1220 80" fill="none" stroke="#19ee83" stroke-opacity=".17" stroke-width="6" filter="url(#soft)"/>
 <ellipse cx="620" cy="78" rx="98" ry="62" fill="none" stroke="#d8b450" stroke-opacity=".24"/><ellipse cx="620" cy="78" rx="76" ry="48" fill="none" stroke="#d8b450" stroke-opacity=".18"/>
 <g fill="none" stroke-linecap="round">
   <path d="M-20 72 C125 7 194 140 326 73 S516 18 632 78 826 138 946 68 1097 14 1220 78" stroke="url(#wire)" stroke-width="2.2" filter="url(#glow)"/>
