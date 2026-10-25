@@ -15,7 +15,7 @@
 
 I’m **Ishu Patel**, a Computer Science & Engineering student working across **Java, full-stack software, and practical AI**. I build projects, practice data structures and algorithms, and contribute fixes to open-source Java tools.
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/signal-poster.png" /><img src="assets/spider/signal-poster.gif" width="100%" alt="A spider silhouette formed from magenta and white hexadecimal characters flowing through a digital number field with brief glitch cuts." /></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/signal-poster.png" /><img src="assets/spider/signal-poster.gif" width="100%" alt="A magenta neon spider with its black background removed over flowing hexadecimal code, alongside Spider-Man's responsibility motto and a coding message." /></picture></p>
 
 ## GITHUB ACTIVITY <a id="github"></a>
 
