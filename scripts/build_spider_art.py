@@ -195,7 +195,11 @@ def signal_poster(frame_index=0):
         for x in range(12, width, 12):
             if (x * 5 + y * 3) % 17 == 0:
                 d.point((x, y), fill=(42, 20, 39))
-    d.rounded_rectangle((18, 18, width - 18, height - 18), radius=8, outline=(104, 34, 68), width=1)
+    # A soft magenta haze anchors the portrait without a card or image frame.
+    glow = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    ImageDraw.Draw(glow).ellipse((850, -30, 1235, 410), fill=(106, 10, 57, 70))
+    glow = glow.filter(ImageFilter.GaussianBlur(52))
+    image = Image.alpha_composite(image.convert("RGBA"), glow).convert("RGB")
 
     # Matrix-like hexadecimal columns scroll upward behind the spider portrait.
     matrix = Image.new("RGBA", image.size, (0, 0, 0, 0))
@@ -229,9 +233,15 @@ def signal_poster(frame_index=0):
         strip = portrait.crop((0, y, portrait.width, y + band_h))
         portrait.paste(strip, (shift, y))
         ImageDraw.Draw(portrait).line((0, y + band_h - 2, 70, y + band_h - 2), fill=(255, 230, 247), width=2)
-    image.paste(portrait, (936, 20))
-    d = ImageDraw.Draw(image)
-    d.rectangle((934, 18, 1152, 362), outline=(255, 49, 129), width=2)
+    # Feather all four edges so the artwork dissolves into the moving number field.
+    mask = Image.new("L", portrait.size, 0)
+    pixels = mask.load()
+    feather = 42
+    for y in range(portrait.height):
+        for x in range(portrait.width):
+            edge = min(x, y, portrait.width - 1 - x, portrait.height - 1 - y)
+            pixels[x, y] = min(255, int(255 * edge / feather))
+    image.paste(portrait, (936, 20), mask)
     return image
 
 
