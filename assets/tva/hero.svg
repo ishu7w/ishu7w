@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="500" viewBox="0 0 1440 500" role="img" aria-labelledby="title desc">
+<title id="title">Ishu Patel — TVA Variant File</title>
+<desc id="desc">A cinematic original emerald and amber profile banner. An anonymous figure in a dark suit is held within glowing green temporal strands, wearing the iconic curved gold Loki horned helmet silhouette.</desc>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101713"/><stop offset=".45" stop-color="#1d281d"/><stop offset="1" stop-color="#111610"/></linearGradient>
+ <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#18251c" stop-opacity=".92"/><stop offset="1" stop-color="#111813" stop-opacity=".2"/></linearGradient>
+ <linearGradient id="gold" x1="0" y1="0" x2=".85" y2="1"><stop stop-color="#fff1bb"/><stop offset=".24" stop-color="#e3bb61"/><stop offset=".55" stop-color="#a96e27"/><stop offset=".8" stop-color="#f3d584"/><stop offset="1" stop-color="#745020"/></linearGradient>
+ <linearGradient id="wire" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#c8ff72"/><stop offset=".5" stop-color="#53f57b"/><stop offset="1" stop-color="#00b86b"/></linearGradient>
+ <radialGradient id="greenlight"><stop stop-color="#52ff83" stop-opacity=".45"/><stop offset="1" stop-color="#52ff83" stop-opacity="0"/></radialGradient>
+ <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#d7c07a" stroke-opacity=".06"/></pattern>
+ <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="8" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <filter id="soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="32"/></filter>
+</defs>
+<rect width="1440" height="500" rx="26" fill="url(#bg)"/><rect width="1440" height="500" rx="26" fill="url(#grid)"/>
+<ellipse cx="1115" cy="245" rx="310" ry="280" fill="url(#greenlight)"/>
+<path d="M0 446H1440" stroke="#b59555" stroke-opacity=".22"/><path d="M30 30H1410V470H30Z" fill="none" stroke="#cfb36a" stroke-opacity=".22" stroke-width="1.2"/>
+<path d="M47 48h24m-24 0v24m1346-24h-24m24 0v24M47 452h24m-24 0v-24m1346 24h-24m24 0v-24" fill="none" stroke="#dbbf76" stroke-width="2" opacity=".65"/>
+<!-- TVA console typography -->
+<text x="88" y="88" fill="#d7bd78" font-family="Arial,sans-serif" font-size="13" letter-spacing="4">T I M E  V A R I A N C E  A U T H O R I T Y</text>
+<text x="88" y="133" fill="#8ea08d" font-family="Arial,sans-serif" font-size="12" letter-spacing="2.4">VARIANT FILE  /  ISHU-7W  /  ACTIVE</text>
+<path d="M88 157H612" stroke="#b89b5b" stroke-opacity=".55"/>
+<text x="82" y="240" fill="#f3edda" font-family="Georgia,serif" font-size="66" font-weight="700">Mischief,</text>
+<text x="82" y="312" fill="#f3edda" font-family="Georgia,serif" font-size="66" font-weight="700">with a purpose.</text>
+<path d="M91 345h50" stroke="#a5f06c" stroke-width="3" filter="url(#glow)"/>
+<text x="157" y="351" fill="#c1cdb9" font-family="Arial,sans-serif" font-size="18">Java · full-stack · practical AI</text>
+<text x="90" y="416" fill="#81917f" font-family="Arial,sans-serif" font-size="12" letter-spacing="2">BUILDING BETTER BRANCHES IN EVERY TIMELINE</text>
+<!-- chronal field halo behind figure -->
+<ellipse cx="1090" cy="270" rx="170" ry="216" fill="#55ef75" opacity=".1" filter="url(#soft)"/>
+<g fill="none" stroke="#c7a856" stroke-opacity=".28"><ellipse cx="1090" cy="270" rx="198" ry="221"/><ellipse cx="1090" cy="270" rx="220" ry="242" stroke-dasharray="2 9"/><path d="M1090 34v443M852 270h476M921 101l338 338M1259 101 921 439"/></g>
+<!-- anonymous suited variant -->
+<path d="M1038 184 Q1090 204 1142 184 L1150 217 Q1162 229 1191 240 L1229 270 1203 425H977L951 270 989 240Q1018 229 1030 217Z" fill="#171b17" stroke="#988251" stroke-opacity=".55" stroke-width="2"/>
+<path d="M1068 202l22 35 22-35 22 17-22 46h-44l-22-46Z" fill="#dfd8c4"/>
+<path d="M1082 246h16l-6 82-10 15-10-15Z" fill="#a43c2e"/><path d="M1100 246h16l-6 82-10 15-10-15Z" fill="#d7c6a2"/>
+<path d="M1024 227l-50 27-34 76 24 10 48-56 29-39M1156 227l50 27 34 76-24 10-48-56-29-39" fill="#202720" stroke="#988251" stroke-opacity=".55" stroke-width="2"/>
+<!-- anonymous face and swept-back hair, kept graphic rather than actor-specific -->
+<path d="M1051 171 Q1041 181 1045 210 L1054 238 1067 247 1068 225 1113 225 1115 247 1128 238 1137 209 Q1140 180 1128 168Z" fill="#191d19"/>
+<path d="M1061 166 Q1090 151 1119 166 L1125 196 Q1123 225 1090 239 Q1057 225 1055 196Z" fill="#b98a69" stroke="#e0bc86" stroke-opacity=".45" stroke-width="1.5"/>
+<path d="M1057 190 Q1060 162 1082 157 Q1109 152 1123 172 L1121 187 Q1106 176 1092 178 Q1075 177 1057 190Z" fill="#151817"/>
+<path d="M1070 199l11-2m20 0 10 2" stroke="#35261f" stroke-width="2" stroke-linecap="round"/><path d="M1091 198l-4 16 7 2m-11 8q8 5 16 0" fill="none" stroke="#754b3b" stroke-width="1.8" stroke-linecap="round"/>
+<ellipse cx="1080" cy="201" rx="3" ry="2" fill="#20241f"/><ellipse cx="1104" cy="201" rx="3" ry="2" fill="#20241f"/>
+<!-- screen-referenced Loki helmet: curved metal band with long swept horns -->
+<g stroke-linejoin="round" stroke-linecap="round">
+ <path d="M1018 157 C1003 119 973 78 910 37 C917 91 947 137 993 179 L1018 179Z" fill="url(#gold)" stroke="#f6dfa4" stroke-width="3"/>
+ <path d="M1162 157 C1177 119 1207 78 1270 37 C1263 91 1233 137 1187 179 L1162 179Z" fill="url(#gold)" stroke="#f6dfa4" stroke-width="3"/>
+ <path d="M1010 153 Q1090 127 1170 153 L1177 179 Q1090 204 1003 179Z" fill="url(#gold)" stroke="#f6dfa4" stroke-width="3"/>
+ <path d="M1023 163 Q1090 144 1157 163" fill="none" stroke="#fff0bc" stroke-opacity=".85" stroke-width="3"/>
+ <path d="M1012 177 Q1090 197 1168 177" fill="none" stroke="#704b1e" stroke-width="4"/>
+ <path d="M1090 146l8 15-8 13-8-13z" fill="#518a51" stroke="#e4c66f" stroke-width="1.5"/>
+ <path d="M1019 146 C1004 112 972 73 917 41M1161 146 C1176 112 1208 73 1263 41" fill="none" stroke="#fff0bc" stroke-opacity=".55" stroke-width="2"/>
+</g>
+<!-- glowing green temporal strands bind around chest and arms -->
+<g fill="none" stroke-linecap="round" filter="url(#glow)">
+ <path d="M843 225 C912 204 946 212 990 245 C1034 277 1102 281 1178 251 C1230 230 1282 218 1344 237" stroke="url(#wire)" stroke-width="5"/>
+ <path d="M842 269 C908 246 947 251 989 281 C1040 317 1109 318 1184 285 C1245 259 1290 256 1347 278" stroke="#6dff87" stroke-width="3"/>
+ <path d="M860 323 C923 292 959 291 1005 319 C1060 354 1118 353 1174 322 C1230 291 1282 295 1330 318" stroke="url(#wire)" stroke-width="4"/>
+ <path d="M935 67 C917 138 932 187 974 231 C1012 271 1017 321 993 421" stroke="#72ff91" stroke-width="3"/>
+ <path d="M1264 70 C1280 145 1263 194 1223 234 C1180 276 1173 330 1201 423" stroke="#48e982" stroke-width="4"/>
+ <path d="M882 117 C973 160 1033 166 1090 156 C1145 146 1209 160 1293 206" stroke="#c5ff7b" stroke-width="2"/>
+</g>
+<g fill="#c8ff86" filter="url(#glow)"><circle cx="989" cy="245" r="4"/><circle cx="1178" cy="251" r="4"/><circle cx="1005" cy="319" r="4"/><circle cx="1174" cy="322" r="4"/></g>
+<g fill="#bd9e59" font-family="Arial,sans-serif" font-size="10" letter-spacing="2"><text x="1320" y="110" transform="rotate(90 1320 110)">TEMPORAL LOOM / 616</text><text x="892" y="454">GLORIOUS PURPOSE  ·  NO. 07</text></g>
+</svg>
