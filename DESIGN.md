@@ -1,22 +1,26 @@
-# Design plan: Loki's throne among timelines
+# Design plan: Spider-Verse signal
 
-## Direction
+## Design brief
 
-Use the user's supplied Loki-on-the-throne image as the signature visual. Preserve its full scene and make a readable title area by fading deep emerald over the open left side, with antique-gold rules and parchment type. Carry the image's branching green timelines and golden light into the section ribbons and project panel. Keep this Loki-led rather than a general Marvel collage, and keep the technical profile content easy to scan.
+Turn the profile into a recognizable Spider-Man-inspired developer page while keeping it useful as a technical introduction. The visual language combines the five supplied references: noir comic contrast, red blossom and branching texture, neon-magenta glitch, chrome Y2K glints, and a luminous white spider emblem. The official Spider-Verse films' own description of a distinctive visual style and multiverse is a useful high-level reference for mixing comic, glitch, and noir techniques; the artwork here is composed from the user's references rather than copied promotional material.
 
-Visual research: the user's [Pinterest reference](https://in.pinterest.com/pin/617837642706497125/) contributes the idea of layered glowing green strands wrapping across Loki; Marvel's [Loki Season 2 overview](https://www.marvel.com/articles/tv-shows/loki-tom-hiddleston-tva-family?cid=EML_Newsletter_2023106_WeeklyPulse_Story1) anchors the TVA and Temporal Loom motif; the [Loki title design by Perception](https://www.experienceperception.com/work/loki-season-1-titles/) confirms the green-and-gold pairing. These are mood references; promotional imagery is not copied into the profile.
+Reference: [Sony Pictures Animation — Spider-Man: Into the Spider-Verse](https://www.sonypicturesanimation.com/projects/films/spider-man-spider-verse).
 
-## Page composition
+## Page plan
 
-1. **Hero:** use the shared throne artwork at full profile width, with the title and focus areas composed into its dark left field. Keep the original optimized source image and a small generator script for repeatable layout edits.
-2. **Section transitions:** use an opaque emerald atmospheric field, layered temporal filaments, traveling reflections, suspended light, and a gold loom trace to connect the sections.
-3. **Projects:** preserve the four readable project records over the brighter aurora panel and carry fine green timeline strands behind the cards.
-4. **Motion/accessibility:** use a pre-rendered looping GIF for GitHub compatibility and a still SVG through `<picture>` when reduced motion is requested. Native Markdown remains the source of the page's text and links.
+1. **Hero:** use the noir Spider-Man reference as the right-side focal image. Build the left-hand text area with a dark ink gradient and use the supplied emblem, neon glitch, red botanical image, and chrome image as smaller visual cues. Keep the name and core specialties readable at profile width.
+2. **Transitions:** use a repeating, fine scarlet web filament with traveling light glints. Include a still SVG for reduced-motion preferences.
+3. **Information hierarchy:** put current focus first, selected projects and their links next, technology after projects, and merged upstream contributions before contact. Use real Markdown for searchable, accessible copy and links.
+4. **Projects panel:** create a restrained four-card visual summary of Parkwise, Credence, Scholarship & Aid, and SmartHealth. Pair it with native Markdown rows for source and demo links, plus prototype caveats.
+5. **Publishing constraints:** GitHub profile READMEs cannot set the outer page CSS or run JavaScript. Motion is pre-rendered in a local GIF; no GSAP or Lenis runtime is applicable. GitHub controls the surrounding page background.
 
-Palette: forest emerald, Loki green, pale filament mint, and antique gold. Avoid an all-black canvas, unrelated Marvel iconography, excessive interface ornament, and motion over the copy.
+## Visual system
 
-## Technical limits
+- **Palette:** ink black and midnight blue, scarlet red, hot magenta, paper white, and restrained chrome.
+- **Texture:** comic halftone, a fine spider-web network, selected red botanical texture, and a soft glitch field.
+- **Motion:** slow web undulation and gentle moving glints; artwork only, so project details remain still and readable.
+- **Accessibility:** descriptive image alt text, native text for all important content, compact detail disclosures, and still art for reduced motion.
 
-GitHub profile READMEs render Markdown and supported HTML. They cannot set CSS on the outer profile page or run a custom JavaScript animation runtime. The surrounding page color therefore remains GitHub-controlled; this design carries the green theme through the full-width hero, animated transition fields, and project art. GSAP and Lenis are not used because the README has no script runtime or control of page scrolling.
+## Asset sources and generation
 
-`assets/tva/loki-throne-hero.jpg` is composed by `scripts/build_loki_hero.py` from `assets/tva/loki-throne-source.jpg`. `assets/tva/divider-thin.gif` is generated by `scripts/animate_loki.py`; `assets/tva/divider-thin.svg` is its still, reduced-motion counterpart. The hero, transitions, and project panel use local assets, so the visual language does not rely on GitHub's dark surface. Project art lives in `assets/tva/projects.svg`.
+The five user-supplied JPEG references are kept in `assets/spider/references/`. `scripts/build_spider_art.py` uses those references to generate `assets/spider/hero.jpg`, `assets/spider/projects.svg`, `assets/spider/web-divider.gif`, and `assets/spider/web-divider-still.svg`. Run `python3 scripts/build_spider_art.py` to rebuild these local assets.

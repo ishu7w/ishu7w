@@ -1,46 +1,45 @@
-<!-- Visual direction: the supplied throne image, branching green timelines, and antique gold. -->
+<!-- Spider-Verse visual direction: noir ink, scarlet silk, neon glitch, and chrome. -->
 <p align="center">
-  <img src="assets/tva/loki-throne-hero.jpg" width="100%" alt="Loki seated on a golden throne as glowing green timelines branch around him. The left side reads Ishu Patel — Mischief, made useful; Java, full-stack, and practical AI." />
+  <img src="assets/spider/hero.jpg" width="100%" alt="Ishu Patel — friendly neighborhood developer. Building the next web with Java, full-stack development, practical AI, and open source. Noir Spider-Man artwork is framed by red web lines and a magenta glitch texture." />
 </p>
 
 <p align="center">
-  <a href="#case-files">⌁ CASE FILES</a> &nbsp;·&nbsp;
+  <a href="#signal">◉ SIGNAL</a> &nbsp;·&nbsp;
+  <a href="#projects">◈ PROJECTS</a> &nbsp;·&nbsp;
   <a href="#open-source">⌁ OPEN SOURCE</a> &nbsp;·&nbsp;
-  <a href="#connect">⌁ CONNECT</a>
+  <a href="#contact">↗ CONTACT</a>
 </p>
 
-I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning difficult problems into useful software. I work across Java, full-stack development, and applied AI—learning by building, measuring, and contributing back.
+I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning tricky problems into software people can use. I work across **Java, full-stack development, and practical AI**—learning by building, measuring, and contributing back.
 
-> **Approach:** learn with intent, build with curiosity, and make useful things.
+> *With great code comes great responsibility.*
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/tva/divider-thin.svg" /><img src="assets/tva/divider-thin.gif" width="100%" alt="Fine emerald timeline wires with a soft TVA glow" /></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/web-divider-still.svg" /><img src="assets/spider/web-divider.gif" width="100%" alt="Fine scarlet and pink web strands drift across a dark field, with small traveling glints." /></picture></p>
 
-## CURRENT DIRECTIVE
+## SPIDER-SENSE <a id="signal"></a>
 
-| TVA status | Active branch |
+| Signal | Current focus |
 | --- | --- |
 | **Learning** | Java · data structures · algorithmic problem solving |
 | **Building** | Full-stack tools with clear, practical workflows |
-| **Exploring** | AI agents · LLM-assisted applications · explainable decision systems |
+| **Exploring** | AI agents · LLM-assisted apps · explainable decision systems |
 | **Contributing** | Open-source Java projects |
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/tva/divider-thin.svg" /><img src="assets/tva/divider-thin.gif" width="100%" alt="Fine emerald timeline wires with a soft TVA glow" /></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/web-divider-still.svg" /><img src="assets/spider/web-divider.gif" width="100%" alt="Fine scarlet and pink web strands drift across a dark field, with small traveling glints." /></picture></p>
 
-## CASE FILES <a id="case-files"></a>
+## PROJECTS <a id="projects"></a>
 
-<p align="center">
-  <img src="assets/tva/projects.svg" width="100%" alt="Four selected projects: Parkwise parking operations built with React, TypeScript and Vite; Credence certificate verification built with React, Express and SQLite; Scholarship and Aid built with Java, Next.js and JDBC; SmartHealth patient records and concurrency benchmarks built with Java, Spring Boot and React." />
-</p>
+<p align="center"><img src="assets/spider/projects.svg" width="100%" alt="Four featured projects: Parkwise for parking operations, Credence for certificate verification, Scholarship and Aid for financial aid workflows, and SmartHealth for patient records and thread-pool benchmarks." /></p>
 
-| Project record | Repository | Preview |
+| Project | What it does | Source / demo |
 | --- | --- | --- |
-| **Parkwise** — vehicle allocation, visitor holds, maintenance controls, and reporting. | [Open file](https://github.com/ishu7w/parkwise) | [Live preview](https://parkwise-beta.vercel.app/) |
-| **Credence** — certificate issuance and verification with HMAC integrity and audit history. | [Open file](https://github.com/ishu7w/digital-certification-system) | [Read-only preview](https://digital-certification-system-mu.vercel.app/) |
-| **Scholarship & Aid** — eligibility, applications, institutional decisions, and financial aid. | [Open file](https://github.com/ishu7w/scholarship-financial-aid-system) | [Live preview](https://scholarship-financial-aid-system.vercel.app/) |
-| **SmartHealth** — educational patient records and Java thread-pool benchmarks. | [Open file](https://github.com/ishu7w/SmartHealth) | Local backend |
+| **Parkwise** | Vehicle allocation, visitor holds, maintenance controls, and reporting. | [Repository](https://github.com/ishu7w/parkwise) · [Live preview](https://parkwise-beta.vercel.app/) |
+| **Credence** | Certificate issuance and verification with HMAC integrity and audit history. | [Repository](https://github.com/ishu7w/digital-certification-system) · [Read-only preview](https://digital-certification-system-mu.vercel.app/) |
+| **Scholarship & Aid** | Eligibility, applications, institutional decisions, and financial aid. | [Repository](https://github.com/ishu7w/scholarship-financial-aid-system) · [Live preview](https://scholarship-financial-aid-system.vercel.app/) |
+| **SmartHealth** | Educational patient records and Java thread-pool benchmarks. | [Repository](https://github.com/ishu7w/SmartHealth) |
 
 <details>
-<summary>Field notes</summary>
+<summary>Project notes</summary>
 
 - Parkwise is a single-device prototype.
 - Credence’s hosted preview is read-only; its local version supports issuance and revocation.
@@ -48,26 +47,24 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 
 </details>
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/tva/divider-thin.svg" /><img src="assets/tva/divider-thin.gif" width="100%" alt="Fine emerald timeline wires with a soft TVA glow" /></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/web-divider-still.svg" /><img src="assets/spider/web-divider.gif" width="100%" alt="Fine scarlet and pink web strands drift across a dark field, with small traveling glints." /></picture></p>
 
-## SYSTEMS & TOOLS
+## SUIT TECH
 
-| Domain | Instruments |
+| Layer | Tools |
 | --- | --- |
 | **Languages** | Java · TypeScript · JavaScript |
 | **Interface** | React · Next.js · Vite · HTML · CSS |
 | **Server & data** | Node.js · Supabase · PostgreSQL |
 | **Workflow** | Git · GitHub |
 
-### Java, DSA & real code
-
 I apply Java beyond practice problems: implementing scholarship rules and persistent workflows in [Scholarship & Aid](https://github.com/ishu7w/scholarship-financial-aid-system), and measuring sequential versus thread-pool processing in [SmartHealth](https://github.com/ishu7w/SmartHealth). I care about the algorithm, the edge cases, and the tradeoffs.
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/tva/divider-thin.svg" /><img src="assets/tva/divider-thin.gif" width="100%" alt="Fine emerald timeline wires with a soft TVA glow" /></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/web-divider-still.svg" /><img src="assets/spider/web-divider.gif" width="100%" alt="Fine scarlet and pink web strands drift across a dark field, with small traveling glints." /></picture></p>
 
 ## OPEN SOURCE <a id="open-source"></a>
 
-Small, focused fixes can prevent surprising behavior across many branches.
+Focused fixes are small threads in a much bigger web. Here are a few merged contributions:
 
 - **[Checkstyle #21518](https://github.com/checkstyle/checkstyle/pull/21518)** — Correct file-extension parsing for dotted directories. <sub>MERGED</sub>
 - **[Gson #3115](https://github.com/google/gson/pull/3115)** — Avoid quadratic `removeIf` behavior in JsonArray list views. <sub>MERGED</sub>
@@ -85,16 +82,16 @@ Small, focused fixes can prevent surprising behavior across many branches.
 
 </details>
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/tva/divider-thin.svg" /><img src="assets/tva/divider-thin.gif" width="100%" alt="Fine emerald timeline wires with a soft TVA glow" /></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/web-divider-still.svg" /><img src="assets/spider/web-divider.gif" width="100%" alt="Fine scarlet and pink web strands drift across a dark field, with small traveling glints." /></picture></p>
 
-## CONTACT <a id="connect"></a>
+## CONTACT <a id="contact"></a>
 
-Interested in practical AI, open-source Java, or a good hackathon problem? Send me a transmission.
+Interested in practical AI, open-source Java, or a good hackathon problem? Send me a signal.
 
 <p align="center">
-  <a href="mailto:ishu7w@gmail.com"><strong>OPEN COMM CHANNEL</strong></a>
+  <a href="mailto:ishu7w@gmail.com"><strong>EMAIL ISHU</strong></a>
   &nbsp; ◇ &nbsp;
-  <a href="https://github.com/ishu7w"><strong>VIEW ALL REPOSITORIES</strong></a>
+  <a href="https://github.com/ishu7w"><strong>EXPLORE ALL REPOSITORIES</strong></a>
 </p>
 
-<p align="center"><sub>Understand the system. Find the branch. Make it better.</sub></p>
+<p align="center"><sub>Keep building. Keep helping. Your friendly neighborhood developer.</sub></p>
