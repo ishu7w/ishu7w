@@ -185,8 +185,24 @@ def save_gif(frames, path: Path, durations):
                     loop=0, optimize=True, disposal=2)
 
 
-def signal_poster(frame_index=0):
-    """Composite the supplied glitch-spider art with a moving hexadecimal backdrop."""
+def spider_code_mask():
+    """Extract the magenta spider shape as a mask; render it with digits, not a photo tile."""
+    source = Image.open(REF / "glitch-spider.jpeg").convert("RGB")
+    source = source.crop((105, 95, 655, 1308))
+    mask = Image.new("L", source.size, 0)
+    src, dst = source.load(), mask.load()
+    for y in range(source.height):
+        for x in range(source.width):
+            red, green, blue = src[x, y]
+            if red > green * 1.15 and blue > green * 1.08:
+                pink_signal = min(red, blue) - green
+                dst[x, y] = max(0, min(255, int((pink_signal - 8) * 4.2)))
+    mask = mask.filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.GaussianBlur(0.7))
+    return mask.resize((300, 365), Image.Resampling.LANCZOS)
+
+
+def signal_poster(frame_index=0, spider_mask=None):
+    """Render the supplied spider silhouette as part of the moving hexadecimal field."""
     width, height = 1200, 380
     image = Image.new("RGB", (width, height), (7, 8, 14))
     d = ImageDraw.Draw(image)
@@ -195,24 +211,44 @@ def signal_poster(frame_index=0):
         for x in range(12, width, 12):
             if (x * 5 + y * 3) % 17 == 0:
                 d.point((x, y), fill=(42, 20, 39))
-    # A soft magenta haze anchors the portrait without a card or image frame.
+    # Ambient color sits beneath one continuous matrix; there is no portrait tile.
     glow = Image.new("RGBA", image.size, (0, 0, 0, 0))
-    ImageDraw.Draw(glow).ellipse((850, -30, 1235, 410), fill=(106, 10, 57, 70))
+    ImageDraw.Draw(glow).ellipse((820, -30, 1200, 410), fill=(106, 10, 57, 60))
     glow = glow.filter(ImageFilter.GaussianBlur(52))
     image = Image.alpha_composite(image.convert("RGBA"), glow).convert("RGB")
 
-    # Matrix-like hexadecimal columns scroll upward behind the spider portrait.
+    if spider_mask is None:
+        spider_mask = spider_code_mask()
+    spider_x, spider_y = 850, 7
+    cell_w, cell_h = 13, 15
+    code_font = font("Arial Bold", 14)
+    glyphs = "0123456789ABCDEF"
     matrix = Image.new("RGBA", image.size, (0, 0, 0, 0))
     md = ImageDraw.Draw(matrix)
-    code_font = font("Arial Bold", 16)
-    glyphs = "0123456789ABCDEF"
-    for col, x in enumerate(range(700, 1185, 31)):
-        shift = (frame_index * (3 + col % 4)) % 420
-        for row, y in enumerate(range(-24, 405, 23)):
-            yy = (y - shift) % 420 - 18
-            glyph = glyphs[(col * 11 + row * 7 + frame_index // 2) % len(glyphs)]
-            alpha = 145 if (row + col + frame_index // 3) % 7 == 0 else 52
-            md.text((x, yy), glyph, font=code_font, fill=(255, 56, 160, alpha))
+    for col, x in enumerate(range(690, 1195, cell_w)):
+        column_phase = (frame_index * (1 + col % 3)) % 24
+        for row, y in enumerate(range(8, 380, cell_h)):
+            mask_x = x - spider_x
+            mask_y = y - spider_y
+            strength = 0
+            if 0 <= mask_x < spider_mask.width and 0 <= mask_y < spider_mask.height:
+                strength = spider_mask.getpixel((mask_x, mask_y))
+            # Bright glyphs trace the supplied silhouette; subdued ones keep the
+            # number field continuous around it. Values scroll independently by column.
+            code_row = row + column_phase
+            glyph = glyphs[(col * 11 + code_row * 7 + frame_index // 2) % len(glyphs)]
+            if strength > 12:
+                alpha = min(255, 150 + strength)
+                color = (255, 238, 247, alpha) if strength > 92 and (row + col + frame_index) % 3 == 0 else (255, 56, 160, alpha)
+            else:
+                alpha = 28 + ((row + col * 3 + frame_index // 2) % 5) * 9
+                color = (222, 48, 133, alpha)
+            glitch_shift = 0
+            if frame_index in (6, 7, 18, 19, 20) and row in range(8, 13):
+                glitch_shift = 3 if frame_index % 2 else -2
+            md.text((x + glitch_shift, y), glyph, font=code_font, fill=color)
+            if strength > 120 and frame_index in (6, 7, 18, 19, 20) and row in (9, 10):
+                md.line((x - 2, y + 5, x + 11, y + 5), fill=(255, 238, 247, 180), width=1)
     image = Image.alpha_composite(image.convert("RGBA"), matrix).convert("RGB")
 
     # Strong, readable type remains fixed while only the signal field moves.
@@ -220,33 +256,15 @@ def signal_poster(frame_index=0):
     d.text((55, 56), "SPIDER-SIGNAL  /  DIGITAL TRACE", font=font("Arial Bold", 17), fill=(255, 111, 176))
     d.text((50, 126), "GLITCH", font=font("DIN Condensed Bold", 76), fill=(248, 245, 250))
     d.text((48, 193), "SPIDER", font=font("DIN Condensed Bold", 84), fill=(255, 49, 129), stroke_width=1, stroke_fill=(255, 205, 230))
-    d.text((55, 254), "A moving code trace around the supplied spider artwork.", font=font("Arial", 19), fill=(214, 205, 217))
+    d.text((55, 254), "The supplied spider image rebuilt as moving magenta code.", font=font("Arial", 19), fill=(214, 205, 217))
     d.text((55, 328), "ISHU PATEL  ·  JAVA  ·  FULL-STACK  ·  OPEN SOURCE", font=font("Arial Bold", 15), fill=(185, 164, 185))
 
-    portrait = Image.open(REF / "glitch-spider.jpeg").convert("RGB")
-    portrait = ImageOps.fit(portrait, (214, 340), Image.Resampling.LANCZOS, centering=(0.5, 0.47))
-    portrait = ImageEnhance.Color(portrait).enhance(1.12)
-    portrait = ImageEnhance.Contrast(portrait).enhance(1.08)
-    # Occasional horizontal cuts break the image into deliberate digital slices.
-    if frame_index in (6, 7, 18, 19, 20):
-        y, band_h, shift = (88, 12, 19) if frame_index % 2 else (222, 17, -15)
-        strip = portrait.crop((0, y, portrait.width, y + band_h))
-        portrait.paste(strip, (shift, y))
-        ImageDraw.Draw(portrait).line((0, y + band_h - 2, 70, y + band_h - 2), fill=(255, 230, 247), width=2)
-    # Feather all four edges so the artwork dissolves into the moving number field.
-    mask = Image.new("L", portrait.size, 0)
-    pixels = mask.load()
-    feather = 42
-    for y in range(portrait.height):
-        for x in range(portrait.width):
-            edge = min(x, y, portrait.width - 1 - x, portrait.height - 1 - y)
-            pixels[x, y] = min(255, int(255 * edge / feather))
-    image.paste(portrait, (936, 20), mask)
     return image
 
 
 def build_signal_animation():
-    frames = [signal_poster(i) for i in range(32)]
+    spider_mask = spider_code_mask()
+    frames = [signal_poster(i, spider_mask) for i in range(32)]
     frames[0].save(OUT / "signal-poster.png", optimize=True)
     save_gif(frames, OUT / "signal-poster.gif", [180] * len(frames))
 
