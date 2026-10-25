@@ -1,6 +1,6 @@
-<!-- Spider-Verse visual direction: noir ink, scarlet silk, neon glitch, and chrome. -->
+<!-- Spider-Man visual direction: ink, scarlet, magenta glitch, and comic halftone. -->
 <p align="center">
-  <img src="assets/spider/hero.jpg" width="100%" alt="Ishu Patel — friendly neighborhood developer. Building the next web with Java, full-stack development, practical AI, and open source. Noir Spider-Man artwork is framed by red web lines and a magenta glitch texture." />
+  <img src="assets/spider/hero.jpg" width="100%" alt="Ishu Patel — friendly neighborhood developer. Building the next web with Java, full-stack development, practical AI, and open source. Spider-Man appears in a high-contrast comic frame with a magenta digital texture." />
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 
 > *With great code comes great responsibility.*
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/signal-poster.png" /><img src="assets/spider/signal-poster.gif" width="100%" alt="Neon Spider signal board featuring the supplied magenta glitch Spider-Man art, red blossom noir art, and chrome Y2K star. Short digital pixel-shear bursts affect only the glitch image." /></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/signal-poster.png" /><img src="assets/spider/signal-poster.gif" width="100%" alt="Neon Spider signal board with the supplied magenta glitch Spider-Man image as its only character picture. Brief digital pixel-shear bursts animate the image." /></picture></p>
 
 ## SPIDER-SENSE <a id="signal"></a>
 
@@ -47,6 +47,8 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 
 ## SUIT TECH
 
+<p align="center"><img src="assets/spider/skills.svg" width="100%" alt="The armory: Java, TypeScript, JavaScript, React, Next.js, Vite, HTML, CSS, Node.js, Supabase, PostgreSQL, Git, and GitHub." /></p>
+
 | Layer | Tools |
 | --- | --- |
 | **Languages** | Java · TypeScript · JavaScript |
@@ -57,6 +59,8 @@ I’m **Ishu Patel**, a Computer Science & Engineering student who likes turning
 I apply Java beyond practice problems: implementing scholarship rules and persistent workflows in [Scholarship & Aid](https://github.com/ishu7w/scholarship-financial-aid-system), and measuring sequential versus thread-pool processing in [SmartHealth](https://github.com/ishu7w/SmartHealth). I care about the algorithm, the edge cases, and the tradeoffs.
 
 ## OPEN SOURCE <a id="open-source"></a>
+
+<p align="center"><img src="assets/spider/contributions.svg" width="100%" alt="Three merged upstream contributions: Checkstyle pull request 21518, Gson pull request 3115, and Java Pathfinder pull request 641." /></p>
 
 Focused fixes are small threads in a much bigger web. Here are a few merged contributions:
 
@@ -77,6 +81,8 @@ Focused fixes are small threads in a much bigger web. Here are a few merged cont
 </details>
 
 ## CONTACT <a id="contact"></a>
+
+<p align="center"><img src="assets/spider/contact.svg" width="100%" alt="Good ideas deserve daylight. Contact Ishu about practical AI, open-source Java, or hackathon projects." /></p>
 
 Interested in practical AI, open-source Java, or a good hackathon problem? Send me a signal.
 
