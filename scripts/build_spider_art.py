@@ -2,7 +2,7 @@
 import math
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
+from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFilter, ImageFont, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
 REF = ROOT / "assets" / "spider" / "references"
@@ -197,8 +197,24 @@ def spider_code_mask():
             if red > green * 1.15 and blue > green * 1.08:
                 pink_signal = min(red, blue) - green
                 dst[x, y] = max(0, min(255, int((pink_signal - 8) * 4.2)))
-    mask = mask.filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.GaussianBlur(0.7))
-    return mask.resize((300, 365), Image.Resampling.LANCZOS)
+    source_texture = mask.filter(ImageFilter.MaxFilter(5)).resize((380, 365), Image.Resampling.LANCZOS)
+
+    # Bound the extracted texture to a clean Spider-Man silhouette so nearby
+    # source-image interface marks never become a second rectangular picture.
+    silhouette = Image.new("L", (380, 365), 0)
+    d = ImageDraw.Draw(silhouette)
+    d.ellipse((143, 12, 237, 110), fill=210)
+    d.polygon([(142, 82), (238, 82), (278, 168), (242, 248), (140, 248), (102, 168)], fill=210)
+    d.polygon([(145, 95), (120, 104), (15, 174), (36, 207), (151, 160)], fill=175)
+    d.polygon([(235, 95), (260, 104), (365, 174), (344, 207), (229, 160)], fill=175)
+    d.polygon([(153, 224), (192, 245), (130, 360), (86, 360), (108, 270)], fill=190)
+    d.polygon([(227, 224), (188, 245), (250, 360), (294, 360), (272, 270)], fill=190)
+    silhouette = silhouette.filter(ImageFilter.GaussianBlur(1.2))
+    texture = ImageChops.multiply(source_texture, silhouette)
+    # Keep the complete figure filled with moving code while the sampled image
+    # texture gives the center its brighter digital grain.
+    mask = ImageChops.lighter(silhouette.point(lambda value: value // 2), texture)
+    return mask.filter(ImageFilter.MaxFilter(9)).filter(ImageFilter.GaussianBlur(0.7))
 
 
 def signal_poster(frame_index=0, spider_mask=None):
@@ -219,7 +235,7 @@ def signal_poster(frame_index=0, spider_mask=None):
 
     if spider_mask is None:
         spider_mask = spider_code_mask()
-    spider_x, spider_y = 850, 7
+    spider_x, spider_y = 794, 7
     cell_w, cell_h = 13, 15
     code_font = font("Arial Bold", 14)
     glyphs = "0123456789ABCDEF"
@@ -237,9 +253,12 @@ def signal_poster(frame_index=0, spider_mask=None):
             # number field continuous around it. Values scroll independently by column.
             code_row = row + column_phase
             glyph = glyphs[(col * 11 + code_row * 7 + frame_index // 2) % len(glyphs)]
-            if strength > 12:
-                alpha = min(255, 150 + strength)
-                color = (255, 238, 247, alpha) if strength > 92 and (row + col + frame_index) % 3 == 0 else (255, 56, 160, alpha)
+            if strength > 120:
+                color = (255, 244, 250, 255) if (row + col + frame_index) % 2 == 0 else (255, 56, 160, 255)
+            elif strength > 80:
+                color = (255, 74, 169, 225)
+            elif strength > 50:
+                color = (234, 58, 148, 130)
             else:
                 alpha = 28 + ((row + col * 3 + frame_index // 2) % 5) * 9
                 color = (222, 48, 133, alpha)
