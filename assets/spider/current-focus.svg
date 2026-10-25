@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="300" viewBox="0 0 1120 300" role="img" aria-labelledby="title desc">
+  <title id="title">Current focus</title>
+  <desc id="desc">Four aligned focus areas: Java and problem solving, full-stack development, practical AI, and open source.</desc>
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101018" />
+      <stop offset="0.52" stop-color="#090b12" />
+      <stop offset="1" stop-color="#120b13" />
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#ff315f" stop-opacity=".78" />
+      <stop offset=".55" stop-color="#7d2346" stop-opacity=".45" />
+      <stop offset="1" stop-color="#ff49a5" stop-opacity=".7" />
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+  <rect x="3" y="3" width="1114" height="294" rx="12" fill="url(#panel)" stroke="#572035" stroke-width="2" />
+  <path d="M16 4H1104" stroke="url(#edge)" stroke-width="3" filter="url(#glow)" />
+  <path d="M400 18V282" stroke="#65203b" stroke-width="1" />
+  <g stroke="#321a2a" stroke-width="1">
+    <path d="M20 84H1100" />
+    <path d="M20 138H1100" />
+    <path d="M20 192H1100" />
+    <path d="M20 246H1100" />
+  </g>
+  <g fill="#ff4b8c" filter="url(#glow)">
+    <circle cx="32" cy="56" r="3" />
+    <circle cx="32" cy="110" r="3" />
+    <circle cx="32" cy="164" r="3" />
+    <circle cx="32" cy="218" r="3" />
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" dominant-baseline="middle">
+    <g fill="#fff4f8" font-size="23" font-weight="700">
+      <text x="52" y="57">JAVA &amp; PROBLEM SOLVING</text>
+      <text x="52" y="111">FULL-STACK DEVELOPMENT</text>
+      <text x="52" y="165">PRACTICAL AI</text>
+      <text x="52" y="219">OPEN SOURCE</text>
+    </g>
+    <g fill="#e3dce4" font-size="21">
+      <text x="426" y="57">Data structures, algorithms, and practical application logic</text>
+      <text x="426" y="111">Clear workflows with React, TypeScript, and backend services</text>
+      <text x="426" y="165">Agent workflows and explainable decision systems</text>
+      <text x="426" y="219">Fixes and improvements for Java libraries and developer tools</text>
+    </g>
+  </g>
+  <path d="M16 296H1104" stroke="url(#edge)" stroke-width="2" />
+</svg>

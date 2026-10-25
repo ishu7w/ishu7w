@@ -25,12 +25,7 @@ The language bar reflects **code bytes**, not proficiency. The repository count 
 
 ## CURRENT FOCUS
 
-| Area | Work in progress |
-| --- | --- |
-| **Java & problem solving** | Data structures, algorithms, and practical application logic |
-| **Full-stack development** | Building clear workflows with React, TypeScript, and backend services |
-| **Practical AI** | Exploring agent workflows and explainable decision systems |
-| **Open source** | Fixes and improvements for Java libraries and developer tools |
+<p align="center"><img src="assets/spider/current-focus.svg" width="92%" alt="Current focus: Java and problem solving—data structures, algorithms, and practical application logic; full-stack development—clear workflows with React, TypeScript, and backend services; practical AI—agent workflows and explainable decision systems; open source—fixes and improvements for Java libraries and developer tools." /></p>
 
 ## PROJECTS <a id="projects"></a>
 
