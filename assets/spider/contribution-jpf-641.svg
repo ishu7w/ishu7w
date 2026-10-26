@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="88" viewBox="0 0 1200 88" role="img" aria-label="JAVA PATHFINDER #641: Fix Buffer.limit position clamping">
+  <defs>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#ff315f" stop-opacity=".9" />
+      <stop offset=".65" stop-color="#74203f" stop-opacity=".55" />
+      <stop offset="1" stop-color="#ff49a5" stop-opacity=".8" />
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="2" y="2" width="1196" height="84" rx="8" fill="#090b12" stroke="#482035" stroke-width="1.5" />
+  <path d="M10 3H1190" stroke="url(#edge)" stroke-width="2" />
+  <rect x="3" y="12" width="4" height="64" rx="2" fill="#ff315f" filter="url(#glow)" />
+  <text x="28" y="37" fill="#ff6b9d" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" letter-spacing=".8">JAVA PATHFINDER</text>
+  <text x="28" y="62" fill="#c4b4c3" font-family="Arial, Helvetica, sans-serif" font-size="15">PR #641</text>
+  <path d="M282 15V73" stroke="#57213b" stroke-width="1" />
+  <text x="308" y="52" fill="#f1edf3" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600">Fix Buffer.limit position clamping</text>
+  <g fill="none" stroke="#8c244f" stroke-opacity=".48" stroke-width="1">
+    <path d="M1125 4L1168 44L1124 84M1144 4L1187 44L1143 84" />
+    <path d="M1110 23H1190M1108 65H1190" />
+  </g>
+  <circle cx="1158" cy="44" r="3" fill="#ff4b91" filter="url(#glow)" />
+  <path d="M10 86H1190" stroke="url(#edge)" stroke-width="1" />
+</svg>

@@ -72,11 +72,31 @@ I use Java in both [Scholarship & Aid](https://github.com/ishu7w/scholarship-fin
 
 ## OPEN SOURCE <a id="open-source"></a>
 
-Three merged upstream pull requests:
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce)" srcset="assets/spider/open-source-static.png" /><img src="assets/spider/open-source.gif" width="100%" alt="33 merged upstream pull requests across Checkstyle, Gson, Java Pathfinder, XWiki, Delhi Metro Navigator, and OpenMF." /></picture></p>
 
-- **[Checkstyle #21518](https://github.com/checkstyle/checkstyle/pull/21518)** — Correct file-extension parsing for dotted directories.
-- **[Gson #3115](https://github.com/google/gson/pull/3115)** — Avoid quadratic `removeIf` behavior in JsonArray list views.
-- **[Java Pathfinder #641](https://github.com/javapathfinder/jpf-core/pull/641)** — Fix position clamping when a buffer limit changes.
+Selected upstream work · [Explore all 33 merged contributions](https://github.com/pulls?q=is%3Apr+is%3Amerged+author%3Aishu7w+-user%3Aishu7w)
+
+<a href="https://github.com/checkstyle/checkstyle/pull/22109"><img src="assets/spider/contribution-checkstyle-22109.svg" width="100%" alt="Checkstyle pull request 22109: Make RegexpMultiline examples behaviorally unique." /></a>
+
+<a href="https://github.com/checkstyle/checkstyle/pull/21764"><img src="assets/spider/contribution-checkstyle-21764.svg" width="100%" alt="Checkstyle pull request 21764: Fix RequireThis resource scope in finally blocks." /></a>
+
+<a href="https://github.com/checkstyle/checkstyle/pull/21520"><img src="assets/spider/contribution-checkstyle-21520.svg" width="100%" alt="Checkstyle pull request 21520: Finish file and audit reports after processing failures." /></a>
+
+<a href="https://github.com/checkstyle/checkstyle/pull/21518"><img src="assets/spider/contribution-checkstyle-21518.svg" width="100%" alt="Checkstyle pull request 21518: Fix file extensions for paths with dotted directories." /></a>
+
+<a href="https://github.com/google/gson/pull/3115"><img src="assets/spider/contribution-gson-3115.svg" width="100%" alt="Gson pull request 3115: Avoid quadratic removeIf behavior in JsonArray list views." /></a>
+
+<a href="https://github.com/javapathfinder/jpf-core/pull/641"><img src="assets/spider/contribution-jpf-641.svg" width="100%" alt="Java Pathfinder pull request 641: Fix Buffer.limit position clamping." /></a>
+
+<a href="https://github.com/xwiki/xwiki-platform/pull/6623"><img src="assets/spider/contribution-xwiki-6623.svg" width="100%" alt="XWiki pull request 6623: Fix quote service return-chain indentation." /></a>
+
+<a href="https://github.com/WhiffGodd/Delhi-Metro-Navigator/pull/4"><img src="assets/spider/contribution-delhi-metro-4.svg" width="100%" alt="Delhi Metro Navigator pull request 4: Fix station search and add official fare and exit data." /></a>
+
+<a href="https://github.com/openMF/mcp-mifosx/pull/575"><img src="assets/spider/contribution-mifosx-575.svg" width="100%" alt="OpenMF MCP-MifosX pull request 575: Preserve unrequested terms during loan application updates." /></a>
+
+<a href="https://github.com/openMF/mcp-mifosx/pull/574"><img src="assets/spider/contribution-mifosx-574.svg" width="100%" alt="OpenMF MCP-MifosX pull request 574: Bound Fineract connection and read waits." /></a>
+
+<a href="https://github.com/openMF/mcp-mifosx/pull/573"><img src="assets/spider/contribution-mifosx-573.svg" width="100%" alt="OpenMF MCP-MifosX pull request 573: Preserve special characters in client searches." /></a>
 
 <details>
 <summary>Account metrics · updated 2026-10-25</summary>

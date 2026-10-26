@@ -1,4 +1,5 @@
-"""Build the Spider-Man hero and restrained GitHub-native project panels."""
+"""Build the Spider-Man profile art and project/contribution showcases."""
+import html
 import math
 from pathlib import Path
 
@@ -174,6 +175,20 @@ PROJECTS = [
     ("credence", "Credence", "Certificate issue and verification", "HMAC integrity · audit history", "React · Express · SQLite"),
     ("scholarship-aid", "Scholarship & Aid", "Scholarship and financial aid workflows", "Eligibility · applications · institutional decisions", "Java · Next.js · JDBC"),
     ("smarthealth", "SmartHealth", "Educational patient records", "Java thread-pool benchmarks", "Java · Spring Boot · React"),
+]
+
+CONTRIBUTIONS = [
+    ("checkstyle-22109", "CHECKSTYLE", "#22109", "Make RegexpMultiline examples behaviorally unique", "https://github.com/checkstyle/checkstyle/pull/22109"),
+    ("checkstyle-21764", "CHECKSTYLE", "#21764", "Fix RequireThis resource scope in finally blocks", "https://github.com/checkstyle/checkstyle/pull/21764"),
+    ("checkstyle-21520", "CHECKSTYLE", "#21520", "Finish file and audit reports after processing failures", "https://github.com/checkstyle/checkstyle/pull/21520"),
+    ("checkstyle-21518", "CHECKSTYLE", "#21518", "Fix file extensions for paths with dotted directories", "https://github.com/checkstyle/checkstyle/pull/21518"),
+    ("gson-3115", "GSON", "#3115", "Avoid quadratic removeIf behavior in JsonArray list views", "https://github.com/google/gson/pull/3115"),
+    ("jpf-641", "JAVA PATHFINDER", "#641", "Fix Buffer.limit position clamping", "https://github.com/javapathfinder/jpf-core/pull/641"),
+    ("xwiki-6623", "XWIKI", "#6623", "Fix quote service return-chain indentation", "https://github.com/xwiki/xwiki-platform/pull/6623"),
+    ("delhi-metro-4", "DELHI METRO NAVIGATOR", "#4", "Fix station search and add official fare and exit data", "https://github.com/WhiffGodd/Delhi-Metro-Navigator/pull/4"),
+    ("mifosx-575", "OPENMF / MCP-MIFOSX", "#575", "Preserve unrequested terms during loan application updates", "https://github.com/openMF/mcp-mifosx/pull/575"),
+    ("mifosx-574", "OPENMF / MCP-MIFOSX", "#574", "Bound Fineract connection and read waits", "https://github.com/openMF/mcp-mifosx/pull/574"),
+    ("mifosx-573", "OPENMF / MCP-MIFOSX", "#573", "Preserve special characters in client searches", "https://github.com/openMF/mcp-mifosx/pull/573"),
 ]
 
 
@@ -423,10 +438,83 @@ def build_project_animations():
         save_gif(frames, OUT / f"project-{project[0]}.gif", [160] * len(frames), disposal=1)
 
 
+def open_source_frame(frame_index=0):
+    width, height = 1200, 220
+    image = Image.new("RGB", (width, height), (7, 8, 14))
+
+    # A faint scarlet web carries the profile's Spider-Man motif into this section.
+    web = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    wd = ImageDraw.Draw(web)
+    draw_web(wd, (255, 49, 111, 58), 1, frame_index * 0.04)
+    for x, y in ((850, 100), (1002, 77), (1105, 136), (923, 174)):
+        wd.ellipse((x - 3, y - 3, x + 3, y + 3), fill=(255, 69, 140, 110))
+    image = Image.alpha_composite(image.convert("RGBA"), web)
+
+    phase = 2 * math.pi * frame_index / 20
+    pulse_x = 920 + 165 * math.cos(phase)
+    pulse_y = 108 + 72 * math.sin(phase)
+    glow = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    ImageDraw.Draw(glow).ellipse((pulse_x - 24, pulse_y - 24, pulse_x + 24, pulse_y + 24), fill=(255, 42, 123, 150))
+    glow = glow.filter(ImageFilter.GaussianBlur(22))
+    image = Image.alpha_composite(image, glow)
+
+    # A dark left field keeps the contribution count readable over the web.
+    shade = Image.new("RGBA", image.size, (0, 0, 0, 0))
+    sd = ImageDraw.Draw(shade)
+    for x in range(760):
+        alpha = int(210 * max(0, 1 - x / 760) ** 1.4)
+        sd.line((x, 0, x, height), fill=(7, 8, 14, alpha))
+    image = Image.alpha_composite(image, shade).convert("RGB")
+    d = ImageDraw.Draw(image)
+    d.text((54, 43), "33", font=font("DIN Condensed Bold", 104), fill=(255, 54, 132))
+    d.text((168, 51), "MERGED UPSTREAM", font=font("DIN Condensed Bold", 58), fill=(246, 241, 247))
+    d.text((171, 111), "PULL REQUESTS", font=font("DIN Condensed Bold", 43), fill=(255, 69, 142))
+    d.text((58, 180), "CHECKSTYLE  ·  GSON  ·  JAVA PATHFINDER  ·  XWIKI  ·  DELHI METRO  ·  OPENMF",
+           font=font("Arial Bold", 15), fill=(202, 187, 205))
+    d.line((40, 207, 1160, 207), fill=(155, 34, 72), width=1)
+    return image
+
+
+def build_open_source_showcase():
+    frames = [open_source_frame(i) for i in range(20)]
+    frames[0].save(OUT / "open-source-static.png", optimize=True)
+    save_gif(frames, OUT / "open-source.gif", [180] * len(frames), disposal=1)
+
+    for key, repository, number, title, _url in CONTRIBUTIONS:
+        safe_repo = html.escape(repository)
+        safe_number = html.escape(number)
+        safe_title = html.escape(title)
+        card = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="88" viewBox="0 0 1200 88" role="img" aria-label="{safe_repo} {safe_number}: {safe_title}">
+  <defs>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#ff315f" stop-opacity=".9" />
+      <stop offset=".65" stop-color="#74203f" stop-opacity=".55" />
+      <stop offset="1" stop-color="#ff49a5" stop-opacity=".8" />
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="2" y="2" width="1196" height="84" rx="8" fill="#090b12" stroke="#482035" stroke-width="1.5" />
+  <path d="M10 3H1190" stroke="url(#edge)" stroke-width="2" />
+  <rect x="3" y="12" width="4" height="64" rx="2" fill="#ff315f" filter="url(#glow)" />
+  <text x="28" y="37" fill="#ff6b9d" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" letter-spacing=".8">{safe_repo}</text>
+  <text x="28" y="62" fill="#c4b4c3" font-family="Arial, Helvetica, sans-serif" font-size="15">PR {safe_number}</text>
+  <path d="M282 15V73" stroke="#57213b" stroke-width="1" />
+  <text x="308" y="52" fill="#f1edf3" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600">{safe_title}</text>
+  <g fill="none" stroke="#8c244f" stroke-opacity=".48" stroke-width="1">
+    <path d="M1125 4L1168 44L1124 84M1144 4L1187 44L1143 84" />
+    <path d="M1110 23H1190M1108 65H1190" />
+  </g>
+  <circle cx="1158" cy="44" r="3" fill="#ff4b91" filter="url(#glow)" />
+  <path d="M10 86H1190" stroke="url(#edge)" stroke-width="1" />
+</svg>'''
+        (OUT / f"contribution-{key}.svg").write_text(card, encoding="utf-8")
+
+
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     hero()
     hero_glitch()
     build_signal_animation()
     build_project_animations()
-    print("Generated Spider-Man hero, glitch-spider signal, and animated project panels")
+    build_open_source_showcase()
+    print("Generated Spider-Man hero, signal, project panels, and contribution showcase")
