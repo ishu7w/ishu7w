@@ -56,12 +56,17 @@ Educational patient records and Java thread-pool benchmarks. **Stack:** Java · 
 
 ## TECH STACK
 
-| Area | Tools |
-| --- | --- |
-| **Languages** | Java · TypeScript · JavaScript |
-| **Interface** | React · Next.js · Vite · HTML · CSS |
-| **Server & data** | Node.js · Supabase · PostgreSQL |
-| **Workflow** | Git · GitHub |
+<p align="center"><strong>LANGUAGES</strong></p>
+<p align="center"><img src="assets/spider/tech-languages.svg" height="48" alt="Java, TypeScript, and JavaScript logos" /></p>
+
+<p align="center"><strong>FRONTEND</strong></p>
+<p align="center"><img src="assets/spider/tech-frontend.svg" height="48" alt="React, Next.js, Vite, HTML, and CSS logos" /></p>
+
+<p align="center"><strong>BACKEND &amp; DATA</strong></p>
+<p align="center"><img src="assets/spider/tech-backend.svg" height="48" alt="Node.js, Supabase, and PostgreSQL logos" /></p>
+
+<p align="center"><strong>WORKFLOW</strong></p>
+<p align="center"><img src="assets/spider/tech-workflow.svg" height="48" alt="Git and GitHub logos" /></p>
 
 I use Java in both [Scholarship & Aid](https://github.com/ishu7w/scholarship-financial-aid-system), which implements scholarship rules and persistent workflows, and [SmartHealth](https://github.com/ishu7w/SmartHealth), where I measure sequential and thread-pool processing.
 
