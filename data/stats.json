@@ -1,8 +1,8 @@
 {
-  "updated": "2026-11-08",
-  "public_repositories": 27,
-  "original_repositories": 15,
-  "stars": 38,
+  "updated": "2026-11-09",
+  "public_repositories": 28,
+  "original_repositories": 16,
+  "stars": 39,
   "followers": 9,
   "merged_upstream_prs": 35,
   "language_bytes": {
@@ -12,10 +12,10 @@
     "Java": 487312,
     "CSS": 324309,
     "Python": 117343,
+    "Swift": 97794,
     "PLpgSQL": 21487,
-    "Swift": 3639,
-    "Dockerfile": 1410,
-    "Shell": 257
+    "Shell": 2716,
+    "Dockerfile": 1410
   },
   "source": "https://api.github.com/users/ishu7w/repos",
   "scope": "Public repositories only. Stars and language bytes exclude forks. Merged PRs exclude own repositories.",
